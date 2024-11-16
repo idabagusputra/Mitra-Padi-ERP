@@ -1,0 +1,271 @@
+@extends('layouts.user_type.auth')
+
+@section('content')
+
+<style>
+    #search-results {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ddd;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    #search-results .dropdown-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #search-results .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .form-control {
+        height: 40px;
+    }
+
+    .btn {
+        height: 40px;
+        line-height: 1;
+        /* Agar ikon pencarian tetap berada di tengah */
+    }
+</style>
+
+<div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 mx-4">
+                <div class="card-header pb-3 p-3">
+                    <div class="d-flex flex-row justify-content-between align-items-center" style="height: 40,4px;">
+                        <div>
+                            <h5 class="mb-0 mx-2">Manajemen Debit</h5>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <form method="GET" action="{{ route('debit.index') }}" class="d-flex align-items-center">
+                                <div class="me-3" style="width: 250px; position: relative;">
+                                    <div class="input-group">
+                                        <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit..." aria-label="Cari daftar giling" value="{{ request('search') }}" autocomplete="off">
+                                        <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
+                                            <i class="fas fa-search" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                    <!-- Dropdown menu for search results -->
+                                    <div id="search-results" class="dropdown-menu w-100 p-0" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000; max-height: 200px; overflow-y: auto;">
+                                        <!-- Hasil pencarian akan di-render di sini -->
+                                    </div>
+                                </div>
+                                <div class="me-3" style="width: 150px;">
+                                    <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
+                                        <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
+                                        <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
+                                    </select>
+                                </div>
+                                <button class="btn bg-gradient-primary mb-0 d-flex align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal">
+                                    <i class="fas fa-plus me-2"></i>
+                                    <span>New Debit</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body px-0 pt-3 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">ID</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder ps-2">Petani</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">Tanggal</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">Jumlah</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">Bunga</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">Keterangan</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($debits as $debit)
+                                <tr>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $debit->id }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="text-xs font-weight-bold mb-0">{{ $debit->petani->nama }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $debit->tanggal->format('d-m-Y') }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($debit->jumlah, 2, ',', '.') }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $debit->bunga }}%</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">{{ $debit->keterangan }}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <!--<a href="#" class="btn btn-link text-dark px-2 mb-0" data-bs-toggle="modal" data-bs-target="#editDebitModal{{ $debit->id }}">-->
+                                        <!--    <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>-->
+                                        <!--    Edit-->
+                                        <!--</a>-->
+                                        <form action="{{ route('debit.destroy', $debit->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link text-danger px-2 mb-0" onclick="return confirm('Are you sure you want to delete this item?')">
+                                                <i class="fas fa-trash text-danger me-2" aria-hidden="true"></i>
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Debit Modal -->
+<div class="modal fade" id="addDebitModal" tabindex="-1" role="dialog" aria-labelledby="addDebitModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addDebitModalLabel">Add New Debit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="addDebitForm" action="{{ route('debit.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="petani_id">Petani</label>
+                        <div class="input-group">
+                            <select class="form-control" id="petani_id" name="petani_id" required onchange="updateTotalHutang(this)">
+                                <option value="">Select Petani</option>
+                                @foreach($petanisWithOutstandingKredits as $petani)
+                                <option value="{{ $petani->id }}" data-total-hutang="{{ $petani->total_hutang }}">
+                                    {{ $petani->nama }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <span class="input-group-text" id="total-hutang">Total Hutang: Rp 0</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ date('Y-m-d') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah</label>
+                        <input type="text" class="form-control number-format" id="jumlah" name="jumlah" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bunga">Bunga (%)</label>
+                        <input type="text" class="form-control number-format" id="bunga" name="bunga" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan">Keterangan</label>
+                        <textarea class="form-control" id="keterangan" name="keterangan" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-gradient-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-between align-items-center ps-2 mt-3 mx-3">
+    <div>
+        Showing
+        <strong>{{ $debits->firstItem() }}</strong> to
+        <strong>{{ $debits->lastItem() }}</strong> of
+        <strong>{{ $debits->total() }}</strong> entries
+    </div>
+    <div>
+        {{ $debits->appends(request()->input())->links('pagination::bootstrap-4') }}
+    </div>
+</div>
+
+@endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Setup number formatting
+        initializeNumberFormatting();
+
+        // Setup autocomplete
+        $("#search-input").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{ route('debit.search') }}",
+                    dataType: "json",
+                    data: {
+                        term: request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+            select: function(event, ui) {
+                $("#search-input").val(ui.item.value);
+                $("form").submit();
+            }
+        });
+
+        // Format number inputs
+        const numberInputs = document.querySelectorAll('.number-format');
+        numberInputs.forEach(input => {
+            // Format saat input berubah
+            input.addEventListener('input', function(e) {
+                let value = this.value.replace(/[^\d]/g, '');
+                this.dataset.rawValue = value;
+
+                if (value !== '') {
+                    if (input.name === 'bunga') {
+                        // Untuk input bunga, tampilkan apa adanya
+                        this.value = value;
+                    } else {
+                        // Untuk input jumlah, format dengan pemisah ribuan
+                        this.value = new Intl.NumberFormat('id-ID', {
+                            maximumFractionDigits: 0,
+                            minimumFractionDigits: 0
+                        }).format(value);
+                    }
+                }
+            });
+
+            // Hanya izinkan input angka
+            input.addEventListener('keypress', function(e) {
+                if (!/[\d]/.test(e.key) &&
+                    e.key !== 'Backspace' &&
+                    e.key !== 'Delete' &&
+                    e.key !== 'ArrowLeft' &&
+                    e.key !== 'ArrowRight' &&
+                    e.key !== 'Tab') {
+                    e.preventDefault();
+                }
+            });
+
+            // Saat form di-submit, gunakan nilai asli
+            const form = input.closest('form');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    input.value = input.dataset.rawValue || '';
+                });
+            }
+        });
+    });
+</script>
+@endpush
