@@ -55,7 +55,7 @@
                 <div class="card-header pb-3 p-3">
                     <div class="d-flex flex-row justify-content-between align-items-center" style="height: 40,4px;">
                         <div>
-                            <h5 class="mb-0 mx-2">Daftar Giling</h5>
+                            <h5 class="mb-0 mx-2">Daftar Giling HUHUHUU</h5>
                         </div>
                         <div class="d-flex align-items-center">
                             <form method="GET" action="{{ route('daftar-giling.index') }}" class="d-flex align-items-center">
