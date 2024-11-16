@@ -9,6 +9,7 @@
 /public/storage
 /storage/*.key
 /vendor
+laravel.zip
 .env
 .env.backup
 .phpunit.result.cache
