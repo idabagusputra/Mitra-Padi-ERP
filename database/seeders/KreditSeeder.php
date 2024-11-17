@@ -76,19 +76,47 @@ class KreditSeeder extends Seeder
             ]);
         }
 
-        // Dewa Aji Wnp
-        $dewaAjiDates = ['2024-08-15', '2024-08-15', '2024-09-17', '2024-10-01', '2024-10-10'];
-        $dewaAjiAmounts = [1225750, 15000000, 2000000, 3200000, 1000000];
+        // Data Kredit untuk Dewa Aji Wnp
+        \App\Models\Kredit::create([
+            'petani_id' => $dewaAji->id,
+            'tanggal' => '2024-08-15',
+            'keterangan' => 'First Data',
+            'jumlah' => 1225750,
+            'status' => 0,
+        ]);
 
-        foreach (array_combine($dewaAjiDates, $dewaAjiAmounts) as $date => $amount) {
-            \App\Models\Kredit::create([
-                'petani_id' => $dewaAji->id,
-                'tanggal' => $date,
-                'keterangan' => 'First Data',
-                'jumlah' => $amount,
-                'status' => 0,
-            ]);
-        }
+        \App\Models\Kredit::create([
+            'petani_id' => $dewaAji->id,
+            'tanggal' => '2024-08-15',
+            'keterangan' => 'First Data',
+            'jumlah' => 15000000,
+            'status' => 0,
+        ]);
+
+        \App\Models\Kredit::create([
+            'petani_id' => $dewaAji->id,
+            'tanggal' => '2024-09-17',
+            'keterangan' => 'First Data',
+            'jumlah' => 2000000,
+            'status' => 0,
+        ]);
+
+        \App\Models\Kredit::create([
+            'petani_id' => $dewaAji->id,
+            'tanggal' => '2024-10-01',
+            'keterangan' => 'First Data',
+            'jumlah' => 3200000,
+            'status' => 0,
+        ]);
+
+        \App\Models\Kredit::create([
+            'petani_id' => $dewaAji->id,
+            'tanggal' => '2024-10-10',
+            'keterangan' => 'First Data',
+            'jumlah' => 1000000,
+            'status' => 0,
+        ]);
+
 
         // Ajin Supra
         \App\Models\Kredit::create([
