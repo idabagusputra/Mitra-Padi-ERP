@@ -172,12 +172,12 @@
     .submit-button {
         min-height: 59.2px;
     }
-    
+
     .spinner-border-sm {
-    width: 1rem;
-    height: 1rem;
-    border-width: 0.2em;
-}
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.2em;
+    }
 </style>
 
 @section('content')
@@ -343,7 +343,7 @@
                         data.forEach(petani => {
                             const div = document.createElement('div');
                             div.classList.add('dropdown-item');
-                            div.textContent = `${petani.nama} (Hutang: Rp ${petani.total_hutang.toLocaleString('id-ID')})`;
+                            div.textContent = `${petani.nama} - ${petani.alamat} - (Hutang: Rp ${petani.total_hutang.toLocaleString('id-ID')})`;
                             div.addEventListener('click', function() {
                                 searchInput.value = petani.nama;
                                 petaniIdInput.value = petani.id;
@@ -440,19 +440,19 @@
             numberInputs.forEach(input => {
                 input.value = input.dataset.rawValue;
             });
-    if (this.getAttribute('data-submitting') === 'true') {
-        e.preventDefault();
-        return;
-    }
-    
-    // Set flag bahwa form sedang disubmit
-    this.setAttribute('data-submitting', 'true');
-    const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    
-    // Disable button dan tampilkan loading
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = `
+            if (this.getAttribute('data-submitting') === 'true') {
+                e.preventDefault();
+                return;
+            }
+
+            // Set flag bahwa form sedang disubmit
+            this.setAttribute('data-submitting', 'true');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Disable button dan tampilkan loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
         <div class="d-flex align-items-center">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
             <span>Menyimpan...</span>
