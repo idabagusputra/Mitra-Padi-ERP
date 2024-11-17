@@ -37,33 +37,24 @@
         <div class="col-12">
             <div class="card mb-4 mx-4">
                 <div class="card-header pb-3 p-3">
-                    <div class="d-flex flex-row justify-content-between align-items-center" style="height: 40,4px;">
-                        <div>
-                            <h5 class="mb-0 mx-2">Manajemen Petani</h5>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <!-- Replace the existing form in the card header with this updated version -->
-                            <form method="GET" action="{{ route('petani.index') }}" class="d-flex align-items-center">
-                                <div class="me-3" style="width: 250px; position: relative;">
-                                    <div class="input-group">
-                                        <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari petani..." aria-label="Cari daftar giling" value="{{ request('search') }}" autocomplete="off">
-                                        <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
-                                            <i class="fas fa-search" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                        <!-- Bagian Label -->
+                        <h5 class="mb-3 mb-md-0 mx-2">Manajemen Petani</h5>
 
-                                    <!-- Dropdown menu for search results -->
-                                    <div id="search-results" class="dropdown-menu w-100 p-0" style="display: none; position: absolute; top: 100%; left: 0; z-index: 1000; max-height: 200px; overflow-y: auto;">
-                                        <!-- Hasil pencarian akan di-render di sini -->
-                                    </div>
-                                </div>
-                                <div class="me-3" style="width: 150px;">
+                        <!-- Bagian Dropdown dan Tombol -->
+                        <div class="d-flex flex-wrap gap-2">
+
+                            <div style="width: 150px;">
+                                <form method="GET" action="{{ route('petani.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                     </select>
-                                </div>
-                                <div class="me-3" style="width: 150px;">
+                                </form>
+                            </div>
+
+                            <div style="width: 150px;">
+                                <form method="GET" action="{{ route('petani.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                                     <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                         <option value="all">Semua Alamat</option>
                                         <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
@@ -71,15 +62,34 @@
                                         <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <button class="btn bg-gradient-primary mb-0 d-flex align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal">
-                                    <i class="fas fa-plus me-2"></i>
-                                    <span>New Petani</span>
-                                </button>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- Bagian Search dan Tombol -->
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
+                        <form method="GET" action="{{ route('petani.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
+                            <div class="me-3 w-100" style="position: relative;">
+                                <div class="input-group">
+                                    <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari petani..." aria-label="Cari daftar petani" value="{{ request('search') }}" autocomplete="off">
+                                    <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div id="search-results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;">
+                                    <!-- Hasil pencarian -->
+                                </div>
+                            </div>
+
+                            <button class="btn bg-gradient-primary d-flex align-items-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal">
+                                <i class="fas fa-plus me-2"></i>
+                                <span>New Petani</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+
 
                 <div class="card-body px-0 pt-3 pb-2">
                     <div class="table-responsive p-0">
@@ -240,42 +250,42 @@
         });
 
         // Add New Petani
-const addPetaniForm = document.querySelector('#addPetaniModal form');
+        const addPetaniForm = document.querySelector('#addPetaniModal form');
 
-if (addPetaniForm) {
-    let isSubmitting = false;
+        if (addPetaniForm) {
+            let isSubmitting = false;
 
-    addPetaniForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        // Cek jika sedang dalam proses submit
-        if (isSubmitting) {
-            return;
+            addPetaniForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Cek jika sedang dalam proses submit
+                if (isSubmitting) {
+                    return;
+                }
+
+                // Ambil tombol submit
+                const submitButton = this.querySelector('button[type="submit"]');
+
+                // Set flag dan nonaktifkan tombol
+                isSubmitting = true;
+                if (submitButton) {
+                    submitButton.disabled = true;
+                }
+
+                try {
+                    this.submit(); // Submit form langsung
+                } catch (error) {
+                    // Jika terjadi error, kembalikan status
+                    isSubmitting = false;
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                    }
+                    console.error('Error submitting form:', error);
+                }
+            });
+        } else {
+            console.error('Add Petani form not found');
         }
-
-        // Ambil tombol submit
-        const submitButton = this.querySelector('button[type="submit"]');
-        
-        // Set flag dan nonaktifkan tombol
-        isSubmitting = true;
-        if (submitButton) {
-            submitButton.disabled = true;
-        }
-
-        try {
-            this.submit(); // Submit form langsung
-        } catch (error) {
-            // Jika terjadi error, kembalikan status
-            isSubmitting = false;
-            if (submitButton) {
-                submitButton.disabled = false;
-            }
-            console.error('Error submitting form:', error);
-        }
-    });
-} else {
-    console.error('Add Petani form not found');
-}
 
         // Edit Petani
         document.querySelectorAll('form[id^="editPetaniForm"]').forEach(form => {

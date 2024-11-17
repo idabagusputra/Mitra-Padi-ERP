@@ -46,28 +46,34 @@
                                 <!-- Bagian Dropdown -->
                                 <div class="d-flex flex-wrap gap-2">
                                     <div style="width: 150px;">
-                                        <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
-                                            <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
-                                            <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
-                                        </select>
+                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                            <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
+                                                <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
+                                                <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
+                                            </select>
+                                        </form>
                                     </div>
 
                                     <div style="width: 150px;">
-                                        <select name="status" id="status-filter" class="form-select" onchange="this.form.submit()">
-                                            <option value="">Semua Status</option>
-                                            <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Lunas</option>
-                                            <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Belum Lunas</option>
-                                        </select>
+                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                            <select name="status" id="status-filter" class="form-select" onchange="this.form.submit()">
+                                                <option value="">Semua Status</option>
+                                                <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Lunas</option>
+                                                <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Belum Lunas</option>
+                                            </select>
+                                        </form>
                                     </div>
 
                                     <div style="width: 150px;">
-                                        <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
-                                            <option value="all">Semua Alamat</option>
-                                            <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
-                                            @foreach($alamatList as $alamat)
-                                            <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
-                                            @endforeach
-                                        </select>
+                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                            <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
+                                                <option value="all">Semua Alamat</option>
+                                                <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
+                                                @foreach($alamatList as $alamat)
+                                                <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
+                                                @endforeach
+                                            </select>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
