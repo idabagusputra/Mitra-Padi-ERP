@@ -73,7 +73,7 @@
                             </div>
 
                             <!-- Add Debit Button -->
-                            <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
+                            <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" style="width: 180px;">
                                 <i class="fas fa-plus me-2"></i>
                                 <span>New Debit</span>
                             </button>
