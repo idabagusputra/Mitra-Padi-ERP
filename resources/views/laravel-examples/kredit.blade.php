@@ -81,7 +81,7 @@
                             <!-- Bagian Search dan Tombol -->
                             <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
                                 <form method="GET" action="{{ route('kredit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                                    <div class="me-3 w-100" style="position: relative;">
+                                    <div class="me-2 w-100" style="position: relative;">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
@@ -93,7 +93,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn bg-gradient-primary d-flex align-items-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal">
+                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
                                         <i class="fas fa-plus me-2"></i>
                                         <span>New Kredit</span>
                                     </button>

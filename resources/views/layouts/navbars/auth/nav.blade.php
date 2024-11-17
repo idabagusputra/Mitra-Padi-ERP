@@ -308,6 +308,55 @@
                 });
             }
         }
+
+        // Get the sidenav, icon, and backdrop elements
+        const sidenav = document.getElementById('sidenav-main');
+        const iconSidenav = document.getElementById('iconSidenav');
+        const sidenavCollapse = document.getElementById('sidenav-collapse-main');
+        const backdrop = document.getElementById('backdrop');
+
+        // Variable to track whether the sidenav is open
+        let isOpen = false;
+
+        // Function to toggle the sidenav (open and close)
+        function toggleSidenav() {
+            if (sidenavCollapse.classList.contains('show')) {
+                // Close the sidenav
+                sidenavCollapse.classList.remove('show');
+                backdrop.classList.add('d-none'); // Hide the backdrop
+                isOpen = false;
+            } else {
+                // Open the sidenav
+                sidenavCollapse.classList.add('show');
+                backdrop.classList.remove('d-none'); // Show the backdrop
+                isOpen = true;
+            }
+        }
+
+        // Function to close the sidenav and simulate a click on the icon
+        function closeSidenav() {
+            if (isOpen) {
+                // Automatically toggle the sidenav by simulating a click on the icon
+                iconSidenav.click();
+                isOpen = false;
+            }
+        }
+
+        // Event listener for the close icon
+        iconSidenav.addEventListener('click', toggleSidenav);
+
+        // Event listener for clicking anywhere outside the sidenav (when it's open)
+        document.addEventListener('click', function(event) {
+            // Only close the sidenav if it's open and the click is outside of it
+            if (isOpen && !sidenav.contains(event.target) && !iconSidenav.contains(event.target)) {
+                closeSidenav();
+            }
+        });
+
+        // Prevent click events inside the sidenav from propagating (so the sidebar doesn't close when clicking inside)
+        sidenav.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
     });
 </script>
 <!-- End Navbar -->
