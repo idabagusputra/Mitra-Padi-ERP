@@ -49,7 +49,7 @@
                                     @csrf
                                     <label>Email</label>
                                     <div class="mb-3">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="putra.manuaba@penggilingan.com" aria-label="Email" aria-describedby="email-addon">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="putra.manuaba@penggilingan.padi.com" aria-label="Email" aria-describedby="email-addon">
                                         @error('email')
                                         <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
