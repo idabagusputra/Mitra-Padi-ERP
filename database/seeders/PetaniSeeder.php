@@ -13,7 +13,7 @@ class PetaniSeeder extends Seeder
             'Meyu Sugi',
             'Metu Wid',
             'Pan Lisa',
-            'Men Rumi',
+            'Pan Krisna',
             'Pan Dut',
             'Men Joni',
             'Pan Rika',

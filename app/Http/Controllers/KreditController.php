@@ -70,9 +70,9 @@ class KreditController extends Controller
         });
 
         // Sort the collection
-        $sortedKredits = $calculatedKredits->sortBy(function($item) {
-    return [$item->tanggal, $item->id];
-}, SORT_REGULAR, $sortOrder === 'desc');
+        $sortedKredits = $calculatedKredits->sortBy(function ($item) {
+            return [$item->tanggal, $item->id];
+        }, SORT_REGULAR, $sortOrder === 'desc');
 
         $kreditsBelumLunas = $calculatedKredits->where('status', 0);
 
@@ -81,7 +81,7 @@ class KreditController extends Controller
         $totalKreditBelumLunas = $kreditsBelumLunas->sum('jumlah');
         $totalKreditPlusBungaBelumLunas = $kreditsBelumLunas->sum('hutang_plus_bunga');
 
-        
+
 
         // Manually paginate the collection
         $page = $request->input('page', 1);
