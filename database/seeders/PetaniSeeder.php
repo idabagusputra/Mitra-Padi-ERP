@@ -242,7 +242,7 @@ class PetaniSeeder extends Seeder
         foreach ($namaCandrabuana as $nama) {
             Petani::create([
                 'nama' => $nama,
-                'alamat' => 'Candrabuana',
+                'alamat' => 'Candra Buana',
                 'no_telepon' => '080000000000',
             ]);
         }
@@ -326,7 +326,7 @@ class PetaniSeeder extends Seeder
         foreach ($namaPetaniPurwosari  as $nama) {
             Petani::create([
                 'nama' => $nama,
-                'alamat' => 'Purwosari',
+                'alamat' => 'Purwo Sari',
                 'no_telepon' => '080000000000',
             ]);
         }

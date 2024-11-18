@@ -22,7 +22,11 @@ class PetaniController extends Controller
             'Sibang',
             'Sausu',
             'Bali Indah',
-            'Candra Buana'
+            'Candra Buana',
+            'Taman Sari',
+            'Sukasada',
+            'Purwo Sari',
+            'Karyawan',
         ];
 
         // Handle search functionality
