@@ -13,7 +13,7 @@ class PembayaranKredit extends Model
 
     protected $table = 'pembayaran_kredits';
 
-    protected $fillable = ['giling_id', 'total_hutang', 'dana_terbayar', 'bunga'];
+    protected $fillable = ['giling_id', 'total_hutang', 'dana_terbayar', 'bunga', 'created_at'];
 
     public function giling()
     {
@@ -34,8 +34,8 @@ class PembayaranKredit extends Model
 
         // Get all related Kredit records for this Petani that are still active (status false)
         $kredits = Kredit::where('petani_id', $giling->petani_id) // Adjust if needed based on your relationship
-                        ->where('status', false)
-                        ->get();
+            ->where('status', false)
+            ->get();
 
         $totalBunga = 0;
 
@@ -64,15 +64,12 @@ class PembayaranKredit extends Model
     public function hitungLamaHutangBulan($tanggalKredit)
     {
         $tanggalPembayaran = $this->created_at ?? Carbon::now();
-        
+
         if (!$tanggalKredit instanceof Carbon) {
             $tanggalKredit = Carbon::parse($tanggalKredit);
         }
-        
+
         // Hitung selisih bulan dan lakukan pembulatan kebawah
         return floor($tanggalKredit->diffInMonths($tanggalPembayaran)); // Pembulatan kebawah
     }
-
-
-
 }

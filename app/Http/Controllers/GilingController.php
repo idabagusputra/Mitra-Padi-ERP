@@ -126,6 +126,7 @@ class GilingController extends Controller
 
 
             $pembayaranKredit = PembayaranKredit::create([
+                'created_at' => $validatedData['created_at'],
                 'giling_id' => $giling->id,
                 'total_hutang' => $totalHutangDenganBunga,
                 'dana_terbayar' => min($dana, $totalHutangDenganBunga),
