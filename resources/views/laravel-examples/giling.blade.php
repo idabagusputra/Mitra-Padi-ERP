@@ -239,9 +239,6 @@
                     </div>
                 </div>
 
-                <!-- Hidden field untuk menambahkan waktu secara otomatis -->
-                <input type="hidden" id="created_at_time" name="created_at_time">
-
 
                 <div class="row mb-4">
                     <div class="col-md-12"> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
@@ -684,12 +681,8 @@
             }
         });
 
-        // Menentukan waktu otomatis
-        const now = new Date();
-        const time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0');
 
-        // Menambahkan waktu ke field hidden
-        document.getElementById('created_at_time').value = time;
+
 
         var pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
 

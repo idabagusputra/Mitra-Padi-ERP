@@ -71,8 +71,6 @@ class GilingController extends Controller
         return DB::transaction(function () use ($request) {
             // Validasi input
             $validator = Validator::make($request->all(), [
-                'created_at' => 'required|date',
-                'created_at_time' => 'required',
                 'petani_id' => 'required|exists:petanis,id',
                 'giling_kotor' => 'required|numeric',
                 'biaya_giling' => 'required|numeric',
@@ -94,19 +92,11 @@ class GilingController extends Controller
                 'pengambilans.*.harga' => 'required|integer',
             ]);
 
-            // Jika validasi gagal
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            // Mendapatkan data yang telah divalidasi
             $validatedData = $validator->validated();
-
-            // Gabungkan tanggal dan waktu menjadi satu objek datetime
-            $dateTime = $validatedData['created_at'] . ' ' . $validatedData['created_at_time'];
-
-            // Menambahkan nilai datetime yang digabungkan ke validatedData
-            $validatedData['created_at'] = $dateTime;
 
             // Buat Giling dan Pengambilan
             $giling = Giling::create($validatedData);

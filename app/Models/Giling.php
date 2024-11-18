@@ -12,10 +12,7 @@ class Giling extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $timestamps = false;
-
     protected $fillable = [
-        'created_at',
         'petani_id',
         'giling_kotor',
         'biaya_giling',
