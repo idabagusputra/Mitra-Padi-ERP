@@ -218,7 +218,24 @@
                 @csrf
 
                 <div class="row mb-4">
-                    <div class="col-md-12">
+                    <div class="col-md-9 "> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
+                        <div class="form-group">
+                            <label for="petani_search" class="form-control-label">{{ __('Pilih Petani') }}</label>
+                            <div class="search-container ">
+                                <div class="input-group">
+
+                                    <span class="btn btn-outline-primary input-group-text mb-0" type="" aria-label="Cari">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
+                                    <input type="hidden" id="petani_id" name="petani_id">
+                                </div>
+                                <div id="search-results" style="display: none;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
                             <div class="input-group">
@@ -237,24 +254,11 @@
                             @enderror
                         </div>
                     </div>
+
                 </div>
 
 
-                <div class="row mb-4">
-                    <div class="col-md-12"> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
-                        <div class="form-group">
-                            <label for="petani_search" class="form-control-label">{{ __('Pilih Petani') }}</label>
-                            <div class="search-container">
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                    <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
-                                    <input type="hidden" id="petani_id" name="petani_id">
-                                </div>
-                                <div id="search-results" style="display: none;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <!-- Bagian Data Penggilingan -->
                 <h6 class="mb-3 text-primary">{{ __('Data Penggilingan') }}</h6>
