@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Models\Petani;
 use App\Models\Kredit;
+use App\Models\Petani;
+use Carbon\Carbon;
 
 class KreditSeeder extends Seeder
 {
