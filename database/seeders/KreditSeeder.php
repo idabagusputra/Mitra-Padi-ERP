@@ -1,142 +1,199 @@
 <?php
 
-namespace Database\Seeders;
-
 use Illuminate\Database\Seeder;
-use App\Models\Kredit;
 use App\Models\Petani;
-use Carbon\Carbon;
+use App\Models\Kredit;
 
 class KreditSeeder extends Seeder
 {
     public function run()
     {
-        // Data petani
-        $metuWid = \App\Models\Petani::firstOrCreate(['nama' => 'Metu Wid']);
-        $menRumi = \App\Models\Petani::firstOrCreate(['nama' => 'Men Rumi']);
-        $panDut = \App\Models\Petani::firstOrCreate(['nama' => 'Pan Dut']);
-        $panVidia = \App\Models\Petani::firstOrCreate(['nama' => 'Pan Vidia']);
-        $jikaMin = \App\Models\Petani::firstOrCreate(['nama' => 'Jika Min']);
-        $dewaAji = \App\Models\Petani::firstOrCreate(['nama' => 'Dewa Aji Wnp']);
-        $ajinSupra = \App\Models\Petani::firstOrCreate(['nama' => 'Ajin Supra']);
-        $gusSupra = \App\Models\Petani::firstOrCreate(['nama' => 'Gus Supra']);
+        $data = [
+            // Wanaprasta
+            ['nama' => 'Metu wid', 'tanggal' => '2024-10-31', 'jumlah' => 11253200],
 
-        // Metu Wid
-        \App\Models\Kredit::create([
-            'petani_id' => $metuWid->id,
-            'tanggal' => '2024-10-31',
-            'keterangan' => 'First Data',
-            'jumlah' => 11253200,
-            'status' => 0,
-        ]);
+            ['nama' => 'Men rumi', 'tanggal' => '2024-06-18', 'jumlah' => 3000000],
+            ['nama' => 'Men rumi', 'tanggal' => '2024-07-12', 'jumlah' => 2000000],
+            ['nama' => 'Men rumi', 'tanggal' => '2024-08-01', 'jumlah' => 1000000],
+            ['nama' => 'Men rumi', 'tanggal' => '2024-08-14', 'jumlah' => 2500000],
+            ['nama' => 'Men rumi', 'tanggal' => '2024-09-02', 'jumlah' => 1000000],
+            ['nama' => 'Men rumi', 'tanggal' => '2024-10-19', 'jumlah' => 1500000],
 
-        // Men Rumi
-        $menRumiDates = ['2024-06-18', '2024-07-12', '2024-08-01', '2024-08-14', '2024-09-02', '2024-10-19'];
-        $menRumiAmounts = [3000000, 2000000, 1000000, 2500000, 1000000, 1500000];
+            ['nama' => 'Pan dut', 'tanggal' => '2024-11-02', 'jumlah' => 3000000],
 
-        foreach (array_combine($menRumiDates, $menRumiAmounts) as $date => $amount) {
-            \App\Models\Kredit::create([
-                'petani_id' => $menRumi->id,
-                'tanggal' => $date,
+            ['nama' => 'Pan Vidia', 'tanggal' => '2024-09-23', 'jumlah' => 10000000],
+
+            ['nama' => 'Jika min', 'tanggal' => '2024-07-31', 'jumlah' => 11261510],
+            ['nama' => 'Jika min', 'tanggal' => '2024-11-17', 'jumlah' => 2000000],
+
+            ['nama' => 'Dewa aji wnp', 'tanggal' => '2024-08-15', 'jumlah' => 1225750],
+            ['nama' => 'Dewa aji wnp', 'tanggal' => '2024-08-15', 'jumlah' => 15000000],
+            ['nama' => 'Dewa aji wnp', 'tanggal' => '2024-09-17', 'jumlah' => 2000000],
+            ['nama' => 'Dewa aji wnp', 'tanggal' => '2024-10-01', 'jumlah' => 3200000],
+            ['nama' => 'Dewa aji wnp', 'tanggal' => '2024-10-10', 'jumlah' => 1000000],
+
+            ['nama' => 'Ajin supra', 'tanggal' => '2024-10-17', 'jumlah' => 2500000],
+
+            ['nama' => 'Gus supra', 'tanggal' => '2024-10-23', 'jumlah' => 2000000],
+            ['nama' => 'Gus supra', 'tanggal' => '2024-11-05', 'jumlah' => 2000000],
+
+            // Palasari
+            ['nama' => 'Meman indah', 'tanggal' => '2024-10-24', 'jumlah' => 20000000],
+            ['nama' => 'Meman indah', 'tanggal' => '2024-11-15', 'jumlah' => 500000],
+
+            ['nama' => 'Men epan', 'tanggal' => '2024-10-29', 'jumlah' => 20000000],
+
+            ['nama' => 'Men yadnya', 'tanggal' => '2024-06-30', 'jumlah' => 3000000],
+            ['nama' => 'Men yadnya', 'tanggal' => '2024-11-04', 'jumlah' => 2000000],
+
+            ['nama' => 'Ibun wid', 'tanggal' => '2024-10-22', 'jumlah' => 7000000],
+
+            ['nama' => 'Men vera', 'tanggal' => '2024-09-11', 'jumlah' => 5000000],
+            ['nama' => 'Men vera', 'tanggal' => '2024-10-22', 'jumlah' => 14000000],
+
+            ['nama' => 'Pan gede ari', 'tanggal' => '2024-06-29', 'jumlah' => 1476578],
+
+            ['nama' => 'Nini', 'tanggal' => '2024-10-10', 'jumlah' => 500000],
+            ['nama' => 'Nini', 'tanggal' => '2024-10-12', 'jumlah' => 5000000],
+            ['nama' => 'Nini', 'tanggal' => '2024-10-15', 'jumlah' => 300000],
+            ['nama' => 'Nini', 'tanggal' => '2024-10-23', 'jumlah' => 5000000],
+            ['nama' => 'Nini', 'tanggal' => '2024-10-25', 'jumlah' => 3000000],
+            ['nama' => 'Nini', 'tanggal' => '2024-11-07', 'jumlah' => 445000],
+            ['nama' => 'Nini', 'tanggal' => '2024-11-10', 'jumlah' => 2000000],
+
+            ['nama' => 'Ajin widana', 'tanggal' => '2024-11-17', 'jumlah' => 85474180],
+
+            ['nama' => 'Pan erik', 'tanggal' => '2024-11-17', 'jumlah' => 25000000],
+
+            ['nama' => 'Men suri', 'tanggal' => '2024-10-09', 'jumlah' => 2000000],
+            ['nama' => 'Men suri', 'tanggal' => '2024-10-25', 'jumlah' => 500000],
+            ['nama' => 'Men suri', 'tanggal' => '2024-10-11', 'jumlah' => 3000000],
+
+            ['nama' => 'Gusde giri', 'tanggal' => '2024-10-01', 'jumlah' => 15000000],
+            ['nama' => 'Gusde giri', 'tanggal' => '2024-11-11', 'jumlah' => 10000000],
+
+            ['nama' => 'Gus sayang', 'tanggal' => '2024-10-25', 'jumlah' => 5000000],
+            ['nama' => 'Gus sayang', 'tanggal' => '2024-10-30', 'jumlah' => 5000000],
+            ['nama' => 'Gus sayang', 'tanggal' => '2024-11-10', 'jumlah' => 5000000],
+            ['nama' => 'Gus sayang', 'tanggal' => '2024-11-15', 'jumlah' => 10000000],
+
+            // Penebel
+            ['nama' => 'Pan cantik', 'tanggal' => '2024-07-09', 'jumlah' => 7000000],
+
+            ['nama' => 'Pan artana', 'tanggal' => '2024-11-03', 'jumlah' => 5000000],
+
+            ['nama' => 'Men erna', 'tanggal' => '2024-10-11', 'jumlah' => 3000000],
+
+            ['nama' => 'Pan febri', 'tanggal' => '2024-11-08', 'jumlah' => 3500000],
+
+            ['nama' => 'Men jimi', 'tanggal' => '2024-08-09', 'jumlah' => 3000000],
+            ['nama' => 'Men jimi', 'tanggal' => '2024-08-21', 'jumlah' => 2000000],
+            ['nama' => 'Men jimi', 'tanggal' => '2024-11-05', 'jumlah' => 5500000],
+
+            ['nama' => 'Pan ica', 'tanggal' => '2024-10-16', 'jumlah' => 1000000],
+            ['nama' => 'Pan ica', 'tanggal' => '2024-11-10', 'jumlah' => 2000000],
+
+            ['nama' => 'Men Siska', 'tanggal' => '2024-11-15', 'jumlah' => 12000000],
+
+            ['nama' => 'Men andi', 'tanggal' => '2024-11-08', 'jumlah' => 5000000],
+
+            // Sausu
+            ['nama' => 'Pak tambir', 'tanggal' => '2024-09-01', 'jumlah' => 10000000],
+
+            ['nama' => 'Blebed', 'tanggal' => '2024-08-28', 'jumlah' => 15000000],
+            ['nama' => 'Blebed', 'tanggal' => '2024-10-30', 'jumlah' => 2000000],
+            ['nama' => 'Blebed', 'tanggal' => '2024-10-24', 'jumlah' => 2000000],
+
+            ['nama' => 'Pan iluh', 'tanggal' => '2024-09-19', 'jumlah' => 7000000],
+            ['nama' => 'Pan iluh', 'tanggal' => '2024-11-02', 'jumlah' => 3000000],
+
+            ['nama' => 'Ranti', 'tanggal' => '2024-10-13', 'jumlah' => 3000000],
+
+            ['nama' => 'Pan anis', 'tanggal' => '2024-10-02', 'jumlah' => 4000000],
+
+            ['nama' => 'Pan melda', 'tanggal' => '2024-08-20', 'jumlah' => 6000000],
+            ['nama' => 'Pan melda', 'tanggal' => '2024-11-15', 'jumlah' => 4000000],
+
+            ['nama' => 'Made suartana', 'tanggal' => '2024-09-24', 'jumlah' => 10000000],
+            ['nama' => 'Made suartana', 'tanggal' => '2024-11-12', 'jumlah' => 3000000],
+
+            ['nama' => 'Pak bur', 'tanggal' => '2024-09-23', 'jumlah' => 7000000],
+            ['nama' => 'Pak bur', 'tanggal' => '2024-10-09', 'jumlah' => 3000000],
+
+            ['nama' => 'Pak kardu', 'tanggal' => '2024-08-26', 'jumlah' => 700000],
+            ['nama' => 'Pak kardu', 'tanggal' => '2024-09-19', 'jumlah' => 6000000],
+
+            ['nama' => 'Dewa subrata', 'tanggal' => '2024-08-22', 'jumlah' => 3000000],
+
+            ['nama' => 'Kadek wijana', 'tanggal' => '2024-02-26', 'jumlah' => 1000000],
+            ['nama' => 'Kadek wijana', 'tanggal' => '2024-06-20', 'jumlah' => 4000000],
+
+            ['nama' => 'Pak peri', 'tanggal' => '2024-09-08', 'jumlah' => 10000000],
+
+            ['nama' => 'Pak sadre', 'tanggal' => '2024-10-05', 'jumlah' => 3000000],
+            ['nama' => 'Pak sadre', 'tanggal' => '2024-10-30', 'jumlah' => 500000],
+
+            ['nama' => 'Pak lemek', 'tanggal' => '2024-09-03', 'jumlah' => 4000000],
+
+            ['nama' => 'Budi', 'tanggal' => '2024-09-15', 'jumlah' => 5000000],
+
+            ['nama' => 'Pak carik', 'tanggal' => '2024-10-22', 'jumlah' => 2000000],
+
+            ['nama' => 'Men suki', 'tanggal' => '2024-08-22', 'jumlah' => 8000000],
+            ['nama' => 'Men suki', 'tanggal' => '2024-09-23', 'jumlah' => 16000000],
+            ['nama' => 'Men suki', 'tanggal' => '2024-10-17', 'jumlah' => 5000000],
+            ['nama' => 'Men suki', 'tanggal' => '2024-11-11', 'jumlah' => 21000000],
+
+            ['nama' => 'Pan satya', 'tanggal' => '2024-11-17', 'jumlah' => 5000000],
+
+            // Sukasada
+            ['nama' => 'Pan gede adi', 'tanggal' => '2024-11-03', 'jumlah' => 35000000],
+
+            ['nama' => 'Pan pindi', 'tanggal' => '2024-10-19', 'jumlah' => 15000000],
+            ['nama' => 'Pan pindi', 'tanggal' => '2024-10-30', 'jumlah' => 5000000],
+
+            ['nama' => 'Pan gede antara', 'tanggal' => '2024-10-29', 'jumlah' => 11000000],
+
+            // Bali Indah
+            ['nama' => 'Ajin sayu kembar', 'tanggal' => '2024-10-13', 'jumlah' => 20000000],
+
+            ['nama' => 'Pan gibran', 'tanggal' => '2024-08-19', 'jumlah' => 10000000],
+            ['nama' => 'Pan gibran', 'tanggal' => '2024-09-04', 'jumlah' => 5000000],
+            ['nama' => 'Pan gibran', 'tanggal' => '2024-11-03', 'jumlah' => 5000000],
+
+            ['nama' => 'Ajik eri', 'tanggal' => '2024-10-01', 'jumlah' => 15000000],
+
+            ['nama' => 'Ajik wira', 'tanggal' => '2024-07-06', 'jumlah' => 15000000],
+            ['nama' => 'Ajik wira', 'tanggal' => '2024-09-18', 'jumlah' => 5000000],
+
+            ['nama' => 'Pan widana', 'tanggal' => '2024-10-24', 'jumlah' => 30000000],
+
+            ['nama' => 'Pan kevin', 'tanggal' => '2024-10-24', 'jumlah' => 50000000],
+
+            ['nama' => 'Pan Rio', 'tanggal' => '2024-08-09', 'jumlah' => 17000000],
+            ['nama' => 'Pan Rio', 'tanggal' => '2024-10-15', 'jumlah' => 4000000],
+            ['nama' => 'Pan Rio', 'tanggal' => '2024-11-15', 'jumlah' => 1000000],
+
+            ['nama' => 'Pak selvi', 'tanggal' => '2024-06-18', 'jumlah' => 10000000],
+
+            ['nama' => 'Pak rehan', 'tanggal' => '2024-07-29', 'jumlah' => 40000000],
+
+            ['nama' => 'Pan dian', 'tanggal' => '2024-09-13', 'jumlah' => 25000000],
+
+            ['nama' => 'Ajik mita', 'tanggal' => '2024-10-24', 'jumlah' => 10000000],
+
+            ['nama' => 'Men parel', 'tanggal' => '2024-10-25', 'jumlah' => 1000000],
+        ];
+
+        // Membuat record untuk setiap data hutang
+        foreach ($data as $hutang) {
+            $petani = Petani::firstOrCreate(['nama' => $hutang['nama']]);
+
+            Kredit::create([
+                'petani_id' => $petani->id,
+                'tanggal' => $hutang['tanggal'],
+                'jumlah' => $hutang['jumlah'],
                 'keterangan' => 'First Data',
-                'jumlah' => $amount,
-                'status' => 0,
-            ]);
-        }
-
-        // Pan Dut
-        \App\Models\Kredit::create([
-            'petani_id' => $panDut->id,
-            'tanggal' => '2024-11-02',
-            'keterangan' => 'First Data',
-            'jumlah' => 3000000,
-            'status' => 0,
-        ]);
-
-        // Pan Vidia
-        \App\Models\Kredit::create([
-            'petani_id' => $panVidia->id,
-            'tanggal' => '2024-09-23',
-            'keterangan' => 'First Data',
-            'jumlah' => 10000000,
-            'status' => 0,
-        ]);
-
-        // Jika Min
-        $jikaMinDates = ['2024-07-31', '2024-11-17'];
-        $jikaMinAmounts = [11261510, 2000000];
-
-        foreach (array_combine($jikaMinDates, $jikaMinAmounts) as $date => $amount) {
-            \App\Models\Kredit::create([
-                'petani_id' => $jikaMin->id,
-                'tanggal' => $date,
-                'keterangan' => 'First Data',
-                'jumlah' => $amount,
-                'status' => 0,
-            ]);
-        }
-
-        // Data Kredit untuk Dewa Aji Wnp
-        \App\Models\Kredit::create([
-            'petani_id' => $dewaAji->id,
-            'tanggal' => '2024-08-15',
-            'keterangan' => 'First Data',
-            'jumlah' => 1225750,
-            'status' => 0,
-        ]);
-
-        \App\Models\Kredit::create([
-            'petani_id' => $dewaAji->id,
-            'tanggal' => '2024-08-15',
-            'keterangan' => 'First Data',
-            'jumlah' => 15000000,
-            'status' => 0,
-        ]);
-
-        \App\Models\Kredit::create([
-            'petani_id' => $dewaAji->id,
-            'tanggal' => '2024-09-17',
-            'keterangan' => 'First Data',
-            'jumlah' => 2000000,
-            'status' => 0,
-        ]);
-
-        \App\Models\Kredit::create([
-            'petani_id' => $dewaAji->id,
-            'tanggal' => '2024-10-01',
-            'keterangan' => 'First Data',
-            'jumlah' => 3200000,
-            'status' => 0,
-        ]);
-
-        \App\Models\Kredit::create([
-            'petani_id' => $dewaAji->id,
-            'tanggal' => '2024-10-10',
-            'keterangan' => 'First Data',
-            'jumlah' => 1000000,
-            'status' => 0,
-        ]);
-
-
-        // Ajin Supra
-        \App\Models\Kredit::create([
-            'petani_id' => $ajinSupra->id,
-            'tanggal' => '2024-10-17',
-            'keterangan' => 'First Data',
-            'jumlah' => 2500000,
-            'status' => 0,
-        ]);
-
-        // Gus Supra
-        $gusSupraDates = ['2024-10-23', '2024-11-05'];
-        $gusSupraAmounts = [2000000, 2000000];
-
-        foreach (array_combine($gusSupraDates, $gusSupraAmounts) as $date => $amount) {
-            \App\Models\Kredit::create([
-                'petani_id' => $gusSupra->id,
-                'tanggal' => $date,
-                'keterangan' => 'First Data',
-                'jumlah' => $amount,
                 'status' => 0,
             ]);
         }
