@@ -39,33 +39,35 @@
                 <div class="col-12">
                     <div class="card mb-4 mx-4">
                         <div class="card-header pb-3 p-3">
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                                <!-- Bagian Label -->
-                                <h5 class="mb-3 mb-md-0 mx-2">Manajemen Kredit</h5>
+                            <form method="GET" action="{{ route('kredit.index') }}">
+                                <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
-                                <!-- Bagian Dropdown -->
-                                <div class="d-flex flex-wrap gap-2">
-                                    <div style="width: 150px;">
-                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                    <!-- Bagian Label -->
+                                    <h5 class="mb-3 mb-md-0 mx-2">Manajemen Kredit</h5>
+
+                                    <!-- Bagian Dropdown -->
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <div style="width: 150px;">
+
                                             <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                                 <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                                 <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                             </select>
-                                        </form>
-                                    </div>
 
-                                    <div style="width: 150px;">
-                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                        </div>
+
+                                        <div style="width: 150px;">
+
                                             <select name="status" id="status-filter" class="form-select" onchange="this.form.submit()">
                                                 <option value="">Semua Status</option>
                                                 <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Lunas</option>
                                                 <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Belum Lunas</option>
                                             </select>
-                                        </form>
-                                    </div>
 
-                                    <div style="width: 150px;">
-                                        <form method="GET" action="{{ route('kredit.index') }}">
+                                        </div>
+
+                                        <div style="width: 150px;">
+
                                             <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                                 <option value="all">Semua Alamat</option>
                                                 <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
@@ -73,14 +75,16 @@
                                                 <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
                                                 @endforeach
                                             </select>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Bagian Search dan Tombol -->
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
-                                <form method="GET" action="{{ route('kredit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- Bagian Search dan Tombol -->
+
+                                <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                                     <div class="me-2 w-100" style="position: relative;">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
@@ -93,12 +97,14 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
+                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
                                         <i class="fas fa-plus me-2"></i>
-                                        <span>New Kredit</span>
+                                        <span>Kredit Baru</span>
                                     </button>
-                                </form>
-                            </div>
+                                </div>
+
+
+                            </form>
                         </div>
 
 

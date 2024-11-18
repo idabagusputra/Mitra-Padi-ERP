@@ -55,52 +55,53 @@
 
 
                 <div class="card-header pb-3 p-3">
-                    <!-- Header Title and Dropdown Filters -->
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
-                        <!-- Title Section -->
-                        <h5 class="mb-3 mb-md-0 mx-2">Daftar Giling</h5>
+                    <form method="GET" action="{{ route('daftar-giling.index') }}">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
-                        <!-- Filters and Action Button -->
-                        <div class="d-flex flex-wrap gap-2">
-                            <!-- Sort Dropdown -->
-                            <div style="width: 150px;">
-                                <form method="GET" action="{{ route('daftar-giling.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
+                            <!-- Bagian Label -->
+                            <h5 class="mb-3 mb-md-0 mx-2">Daftar Giling</h5>
+
+                            <!-- Bagian Dropdown -->
+                            <div class="d-flex flex-wrap gap-2">
+                                <div style="width: 150px;">
+
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                     </select>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Search Form and Add Button -->
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
-                        <form method="GET" action="{{ route('daftar-giling.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                            <!-- Search Input -->
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+
+                        <!-- Bagian Search dan Tombol -->
+
+                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                             <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
-                                    <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari nota giling..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
-                                    <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
-                                        <i class="fas fa-search"></i>
+                                    <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
+                                    <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
                                     </button>
                                 </div>
                                 <div id="search-results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;">
-                                    <!-- Search Results Rendered Here -->
+                                    <!-- Search results will be populated here -->
                                 </div>
                             </div>
 
-                            <!-- Add Debit Button -->
-
-
-
-                            <a href="/giling" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" style="width: 180px;">
+                            <a href="/giling" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" style="width: 180px;">
                                 <i class="fas fa-plus me-2"></i>
-                                <span>New Giling</span>
+                                <span>Giling Baru</span>
                             </a>
+                        </div>
 
-                        </form>
-                    </div>
+
+                    </form>
                 </div>
 
                 <div class="card-body px-0 pt-0 pb-2">
