@@ -9,6 +9,10 @@ class KreditSeeder extends Seeder
     public function run()
     {
         $data = [
+
+            // Data Hutang Petani
+
+
             // Wanaprasta
             ['nama' => 'Metu wid', 'tanggal' => '2024-10-31', 'jumlah' => 11253200],
 
