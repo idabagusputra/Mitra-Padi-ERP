@@ -207,7 +207,7 @@ class PetaniSeeder extends Seeder
         ];
 
 
-        $namaAnggotaGilingan = [
+        $namaKaryawan = [
             "Pan Cika",
             "Pan Ayu",
             "Sentiong",
@@ -231,7 +231,7 @@ class PetaniSeeder extends Seeder
             "Pan Adi",
         ];
 
-        foreach ($namaAnggotaGilingan as $nama) {
+        foreach ($namaKaryawan as $nama) {
             Petani::create([
                 'nama' => $nama,
                 'alamat' => 'Karyawan',
