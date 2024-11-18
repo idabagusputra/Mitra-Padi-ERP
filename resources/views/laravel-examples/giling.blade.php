@@ -227,7 +227,7 @@
                                     class="form-control @error('created_at') is-invalid @enderror"
                                     id="created_at"
                                     name="created_at"
-                                    value="{{ date('Y-m-d') }}"
+                                    value="{{ date('Y-m-d\TH:i:s') }}"
                                     required>
                             </div>
                             @error('created_at')
