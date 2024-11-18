@@ -154,10 +154,123 @@ class PetaniSeeder extends Seeder
             "Men Parel"
         ];
 
+        $namaSangehSari = [
+            "Pan Sri",
+            "Pan Dedi",
+            "Men Bagas",
+            "Pan Meri",
+            "Pan Putu Sopi",
+            "Me Made Malen",
+            "Men Kayan",
+            "Nyoman Sudana",
+            "Pan Karlina",
+            "Poyan Somo",
+            "Pan Doni",
+            "Men Agus Sangeh",
+            "Men Adi",
+            "Men Tania",
+            "Tiaji Bali",
+            "Pan Manda",
+            "Liong",
+            "Ketut Mencret",
+            "Ajin Eka"
+        ];
+
+        $namaDoresPion = [
+            "Dores Pion"
+        ];
+
+        $namaGigitSari = [
+            "Ajik Yuna",
+            "Pan Yena",
+            "Pan Yulia",
+            "Pan Nadia",
+            "Pan Dewi",
+            "Pan Sinta",
+            "Pan Dandi",
+            "Pan Sur",
+            "Yogi",
+            "Pan Angga",
+            "Agus",
+            "Pan Merlin",
+            "Pan Pian",
+            "Pan Yus",
+            "Pan Serli",
+            "Men Nita",
+            "Ajik Radit",
+            "Ajik Arta",
+            "Pan Tiara",
+            "Pan Alan",
+            "Ajik Sunar",
+            "Pan Wulan",
+            "Kakek Dimas"
+        ];
 
 
+        $namaAnggotaGilingan = [
+            "Pan Cika",
+            "Pan Ayu",
+            "Sentiong",
+            "Pan Gede Jemur",
+            "Men Agung",
+            "Kayun Dinto",
+            "Kadek Dedi",
+            "Komang Sura Giri",
+            "Sukri",
+            "Buruh Nembak"
+        ];
 
 
+        $namaCandrabuana = [
+            "Pan Putu Bokir",
+            "Pan Dika",
+            "Pan Desli",
+            "Pan Agus Reno",
+            "Pan Nia",
+            "Pan Arya",
+            "Pan Adi",
+        ];
+
+        foreach ($namaAnggotaGilingan as $nama) {
+            Petani::create([
+                'nama' => $nama,
+                'alamat' => 'Karyawan',
+                'no_telepon' => '080000000000',
+            ]);
+        }
+
+        foreach ($namaCandrabuana as $nama) {
+            Petani::create([
+                'nama' => $nama,
+                'alamat' => 'Candrabuana',
+                'no_telepon' => '080000000000',
+            ]);
+        }
+
+
+        foreach ($namaGigitSari as $nama) {
+            Petani::create([
+                'nama' => $nama,
+                'alamat' => 'Gigit Sari',
+                'no_telepon' => '080000000000',
+            ]);
+        }
+
+        foreach ($namaSangehSari as $nama) {
+            Petani::create([
+                'nama' => $nama,
+                'alamat' => 'Sangeh Sari',
+                'no_telepon' => '080000000000',
+            ]);
+        }
+
+        foreach ($namaDoresPion as $nama) {
+            Petani::create([
+                'nama' => $nama,
+                'alamat' => 'Taman Sari',
+                'no_telepon' => '080000000000',
+            ]);
+        }
 
 
 

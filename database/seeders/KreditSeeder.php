@@ -190,6 +190,85 @@ class KreditSeeder extends Seeder
             ['nama' => 'Ajik mita', 'tanggal' => '2024-10-24', 'jumlah' => 10000000],
 
             ['nama' => 'Men parel', 'tanggal' => '2024-10-25', 'jumlah' => 1000000],
+
+
+            ['nama' => 'Pan dedi', 'tanggal' => '2024-08-07', 'jumlah' => 5000000],
+            ['nama' => 'Pan dedi', 'tanggal' => '2024-07-26', 'jumlah' => 5000000],
+            ['nama' => 'Pan dedi', 'tanggal' => '2024-08-27', 'jumlah' => 4000000],
+            ['nama' => 'Pan dedi', 'tanggal' => '2024-09-17', 'jumlah' => 2000000],
+            ['nama' => 'Pan dedi', 'tanggal' => '2024-10-30', 'jumlah' => 5000000],
+
+            ['nama' => 'Men bagas', 'tanggal' => '2024-07-22', 'jumlah' => 5000000],
+            ['nama' => 'Men bagas', 'tanggal' => '2024-08-21', 'jumlah' => 3000000],
+            ['nama' => 'Men bagas', 'tanggal' => '2024-09-02', 'jumlah' => 3000000],
+            ['nama' => 'Men bagas', 'tanggal' => '2024-09-29', 'jumlah' => 1000000],
+
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-06-30', 'jumlah' => 22000000],
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-07-31', 'jumlah' => 2000000],
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-09-01', 'jumlah' => 2000000],
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-09-23', 'jumlah' => 8000000],
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-10-09', 'jumlah' => 1000000],
+            ['nama' => 'Pan Meri', 'tanggal' => '2024-10-17', 'jumlah' => 7000000],
+
+            ['nama' => 'Pan putu sopi', 'tanggal' => '2024-10-10', 'jumlah' => 9247500],
+
+            ['nama' => 'Me made malen', 'tanggal' => '2024-11-07', 'jumlah' => 15000000],
+
+            ['nama' => 'Nyoman sudana', 'tanggal' => '2024-10-25', 'jumlah' => 10000000],
+
+            ['nama' => 'Pan karlina', 'tanggal' => '2024-08-09', 'jumlah' => 2000000],
+
+            ['nama' => 'Pan doni', 'tanggal' => '2024-10-17', 'jumlah' => 2000000],
+
+            ['nama' => 'Men tania', 'tanggal' => '2024-11-08', 'jumlah' => 3000000],
+
+            ['nama' => 'Ketut mencret', 'tanggal' => '2024-11-03', 'jumlah' => 15000000],
+
+            ['nama' => 'Ajik yuna', 'tanggal' => '2024-11-08', 'jumlah' => 10000000],
+
+            ['nama' => 'Pan yena', 'tanggal' => '2024-07-17', 'jumlah' => 84100000],
+            ['nama' => 'Pan yena', 'tanggal' => '2024-11-12', 'jumlah' => 5000000],
+
+            ['nama' => 'Pan nadia', 'tanggal' => '2024-11-08', 'jumlah' => 15000000],
+
+            ['nama' => 'Yogi', 'tanggal' => '2024-11-08', 'jumlah' => 25000000],
+
+            ['nama' => 'Pan angga', 'tanggal' => '2024-09-12', 'jumlah' => 15000000],
+
+            ['nama' => 'Pan pian', 'tanggal' => '2024-10-24', 'jumlah' => 17000000],
+
+            ['nama' => 'Ajik radit', 'tanggal' => '2024-08-19', 'jumlah' => 7000000],
+            ['nama' => 'Ajik radit', 'tanggal' => '2024-11-03', 'jumlah' => 15000000],
+
+            ['nama' => 'Pan wulan', 'tanggal' => '2024-10-07', 'jumlah' => 15000000],
+
+            ['nama' => 'Kakek dimas', 'tanggal' => '2024-11-08', 'jumlah' => 4000000],
+
+
+            ['nama' => 'Pan dika', 'tanggal' => '2024-10-03', 'jumlah' => 8000000],
+
+            ['nama' => 'Pan desli', 'tanggal' => '2024-11-17', 'jumlah' => 30000000],
+
+            ['nama' => 'Pan nia', 'tanggal' => '2024-11-07', 'jumlah' => 2508260],
+
+            ['nama' => 'Pan gede antara', 'tanggal' => '2024-07-14', 'jumlah' => 15000000],
+            ['nama' => 'Pan gede antara', 'tanggal' => '2024-09-26', 'jumlah' => 5000000],
+            ['nama' => 'Pan gede antara', 'tanggal' => '2024-10-11', 'jumlah' => 2000000],
+
+            ['nama' => 'Pan Arya', 'tanggal' => '2024-10-08', 'jumlah' => 25000000],
+
+            ['nama' => 'Pan Adi', 'tanggal' => '2024-10-14', 'jumlah' => 5000000],
+
+            ['nama' => 'Pan dika', 'tanggal' => '2024-10-09', 'jumlah' => 30000000],
+            ['nama' => 'Pan dika', 'tanggal' => '2024-10-27', 'jumlah' => 15000000],
+
+            ['nama' => 'Pan cika', 'tanggal' => '2024-11-18', 'jumlah' => 3000000],
+            ['nama' => 'Pan ayu', 'tanggal' => '2024-11-18', 'jumlah' => 9985000],
+            ['nama' => 'Sentiong', 'tanggal' => '2024-11-18', 'jumlah' => 1652000],
+            ['nama' => 'Pan gede jemur', 'tanggal' => '2024-11-18', 'jumlah' => 1000000],
+            ['nama' => 'Men agung', 'tanggal' => '2024-11-18', 'jumlah' => 3500000],
+            ['nama' => 'Kadek dedi', 'tanggal' => '2024-11-18', 'jumlah' => 540000],
+            ['nama' => 'Komang Sura giri', 'tanggal' => '2024-11-18', 'jumlah' => 8000000],
         ];
 
         // Membuat record untuk setiap data hutang
