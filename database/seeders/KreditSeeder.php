@@ -154,7 +154,7 @@ class KreditSeeder extends Seeder
             ['nama' => 'Pan satya', 'tanggal' => '2024-11-17', 'jumlah' => 5000000],
 
             // Sukasada
-            ['nama' => 'Pan gede adi', 'tanggal' => '2024-11-03', 'jumlah' => 35000000],
+            ['nama' => 'Pan gede adi sksd', 'tanggal' => '2024-11-03', 'jumlah' => 35000000],
 
             ['nama' => 'Pan pindi', 'tanggal' => '2024-10-19', 'jumlah' => 15000000],
             ['nama' => 'Pan pindi', 'tanggal' => '2024-10-30', 'jumlah' => 5000000],

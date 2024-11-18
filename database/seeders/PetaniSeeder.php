@@ -35,7 +35,7 @@ class PetaniSeeder extends Seeder
             "Jikman Babahan",
             "Ibun Wid",
             "Men Vera",
-            "Pan Gede Adi",
+            "Pan Gede Adi Pls",
             "Pan Gede Ari",
             "Pan Komang Adi",
             "Ajin Intan",
@@ -121,7 +121,7 @@ class PetaniSeeder extends Seeder
         ];
 
         $namaPetaniSukasada = [
-            "Pan Gede Adi",
+            "Pan Gede Adi Sksd",
             "Pan Pindi",
             "Pan Gede Antara"
         ];
