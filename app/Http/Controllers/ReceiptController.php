@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DaftarGiling;
+use App\Models\Giling;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -26,11 +27,18 @@ class ReceiptController extends Controller
         // Get unpaid kredits
         $unpaidKredits = $giling->petani->kredits->where('status', false);
 
+        // Fetch the 'created_at' value from the gilings table
+        $giling = Giling::latest()->first(); // or modify to fetch the specific row you need
+        $referenceDate = $giling->created_at; // Assuming 'created_at' is a datetime column
+        // Calculate lama_bulan for each unpaid kredit
+        $now = Carbon::parse($referenceDate); // Using the 'created_at' value as the reference date
+
         // Calculate lama_bulan for each kredit
-        $now = Carbon::now();
         foreach ($unpaidKredits as $kredit) {
-            $tanggal = Carbon::parse($kredit->tanggal);
-            $kredit->lama_bulan = $tanggal->diffInMonths($now);
+            $tanggal = Carbon::parse($kredit->tanggal); // Assuming 'tanggal' is the kredit's date
+            $kredit->lama_bulan = $tanggal->diffInMonths($now); // Calculate the months difference
+            // Optionally save the result to the database
+            $kredit->save();
         }
 
         // Setup DomPDF dengan konfigurasi khusus
@@ -43,13 +51,13 @@ class ReceiptController extends Controller
         $options->set('dpi', 96);
         $options->set('debugKeepTemp', true);
         // $options->set('debugCss', true);
-        
+
         $dompdf = new Dompdf($options);
 
         // Convert mm to points (1mm = 2.83465 points)
         $width = 86 * 2.83465;
         $height = 400 * 2.83465;
-        
+
         // Set custom paper size
         $dompdf->setPaper(array(0, 0, $width, $height));
 
@@ -61,12 +69,12 @@ class ReceiptController extends Controller
             <style>
                 @page {
                     margin: 0mm 3mm 3mm 3mm;
-                   
+
                 }
                 body {
                     font-family: sans-serif;
                     margin: 0;
-                   
+
                     font-size: 10pt;
                     line-height: 1.3;
                 }
@@ -93,7 +101,7 @@ class ReceiptController extends Controller
 
         // Load HTML ke DomPDF
         $dompdf->loadHtml($htmlContent);
-        
+
         // Render PDF
         $dompdf->render();
 
