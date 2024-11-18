@@ -72,6 +72,18 @@
 
                                 </div>
 
+                                <div style="width: 150px;">
+
+                                    <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
+                                        <option value="all">Semua Alamat</option>
+                                        <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
+                                        @foreach($alamatList as $alamat)
+                                        <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
+
 
 
                             </div>

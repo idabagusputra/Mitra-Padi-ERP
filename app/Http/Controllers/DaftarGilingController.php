@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DaftarGiling;
 use App\Models\Kredit;
+use App\Models\Petani;
 use App\Models\PembayaranKredit;
 use App\Models\Giling;
 use Illuminate\Http\Request;
@@ -15,7 +16,15 @@ class DaftarGilingController extends Controller
 {
     public function index(Request $request)
     {
+
+        // Retrieve all petanis for use in the view
+        $petanis = Petani::all();
+
+        // Get unique alamat list for the filter dropdown
+        $alamatList = $petanis->pluck('alamat')->unique()->filter()->values();
+
         $search = $request->input('search');
+        $alamatFilter = $request->input('alamat');
         $sortOrder = $request->input('sort', 'desc');
 
         $query = DaftarGiling::with('giling.petani');
@@ -27,12 +36,25 @@ class DaftarGilingController extends Controller
             });
         }
 
+        // Handle filtering by alamat
+        if ($request->has('alamat')) {
+            if ($alamatFilter === 'campur') {
+                $query->whereHas('petani', function ($q) {
+                    $q->whereNotNull('alamat');
+                });
+            } elseif ($alamatFilter !== 'all') {
+                $query->whereHas('petani', function ($q) use ($alamatFilter) {
+                    $q->where('alamat', $alamatFilter);
+                });
+            }
+        }
+
         // Apply sorting
         $query->orderBy('created_at', $sortOrder);
 
         $daftarGilings = $query->paginate(20);
 
-        return view('laravel-examples.daftar-giling', compact('daftarGilings', 'search', 'sortOrder'));
+        return view('laravel-examples.daftar-giling', compact('daftarGilings', 'search', 'sortOrder', 'alamatList'));
     }
 
     // ... (other methods remain the same)
