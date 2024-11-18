@@ -220,7 +220,7 @@
                 <div class="row mb-4">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="created_at" class="form-control-label">{{ __('Tanggal') }}</label>
+                            <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                 <input type="date"

@@ -164,7 +164,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            <span class="input-group-text" id="total-hutang">Total Hutang: Rp 0</span>
+                            <!-- <span class="input-group-text" id="total-hutang">Total Hutang: Rp 0</span> -->
                         </div>
                     </div>
                     <div class="form-group">
