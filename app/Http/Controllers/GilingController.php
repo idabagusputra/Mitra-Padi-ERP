@@ -71,6 +71,7 @@ class GilingController extends Controller
         return DB::transaction(function () use ($request) {
             // Validasi input
             $validator = Validator::make($request->all(), [
+                'created_at' => 'required|date', // Menjamin bahwa input adalah tanggal yang valid
                 'petani_id' => 'required|exists:petanis,id',
                 'giling_kotor' => 'required|numeric',
                 'biaya_giling' => 'required|numeric',
@@ -92,14 +93,19 @@ class GilingController extends Controller
                 'pengambilans.*.harga' => 'required|integer',
             ]);
 
+            // Jika validasi gagal, kembali ke form dengan pesan error
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
             $validatedData = $validator->validated();
 
-            // Buat Giling dan Pengambilan
+            // Pastikan 'created_at' ada dalam format yang benar (misalnya, pastikan timezone sudah benar)
+            $validatedData['created_at'] = Carbon::parse($validatedData['created_at'])->format('Y-m-d'); // Pastikan format tanggal sesuai
+
+            // Buat entri Giling
             $giling = Giling::create($validatedData);
+
             // Create Pengambilan entries if provided
             // Handle pengambilans
             if (!empty($validatedData['pengambilans']) && is_array($validatedData['pengambilans'])) {
