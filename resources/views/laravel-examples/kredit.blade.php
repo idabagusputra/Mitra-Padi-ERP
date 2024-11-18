@@ -84,12 +84,12 @@
                                     <div class="me-2 w-100" style="position: relative;">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
-                                            <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
-                                                <i class="fas fa-search"></i>
+                                            <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
+                                                <i class="fas fa-search" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div id="search-results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;">
-                                            <!-- Search results -->
+                                            <!-- Search results will be populated here -->
                                         </div>
                                     </div>
 
