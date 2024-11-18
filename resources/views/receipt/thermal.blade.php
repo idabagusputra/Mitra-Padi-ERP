@@ -119,7 +119,7 @@
             <div class="header">
                 <img src="{{ asset('logo_gilingan.png') }}" alt="Putra Manuaba" class="header-logo">
                 <div class="header-text">
-                    
+
                     <div></div>
                 </div>
             </div>
@@ -365,7 +365,7 @@
                 <div></div>
             </div>
         </div>
-        
+
 
 </body>
 

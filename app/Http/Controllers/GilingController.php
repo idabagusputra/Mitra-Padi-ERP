@@ -70,7 +70,6 @@ class GilingController extends Controller
         return DB::transaction(function () use ($request) {
             // Validasi input
             $validator = Validator::make($request->all(), [
-                'created_at' => 'required|date',  // Tambahkan ini
                 'petani_id' => 'required|exists:petanis,id',
                 'giling_kotor' => 'required|numeric',
                 'biaya_giling' => 'required|numeric',
@@ -92,15 +91,11 @@ class GilingController extends Controller
                 'pengambilans.*.harga' => 'required|integer',
             ]);
 
-
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
             $validatedData = $validator->validated();
-            // Konversi string tanggal ke objek Carbon jika diperlukan
-            $validatedData['created_at'] = Carbon::parse($validatedData['created_at']);
-
 
             // Buat Giling dan Pengambilan
             $giling = Giling::create($validatedData);

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\DaftarGiling;
-use App\Models\Giling;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -27,17 +26,11 @@ class ReceiptController extends Controller
         // Get unpaid kredits
         $unpaidKredits = $giling->petani->kredits->where('status', false);
 
-        // Fetch the 'created_at' value from the gilings table
-        $giling = Giling::latest()->first(); // or modify to fetch the specific row you need
-        $referenceDate = $giling->created_at; // Assuming 'created_at' is a datetime column
-        // Calculate lama_bulan for each unpaid kredit
-        $now = Carbon::parse($referenceDate); // Using the 'created_at' value as the reference date
-
         // Calculate lama_bulan for each kredit
+        $now = Carbon::now();
         foreach ($unpaidKredits as $kredit) {
-            $tanggal = Carbon::parse($kredit->tanggal); // Assuming 'tanggal' is the kredit's date
-            $kredit->lama_bulan = $tanggal->diffInMonths($now); // Calculate the months difference
-
+            $tanggal = Carbon::parse($kredit->tanggal);
+            $kredit->lama_bulan = $tanggal->diffInMonths($now);
         }
 
         // Setup DomPDF dengan konfigurasi khusus
