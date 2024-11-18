@@ -71,6 +71,7 @@ class GilingController extends Controller
         return DB::transaction(function () use ($request) {
             // Validasi input
             $validator = Validator::make($request->all(), [
+                'created_at' => 'required|date', // Menjamin bahwa input adalah tanggal yang valid
                 'petani_id' => 'required|exists:petanis,id',
                 'giling_kotor' => 'required|numeric',
                 'biaya_giling' => 'required|numeric',
