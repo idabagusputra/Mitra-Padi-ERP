@@ -16,7 +16,6 @@ class DaftarGilingController extends Controller
 {
     public function index(Request $request)
     {
-
         // Retrieve all petanis for use in the view
         $petanis = Petani::all();
 
@@ -39,11 +38,11 @@ class DaftarGilingController extends Controller
         // Handle filtering by alamat
         if ($request->has('alamat')) {
             if ($alamatFilter === 'campur') {
-                $query->whereHas('petani', function ($q) {
+                $query->whereHas('giling.petani', function ($q) {
                     $q->whereNotNull('alamat');
                 });
             } elseif ($alamatFilter !== 'all') {
-                $query->whereHas('petani', function ($q) use ($alamatFilter) {
+                $query->whereHas('giling.petani', function ($q) use ($alamatFilter) {
                     $q->where('alamat', $alamatFilter);
                 });
             }
@@ -52,10 +51,13 @@ class DaftarGilingController extends Controller
         // Apply sorting
         $query->orderBy('created_at', $sortOrder);
 
+        // Get the data, even if no results, don't cause error
         $daftarGilings = $query->paginate(20);
 
+        // Pass data to the view, including the alamatList
         return view('laravel-examples.daftar-giling', compact('daftarGilings', 'search', 'sortOrder', 'alamatList'));
     }
+
 
     // ... (other methods remain the same)
 
