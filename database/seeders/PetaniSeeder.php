@@ -147,7 +147,11 @@ class PetaniSeeder extends Seeder
             "Pak Wahyu",
             "Pan Rio",
             "Biang Yogi",
-            "Pak Brian"
+            "Pak Brian",
+            "Pak Selvi",
+            "Pak Rehan",
+            "Ajik Mita",
+            "Men Parel"
         ];
 
 

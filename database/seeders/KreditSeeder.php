@@ -19,12 +19,12 @@ class KreditSeeder extends Seeder
             // Wanaprasta
             ['nama' => 'Metu wid', 'tanggal' => '2024-10-31', 'jumlah' => 11253200],
 
-            ['nama' => 'Men rumi', 'tanggal' => '2024-06-18', 'jumlah' => 3000000],
-            ['nama' => 'Men rumi', 'tanggal' => '2024-07-12', 'jumlah' => 2000000],
-            ['nama' => 'Men rumi', 'tanggal' => '2024-08-01', 'jumlah' => 1000000],
-            ['nama' => 'Men rumi', 'tanggal' => '2024-08-14', 'jumlah' => 2500000],
-            ['nama' => 'Men rumi', 'tanggal' => '2024-09-02', 'jumlah' => 1000000],
-            ['nama' => 'Men rumi', 'tanggal' => '2024-10-19', 'jumlah' => 1500000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-06-18', 'jumlah' => 3000000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-07-12', 'jumlah' => 2000000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-08-01', 'jumlah' => 1000000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-08-14', 'jumlah' => 2500000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-09-02', 'jumlah' => 1000000],
+            ['nama' => 'Pan Krisna', 'tanggal' => '2024-10-19', 'jumlah' => 1500000],
 
             ['nama' => 'Pan dut', 'tanggal' => '2024-11-02', 'jumlah' => 3000000],
 
