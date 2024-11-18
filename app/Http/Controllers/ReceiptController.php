@@ -37,8 +37,7 @@ class ReceiptController extends Controller
         foreach ($unpaidKredits as $kredit) {
             $tanggal = Carbon::parse($kredit->tanggal); // Assuming 'tanggal' is the kredit's date
             $kredit->lama_bulan = $tanggal->diffInMonths($now); // Calculate the months difference
-            // Optionally save the result to the database
-            $kredit->save();
+
         }
 
         // Setup DomPDF dengan konfigurasi khusus
