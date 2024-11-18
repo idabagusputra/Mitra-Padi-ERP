@@ -92,11 +92,15 @@ class GilingController extends Controller
                 'pengambilans.*.harga' => 'required|integer',
             ]);
 
+
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
             $validatedData = $validator->validated();
+            // Konversi string tanggal ke objek Carbon jika diperlukan
+            $validatedData['created_at'] = Carbon::parse($validatedData['created_at']);
+
 
             // Buat Giling dan Pengambilan
             $giling = Giling::create($validatedData);
