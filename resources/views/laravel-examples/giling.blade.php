@@ -414,130 +414,140 @@
             }
         });
 
+        flatpickr("#created_at", {
+            dateFormat: "Y-m-d",
+            defaultDate: "today",
+            locale: "id",
+            allowInput: true,
+            altInput: true,
+            altFormat: "d F Y"
+        });
+    });
 
-        // Format number inputs
-        const numberInputs = document.querySelectorAll('.number-format');
 
-        numberInputs.forEach(input => {
-            // Format saat halaman dimuat
-            formatNumber(input);
+    // Format number inputs
+    const numberInputs = document.querySelectorAll('.number-format');
 
-            // Mencegah input selain angka
-            input.addEventListener('keypress', function(e) {
-                // Mengizinkan hanya angka dan tombol kontrol
-                if (!/[\d]/.test(e.key) &&
-                    e.key !== 'Backspace' &&
-                    e.key !== 'Delete' &&
-                    e.key !== 'ArrowLeft' &&
-                    e.key !== 'ArrowRight' &&
-                    e.key !== 'Tab') {
-                    e.preventDefault();
-                }
-            });
+    numberInputs.forEach(input => {
+        // Format saat halaman dimuat
+        formatNumber(input);
 
-            // Mencegah paste konten selain angka
-            input.addEventListener('paste', function(e) {
+        // Mencegah input selain angka
+        input.addEventListener('keypress', function(e) {
+            // Mengizinkan hanya angka dan tombol kontrol
+            if (!/[\d]/.test(e.key) &&
+                e.key !== 'Backspace' &&
+                e.key !== 'Delete' &&
+                e.key !== 'ArrowLeft' &&
+                e.key !== 'ArrowRight' &&
+                e.key !== 'Tab') {
                 e.preventDefault();
-                const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-                if (/^\d+$/.test(pastedText)) {
-                    const value = this.value.replace(/\D/g, '');
-                    this.dataset.rawValue = value;
-                    formatNumber(this);
-                }
-            });
-
-            // Format saat input berubah
-            input.addEventListener('input', function(e) {
-                let value = this.value.replace(/\D/g, '');
-                this.dataset.rawValue = value;
-                formatNumber(this);
-            });
-
-            // Saat fokus, tampilkan nilai asli
-            input.addEventListener('focus', function(e) {
-                this.value = this.dataset.rawValue;
-                // Posisikan kursor di akhir
-                const length = this.value.length;
-                this.setSelectionRange(length, length);
-            });
-
-            // Saat blur, format ulang
-            input.addEventListener('blur', function(e) {
-                formatNumber(this);
-            });
+            }
         });
 
-        function formatNumber(input) {
-            let value = input.value.replace(/\D/g, '');
-            input.dataset.rawValue = value;
+        // Mencegah paste konten selain angka
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+            if (/^\d+$/.test(pastedText)) {
+                const value = this.value.replace(/\D/g, '');
+                this.dataset.rawValue = value;
+                formatNumber(this);
+            }
+        });
 
-            if (value !== '') {
-                value = parseInt(value);
-                // Khusus untuk field bunga, tambahkan 2 desimal
-                if (input.id === 'bunga') {
-                    // input.value = value.toLocaleString('id-ID', {
-                    //     minimumFractionDigits: 2,
-                    //     maximumFractionDigits: 2
-                    // });
-                } else {
-                    input.value = value.toLocaleString('id-ID');
-                }
+        // Format saat input berubah
+        input.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            this.dataset.rawValue = value;
+            formatNumber(this);
+        });
+
+        // Saat fokus, tampilkan nilai asli
+        input.addEventListener('focus', function(e) {
+            this.value = this.dataset.rawValue;
+            // Posisikan kursor di akhir
+            const length = this.value.length;
+            this.setSelectionRange(length, length);
+        });
+
+        // Saat blur, format ulang
+        input.addEventListener('blur', function(e) {
+            formatNumber(this);
+        });
+    });
+
+    function formatNumber(input) {
+        let value = input.value.replace(/\D/g, '');
+        input.dataset.rawValue = value;
+
+        if (value !== '') {
+            value = parseInt(value);
+            // Khusus untuk field bunga, tambahkan 2 desimal
+            if (input.id === 'bunga') {
+                // input.value = value.toLocaleString('id-ID', {
+                //     minimumFractionDigits: 2,
+                //     maximumFractionDigits: 2
+                // });
+            } else {
+                input.value = value.toLocaleString('id-ID');
             }
         }
+    }
 
-        // Modify form submission to send raw values
-        document.querySelector('form').addEventListener('submit', function(e) {
-            // Tambahkan pengecekan apakah form sedang di-submit
-            numberInputs.forEach(input => {
-                input.value = input.dataset.rawValue;
-            });
-            if (this.getAttribute('data-submitting') === 'true') {
-                e.preventDefault();
-                return;
-            }
+    // Modify form submission to send raw values
+    document.querySelector('form').addEventListener('submit', function(e) {
+        // Tambahkan pengecekan apakah form sedang di-submit
+        numberInputs.forEach(input => {
+            input.value = input.dataset.rawValue;
+        });
+        if (this.getAttribute('data-submitting') === 'true') {
+            e.preventDefault();
+            return;
+        }
 
-            // Set flag bahwa form sedang disubmit
-            this.setAttribute('data-submitting', 'true');
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
+        // Set flag bahwa form sedang disubmit
+        this.setAttribute('data-submitting', 'true');
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
 
-            // Disable button dan tampilkan loading
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = `
+        // Disable button dan tampilkan loading
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = `
         <div class="d-flex align-items-center">
             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
             <span>Menyimpan...</span>
         </div>
     `;
+    });
+
+
+
+
+    let pengambilanCount = -1;
+    const pengambilansContainer = document.getElementById('pengambilans');
+    const addPengambilanBtn = document.querySelector('.add-pengambilan');
+
+    function addDeleteButtonListener(button) {
+        button.addEventListener('click', function() {
+            this.closest('.pengambilan-item').remove();
+            updateDeleteButtons();
+            if (document.querySelectorAll('.pengambilan-item').length === 0) {
+                pengambilanCount = -1;
+            }
         });
+    }
 
+    function updateDeleteButtons() {
+        const deleteButtons = document.querySelectorAll('.delete-pengambilan');
+        deleteButtons.forEach(button => {
+            button.style.display = 'block';
+        });
+    }
 
-
-
-        let pengambilanCount = -1;
-        const pengambilansContainer = document.getElementById('pengambilans');
-        const addPengambilanBtn = document.querySelector('.add-pengambilan');
-
-        function addDeleteButtonListener(button) {
-            button.addEventListener('click', function() {
-                this.closest('.pengambilan-item').remove();
-                updateDeleteButtons();
-                if (document.querySelectorAll('.pengambilan-item').length === 0) {
-                    pengambilanCount = -1;
-                }
-            });
-        }
-
-        function updateDeleteButtons() {
-            const deleteButtons = document.querySelectorAll('.delete-pengambilan');
-            deleteButtons.forEach(button => {
-                button.style.display = 'block';
-            });
-        }
-
-        function addPengambilanItem() {
-            pengambilanCount++;
-            const newPengambilan = `
+    function addPengambilanItem() {
+        pengambilanCount++;
+        const newPengambilan = `
         <div class="pengambilan-item row mb-2">
             <div class="col-md-4">
                 <div class="form-group mb-0">
@@ -559,159 +569,159 @@
             </div>
         </div>
     `;
-            pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
+        pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
 
-            // Initialize number formatting for new inputs
-            const newItem = pengambilansContainer.lastElementChild;
-            initializeNumberFormatting(newItem.querySelectorAll('.number-format'));
+        // Initialize number formatting for new inputs
+        const newItem = pengambilansContainer.lastElementChild;
+        initializeNumberFormatting(newItem.querySelectorAll('.number-format'));
 
-            addDeleteButtonListener(newItem.querySelector('.delete-pengambilan'));
-            updateDeleteButtons();
+        addDeleteButtonListener(newItem.querySelector('.delete-pengambilan'));
+        updateDeleteButtons();
+    }
+
+    function formatNumber(input) {
+        if (!input.dataset.rawValue) {
+            input.dataset.rawValue = input.value.replace(/\D/g, '');
         }
-
-        function formatNumber(input) {
-            if (!input.dataset.rawValue) {
-                input.dataset.rawValue = input.value.replace(/\D/g, '');
-            }
-            const value = input.dataset.rawValue;
-            if (value === '') {
-                input.value = '';
-                return;
-            }
-            input.value = Number(value).toLocaleString('id-ID');
+        const value = input.dataset.rawValue;
+        if (value === '') {
+            input.value = '';
+            return;
         }
+        input.value = Number(value).toLocaleString('id-ID');
+    }
 
-        function initializeNumberFormatting(inputs) {
-            inputs.forEach(input => {
-                // Format saat halaman dimuat
-                formatNumber(input);
+    function initializeNumberFormatting(inputs) {
+        inputs.forEach(input => {
+            // Format saat halaman dimuat
+            formatNumber(input);
 
-                // Mencegah input selain angka
-                input.addEventListener('keypress', function(e) {
-                    if (!/[\d]/.test(e.key) &&
-                        e.key !== 'Backspace' &&
-                        e.key !== 'Delete' &&
-                        e.key !== 'ArrowLeft' &&
-                        e.key !== 'ArrowRight' &&
-                        e.key !== 'Tab') {
-                        e.preventDefault();
-                    }
-                });
-
-                // Mencegah paste konten selain angka
-                input.addEventListener('paste', function(e) {
+            // Mencegah input selain angka
+            input.addEventListener('keypress', function(e) {
+                if (!/[\d]/.test(e.key) &&
+                    e.key !== 'Backspace' &&
+                    e.key !== 'Delete' &&
+                    e.key !== 'ArrowLeft' &&
+                    e.key !== 'ArrowRight' &&
+                    e.key !== 'Tab') {
                     e.preventDefault();
-                    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-                    if (/^\d+$/.test(pastedText)) {
-                        this.dataset.rawValue = pastedText;
-                        formatNumber(this);
-                    }
-                });
-
-                // Format saat input berubah
-                input.addEventListener('input', function(e) {
-                    let value = this.value.replace(/\D/g, '');
-                    this.dataset.rawValue = value;
-                    formatNumber(this);
-                });
-
-                // Saat fokus, tampilkan nilai asli
-                input.addEventListener('focus', function(e) {
-                    this.value = this.dataset.rawValue || '';
-                    // Posisikan kursor di akhir
-                    const length = this.value.length;
-                    this.setSelectionRange(length, length);
-                });
-
-                // Saat blur, format ulang
-                input.addEventListener('blur', function(e) {
-                    formatNumber(this);
-                });
+                }
             });
-        }
 
-        // Initialize existing number inputs when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const existingInputs = document.querySelectorAll('.pengambilan-item .number-format');
-            initializeNumberFormatting(existingInputs);
+            // Mencegah paste konten selain angka
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+                if (/^\d+$/.test(pastedText)) {
+                    this.dataset.rawValue = pastedText;
+                    formatNumber(this);
+                }
+            });
+
+            // Format saat input berubah
+            input.addEventListener('input', function(e) {
+                let value = this.value.replace(/\D/g, '');
+                this.dataset.rawValue = value;
+                formatNumber(this);
+            });
+
+            // Saat fokus, tampilkan nilai asli
+            input.addEventListener('focus', function(e) {
+                this.value = this.dataset.rawValue || '';
+                // Posisikan kursor di akhir
+                const length = this.value.length;
+                this.setSelectionRange(length, length);
+            });
+
+            // Saat blur, format ulang
+            input.addEventListener('blur', function(e) {
+                formatNumber(this);
+            });
         });
+    }
 
-        addPengambilanBtn.addEventListener('click', addPengambilanItem);
+    // Initialize existing number inputs when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        const existingInputs = document.querySelectorAll('.pengambilan-item .number-format');
+        initializeNumberFormatting(existingInputs);
+    });
 
-        // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const pengambilans = document.querySelectorAll('.pengambilan-item');
+    addPengambilanBtn.addEventListener('click', addPengambilanItem);
 
-            if (pengambilans.length === 0) {
+    // Form submission handling
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const pengambilans = document.querySelectorAll('.pengambilan-item');
+
+        if (pengambilans.length === 0) {
+            const pengambilansInput = document.createElement('input');
+            pengambilansInput.type = 'hidden';
+            pengambilansInput.name = 'pengambilans';
+            pengambilansInput.value = '';
+            this.appendChild(pengambilansInput);
+        } else {
+            let allEmpty = true;
+            pengambilans.forEach((item, index) => {
+                const keterangan = item.querySelector(`[name^="pengambilans["][name$="[keterangan]"]`).value;
+                const jumlahInput = item.querySelector(`[name^="pengambilans["][name$="[jumlah]"]`);
+                const hargaInput = item.querySelector(`[name^="pengambilans["][name$="[harga]"]`);
+
+                // Convert raw values to integers before submission
+                if (jumlahInput.dataset.rawValue) {
+                    jumlahInput.value = parseInt(jumlahInput.dataset.rawValue, 10);
+                }
+                if (hargaInput.dataset.rawValue) {
+                    hargaInput.value = parseInt(hargaInput.dataset.rawValue, 10);
+                }
+
+                if (keterangan !== '' || jumlahInput.value !== '' || hargaInput.value !== '') {
+                    allEmpty = false;
+                }
+            });
+
+            if (allEmpty) {
+                pengambilans.forEach(item => item.remove());
                 const pengambilansInput = document.createElement('input');
                 pengambilansInput.type = 'hidden';
                 pengambilansInput.name = 'pengambilans';
                 pengambilansInput.value = '';
                 this.appendChild(pengambilansInput);
-            } else {
-                let allEmpty = true;
-                pengambilans.forEach((item, index) => {
-                    const keterangan = item.querySelector(`[name^="pengambilans["][name$="[keterangan]"]`).value;
-                    const jumlahInput = item.querySelector(`[name^="pengambilans["][name$="[jumlah]"]`);
-                    const hargaInput = item.querySelector(`[name^="pengambilans["][name$="[harga]"]`);
-
-                    // Convert raw values to integers before submission
-                    if (jumlahInput.dataset.rawValue) {
-                        jumlahInput.value = parseInt(jumlahInput.dataset.rawValue, 10);
-                    }
-                    if (hargaInput.dataset.rawValue) {
-                        hargaInput.value = parseInt(hargaInput.dataset.rawValue, 10);
-                    }
-
-                    if (keterangan !== '' || jumlahInput.value !== '' || hargaInput.value !== '') {
-                        allEmpty = false;
-                    }
-                });
-
-                if (allEmpty) {
-                    pengambilans.forEach(item => item.remove());
-                    const pengambilansInput = document.createElement('input');
-                    pengambilansInput.type = 'hidden';
-                    pengambilansInput.name = 'pengambilans';
-                    pengambilansInput.value = '';
-                    this.appendChild(pengambilansInput);
-                }
             }
-        });
-
-
-
-
-        var pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
-
-        // Function to show PDF modal
-        function showPdfModal(gilingId) {
-            const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
-            document.getElementById('pdfViewer').src = pdfPath;
-            document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
-            pdfModal.show();
         }
+    });
 
-        // Event listener for View buttons
-        document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const gilingId = this.getAttribute('data-id');
-                showPdfModal(gilingId);
-            });
+
+
+
+    var pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+
+    // Function to show PDF modal
+    function showPdfModal(gilingId) {
+        const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
+        document.getElementById('pdfViewer').src = pdfPath;
+        document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
+        pdfModal.show();
+    }
+
+    // Event listener for View buttons
+    document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const gilingId = this.getAttribute('data-id');
+            showPdfModal(gilingId);
         });
+    });
 
-        // Show modal automatically if success message is present
-        @if(session('success'))
-        const latestGilingId = "{{ $latestGiling->id }}";
-        showPdfModal(latestGilingId);
-        @endif
+    // Show modal automatically if success message is present
+    @if(session('success'))
+    const latestGilingId = "{{ $latestGiling->id }}";
+    showPdfModal(latestGilingId);
+    @endif
 
-        // Event listener for Print button
-        document.getElementById('printPdf').addEventListener('click', function() {
-            const pdfViewer = document.getElementById('pdfViewer').contentWindow;
-            pdfViewer.print();
-        });
+    // Event listener for Print button
+    document.getElementById('printPdf').addEventListener('click', function() {
+    const pdfViewer = document.getElementById('pdfViewer').contentWindow;
+    pdfViewer.print();
+    });
     });
 </script>
 
