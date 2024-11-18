@@ -50,6 +50,7 @@ class GilingController extends Controller
                 return [
                     'id' => $petani->id,
                     'nama' => $petani->nama,
+                    'alamat' => $petani->alamat,
                     'total_hutang' => $totalHutang
                 ];
             });

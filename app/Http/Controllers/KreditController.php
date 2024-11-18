@@ -130,18 +130,14 @@ class KreditController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('term');
+        $term = $request->query('term');
 
-        $kredits = Kredit::with('petani')
-            ->whereHas('petani', function ($query) use ($search) {
-                $query->where('nama', 'like', '%' . $search . '%');
-            })
-            ->get()
-            ->unique('petani.nama')
-            ->take(10)
-            ->values();
+        $petanis = Petani::where('nama', 'LIKE', "%{$term}%")
+            ->orWhere('alamat', 'LIKE', "%{$term}%")
+            ->select('id', 'nama', 'alamat')
+            ->get();
 
-        return response()->json($kredits);
+        return response()->json($petanis);
     }
 
 

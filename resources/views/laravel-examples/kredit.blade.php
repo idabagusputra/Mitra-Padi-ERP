@@ -337,9 +337,19 @@
                 const petaniIdInput = document.getElementById('petani_id');
 
                 // Fungsi untuk setup autocomplete
+                // Fungsi untuk setup autocomplete
                 function setupAutocomplete(inputId, resultsId, url, onSelectCallback) {
                     const input = document.getElementById(inputId);
                     const results = document.getElementById(resultsId);
+
+                    // Tambahkan styling untuk dropdown
+                    results.style.cssText = `
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    `;
 
                     input.addEventListener('input', function() {
                         const searchTerm = this.value.trim();
@@ -349,15 +359,47 @@
                                 .then(data => {
                                     results.innerHTML = '';
                                     results.style.display = 'block';
+
                                     data.forEach(item => {
                                         const div = document.createElement('div');
                                         div.classList.add('dropdown-item');
-                                        div.textContent = item.nama || (item.petani ? item.petani.nama : '');
+
+                                        // Buat container untuk nama dan alamat
+                                        const nameSpan = document.createElement('span');
+                                        nameSpan.style.fontWeight = 'bold';
+                                        nameSpan.textContent = item.nama;
+
+                                        const addressSpan = document.createElement('span');
+                                        addressSpan.style.color = '#666';
+                                        addressSpan.style.fontSize = '0.9em';
+                                        addressSpan.textContent = ` - ${item.alamat}`;
+
+                                        // Gabungkan nama dan alamat
+                                        div.appendChild(nameSpan);
+                                        div.appendChild(addressSpan);
+
+                                        // Styling untuk item dropdown
+                                        div.style.cssText = `
+                            padding: 8px 12px;
+                            cursor: pointer;
+                            border-bottom: 1px solid #eee;
+                        `;
+
+                                        // Hover effect
+                                        div.addEventListener('mouseover', () => {
+                                            div.style.backgroundColor = '#f5f5f5';
+                                        });
+                                        div.addEventListener('mouseout', () => {
+                                            div.style.backgroundColor = 'white';
+                                        });
+
                                         div.addEventListener('click', function() {
-                                            input.value = this.textContent;
+                                            // Update input dengan nama saja
+                                            input.value = item.nama;
                                             results.style.display = 'none';
                                             if (onSelectCallback) onSelectCallback(item);
                                         });
+
                                         results.appendChild(div);
                                     });
                                 });
@@ -366,6 +408,7 @@
                         }
                     });
 
+                    // Close dropdown when clicking outside
                     document.addEventListener('click', function(e) {
                         if (e.target !== input && e.target !== results) {
                             results.style.display = 'none';
@@ -382,7 +425,8 @@
                 setupAutocomplete('petani_search', 'petani_search_results', '/search-petani', function(petani) {
                     if (petaniIdInput) {
                         petaniIdInput.value = petani.id;
-                        console.log('Petani selected:', petani.nama, 'ID:', petani.id); // Debug log
+                        input.value = `${petani.nama} - ${petani.alamat}`; // Update input to show both name and address
+                        console.log('Petani selected:', petani.nama, 'Alamat:', petani.alamat, 'ID:', petani.id);
                     } else {
                         console.error('petaniIdInput not found');
                     }
