@@ -13,6 +13,7 @@ class Giling extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'created_at',  // Tambahkan ini
         'petani_id',
         'giling_kotor',
         'biaya_giling',

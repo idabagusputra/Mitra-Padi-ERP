@@ -50,7 +50,6 @@ class GilingController extends Controller
                 return [
                     'id' => $petani->id,
                     'nama' => $petani->nama,
-                    'alamat' => $petani->alamat,
                     'total_hutang' => $totalHutang
                 ];
             });
@@ -71,6 +70,7 @@ class GilingController extends Controller
         return DB::transaction(function () use ($request) {
             // Validasi input
             $validator = Validator::make($request->all(), [
+                'created_at' => 'required|date',  // Tambahkan ini
                 'petani_id' => 'required|exists:petanis,id',
                 'giling_kotor' => 'required|numeric',
                 'biaya_giling' => 'required|numeric',

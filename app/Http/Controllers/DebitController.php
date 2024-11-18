@@ -14,17 +14,19 @@ class DebitController extends Controller
     {
         $query = Debit::with('petani');
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
+        $search = $request->input('search');
+
+        // Apply filters
+        if ($search) {
             $query->whereHas('petani', function ($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%");
-            })->orWhere('keterangan', 'like', "%{$search}%");
+                $q->where('nama', 'like', '%' . $search . '%');
+            });
         }
 
-        $sort = $request->input('sort', 'desc'); 
+        $sort = $request->input('sort', 'desc');
 
-$query->orderBy('tanggal', $sort) // Urutkan berdasarkan tanggal
-      ->orderBy('id', $sort); // Urutkan berdasarkan id untuk menangani data dengan tanggal yang sama
+        $query->orderBy('tanggal', $sort) // Urutkan berdasarkan tanggal
+            ->orderBy('id', $sort); // Urutkan berdasarkan id untuk menangani data dengan tanggal yang sama
 
 
         $debits = $query->paginate(20);
@@ -41,42 +43,26 @@ $query->orderBy('tanggal', $sort) // Urutkan berdasarkan tanggal
         return view('laravel-examples/debit', compact('debits', 'petanisWithOutstandingKredits'));
     }
 
-    public function search(Request $request)
+    public function searchPetani(Request $request)
     {
-        $term = $request->get('term');
-        $petanis = Petani::where('nama', 'like', "%{$term}%")
+        $search = $request->input('term');
+
+        $petanis = Petani::where('nama', 'like', '%' . $search . '%')
+            ->select('id', 'nama')
             ->limit(10)
-            ->get()
-            ->map(function ($petani) {
-                return [
-                    'id' => $petani->id,
-                    'value' => $petani->nama,
-                    'label' => $petani->nama
-                ];
-            });
+            ->get();
 
         return response()->json($petanis);
     }
 
-    public function searchPetani(Request $request)
+    public function search(Request $request)
     {
-        $term = $request->get('term');
+        $term = $request->query('term');
 
-        $petanis = Petani::where('nama', 'LIKE', '%' . $term . '%')
-            ->select('id', 'nama')
-            ->with(['kredits' => function ($query) {
-                $query->select('petani_id')
-                    ->selectRaw('SUM(jumlah * (1 + bunga/100) - COALESCE((SELECT SUM(jumlah) FROM pembayaran_kredit WHERE kredit_id = kredits.id), 0)) as total_hutang')
-                    ->groupBy('petani_id');
-            }])
-            ->get()
-            ->map(function ($petani) {
-                return [
-                    'id' => $petani->id,
-                    'nama' => $petani->nama,
-                    'total_hutang' => $petani->kredits->sum('total_hutang') ?? 0
-                ];
-            });
+        $petanis = Petani::where('nama', 'LIKE', "%{$term}%")
+            ->orWhere('alamat', 'LIKE', "%{$term}%")
+            ->select('id', 'nama', 'alamat')
+            ->get();
 
         return response()->json($petanis);
     }

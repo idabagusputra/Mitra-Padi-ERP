@@ -348,7 +348,7 @@
         overflow-y: auto;
         border: 1px solid #ddd;
         border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px #cc0c9c;
     `;
 
                     input.addEventListener('input', function() {
@@ -367,6 +367,7 @@
                                         // Buat container untuk nama dan alamat
                                         const nameSpan = document.createElement('span');
                                         nameSpan.style.fontWeight = 'bold';
+                                        nameSpan.style.color = '#cc0c9c'; // Menambahkan warna ungu (#890f82)
                                         nameSpan.textContent = item.nama;
 
                                         const addressSpan = document.createElement('span');

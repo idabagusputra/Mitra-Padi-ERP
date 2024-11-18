@@ -238,36 +238,92 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('search-input');
-            const searchResults = document.getElementById('search-results');
-            const form = searchInput.closest('form'); // Mengambil elemen form terdekat dari input
+            const petaniIdInput = document.getElementById('petani_id');
 
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.trim();
+            // Fungsi untuk setup autocomplete
+            // Fungsi untuk setup autocomplete
+            function setupAutocomplete(inputId, resultsId, url, onSelectCallback) {
+                const input = document.getElementById(inputId);
+                const results = document.getElementById(resultsId);
 
-                if (searchTerm.length > 0) {
-                    fetch(`/search-daftar-giling?term=${searchTerm}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            searchResults.innerHTML = '';
-                            searchResults.style.display = 'block';
+                // Tambahkan styling untuk dropdown
+                results.style.cssText = `
+        max-height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px #cc0c9c;
+    `;
 
-                            data.forEach(item => {
-                                const div = document.createElement('div');
-                                div.classList.add('dropdown-item');
-                                div.textContent = `${item.giling.petani.nama}`;
-                                div.addEventListener('click', function() {
-                                    searchInput.value = this.textContent;
-                                    searchResults.style.display = 'none';
+                input.addEventListener('input', function() {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm.length > 0) {
+                        fetch(`${url}?term=${searchTerm}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                results.innerHTML = '';
+                                results.style.display = 'block';
 
-                                    form.submit(); // Submit form setelah item di-klik
+                                data.forEach(item => {
+                                    const div = document.createElement('div');
+                                    div.classList.add('dropdown-item');
+
+                                    // Buat container untuk nama dan alamat
+                                    const nameSpan = document.createElement('span');
+                                    nameSpan.style.fontWeight = 'bold';
+                                    nameSpan.style.color = '#cc0c9c'; // Menambahkan warna ungu (#890f82)
+                                    nameSpan.textContent = item.nama;
+
+                                    const addressSpan = document.createElement('span');
+                                    addressSpan.style.color = '#666';
+                                    addressSpan.style.fontSize = '0.9em';
+                                    addressSpan.textContent = ` - ${item.alamat}`;
+
+                                    // Gabungkan nama dan alamat
+                                    div.appendChild(nameSpan);
+                                    div.appendChild(addressSpan);
+
+                                    // Styling untuk item dropdown
+                                    div.style.cssText = `
+                            padding: 8px 12px;
+                            cursor: pointer;
+                            border-bottom: 1px solid #eee;
+                        `;
+
+                                    // Hover effect
+                                    div.addEventListener('mouseover', () => {
+                                        div.style.backgroundColor = '#f5f5f5';
+                                    });
+                                    div.addEventListener('mouseout', () => {
+                                        div.style.backgroundColor = 'white';
+                                    });
+
+                                    div.addEventListener('click', function() {
+                                        // Update input dengan nama saja
+                                        input.value = item.nama;
+                                        results.style.display = 'none';
+                                        if (onSelectCallback) onSelectCallback(item);
+                                    });
+
+                                    results.appendChild(div);
                                 });
-                                searchResults.appendChild(div);
                             });
-                        });
-                } else {
-                    searchResults.style.display = 'none';
-                }
+                    } else {
+                        results.style.display = 'none';
+                    }
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (e.target !== input && e.target !== results) {
+                        results.style.display = 'none';
+                    }
+                });
+            }
+
+            // Setup autocomplete for index search
+            setupAutocomplete('search-input', 'search-results', '/search-kredit', function(item) {
+                document.querySelector('form').submit();
             });
 
             document.addEventListener('click', function(e) {

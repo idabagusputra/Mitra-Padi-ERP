@@ -216,6 +216,30 @@
 
             <form action="{{ route('giling.store') }}" method="POST" role="form text-left">
                 @csrf
+
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="created_at" class="form-control-label">{{ __('Tanggal') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                <input type="date"
+                                    class="form-control @error('created_at') is-invalid @enderror"
+                                    id="created_at"
+                                    name="created_at"
+                                    value="{{ date('Y-m-d') }}"
+                                    required>
+                            </div>
+                            @error('created_at')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="row mb-4">
                     <div class="col-md-12"> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
                         <div class="form-group">
@@ -323,6 +347,11 @@
     </div>
 </div>
 
+
+<!-- Tambahkan CSS Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<!-- Tambahkan JavaScript Flatpickr -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -330,20 +359,42 @@
         const searchResults = document.getElementById('search-results');
         const petaniIdInput = document.getElementById('petani_id');
 
+        // Tambahkan styling untuk dropdown
+        searchResults.style.cssText = `
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px #cc0c9c;
+`;
+
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.trim();
-
             if (searchTerm.length > 0) {
                 fetch(`/search-petani?term=${searchTerm}`)
                     .then(response => response.json())
                     .then(data => {
                         searchResults.innerHTML = '';
                         searchResults.style.display = 'block';
-
                         data.forEach(petani => {
                             const div = document.createElement('div');
                             div.classList.add('dropdown-item');
-                            div.textContent = `${petani.nama} - ${petani.alamat} - (Hutang: Rp ${petani.total_hutang.toLocaleString('id-ID')})`;
+
+                            // Buat container untuk nama
+                            const nameSpan = document.createElement('span');
+                            nameSpan.style.fontWeight = 'bold';
+                            nameSpan.style.color = '#cc0c9c';
+                            nameSpan.textContent = petani.nama;
+
+                            // Buat container untuk alamat dan hutang
+                            const infoSpan = document.createElement('span');
+                            infoSpan.style.color = '#666';
+                            infoSpan.textContent = ` - ${petani.alamat} - (Hutang: Rp ${petani.total_hutang.toLocaleString('id-ID')})`;
+
+                            // Gabungkan semua elemen
+                            div.appendChild(nameSpan);
+                            div.appendChild(infoSpan);
+
                             div.addEventListener('click', function() {
                                 searchInput.value = petani.nama;
                                 petaniIdInput.value = petani.id;
