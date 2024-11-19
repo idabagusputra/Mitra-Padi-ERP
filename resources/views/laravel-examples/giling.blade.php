@@ -162,7 +162,7 @@
     }
 
     .view-pdf-btn {
-        /* min-height: 59.2px; */
+        min-height: 30px;
         /* Sesuaikan dengan tinggi alert */
         display: flex;
         align-items: center;
@@ -193,15 +193,6 @@
     <div class="card">
         <div class="card-header pb-0 px-3">
             <h6 class="mb-0 text-primary">{{ __('Kalkulasi Penggilingan Beras') }}</h6>
-            @if(session('success'))
-            <div class="d-flex justify-content-end align-items-center mt-0 mb-4 w-100">
-
-                <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
-                    <i class="bi bi-printer me-2"></i>
-                    Print Receipt
-                </button>
-            </div>
-            @endif
         </div>
         <div class="card-body pt-4 p-3">
             @if ($errors->any())
@@ -213,7 +204,22 @@
             </div>
             @endif
 
-
+            @if(session('success'))
+            <div class="d-flex justify-content-between align-items-center mt-0 mb-4">
+                <div class="alert alert-success alert-dismissible fade show m-0 view-pdf-btn" id="alert-success" role="alert">
+                    <span class="alert-text text-white">
+                        {{ session('success') }}
+                    </span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="bi bi-x-circle" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
+                    <i class="bi bi-printer me-2"></i>
+                    Print Receipt
+                </button>
+            </div>
+            @endif
 
 
             <form action="{{ route('giling.store') }}" method="POST" role="form text-left">
