@@ -578,7 +578,7 @@
             <div class="col-md-2">
                 <button type="button" class="btn btn-danger delete-pengambilan w-100 bi">
                 <i class="bi bi-trash3-fill me-2"></i>
-                        <span>DE</span>
+                        <span>DEL</span>
                         </button>
             </div>
         </div>
