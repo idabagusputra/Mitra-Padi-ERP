@@ -64,7 +64,7 @@
                                 <div class="input-group">
                                     <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
                                     <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
-                                        <i class="fas fa-search"></i>
+                                        <i class="bi bi-search"></i>
                                     </button>
                                 </div>
                                 <div id="search-results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;">
@@ -74,7 +74,7 @@
 
                             <!-- Add Debit Button -->
                             <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" style="width: 180px;">
-                                <i class="fas fa-plus me-2"></i>
+                                <i class="bi bi-plus-lg me-2"></i>
                                 <span>New Debit</span>
                             </button>
                         </form>

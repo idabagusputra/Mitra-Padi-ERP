@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -28,7 +31,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('petani') ? 'active' : '') }}" href="{{ url('petani') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-address-card ps-2 pe-2 text-center text-dark {{ (Request::is('petani') ? 'text-white' : 'text-dark') }} " aria-hidden="false"></i>
+                        <i style="font-size: 1rem;" class="bi bi-people-fill text-center text-dark {{ (Request::is('petani') ? 'text-white' : 'text-dark') }} " aria-hidden="false"></i>
                     </div>
                     <span class="nav-link-text ms-1">Petani</span>
                 </a>
@@ -86,7 +89,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('kredit') ? 'active' : '') }}" href="{{ url('kredit') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-credit-card ps-2 pe-2 text-center text-dark {{ (Request::is('kredit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-cash ps-2 pe-2 text-center text-dark {{ (Request::is('kredit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Kredit</span>
                 </a>
@@ -95,7 +98,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('daftar-giling') ? 'active' : '') }}" href="{{ url('daftar-giling') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-list-alt ps-2 pe-2 text-center text-dark {{ (Request::is('daftar-giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-list-check ps-2 pe-2 text-center text-dark {{ (Request::is('daftar-giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Daftar Giling</span>
                 </a>
@@ -114,7 +117,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('debit') ? 'active' : '') }}" href="{{ url('debit') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-thumbs-up ps-2 pe-2 text-center text-dark {{ (Request::is('debit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-currency-dollar ps-2 pe-2 text-center text-dark {{ (Request::is('debit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Debit</span>
                 </a>
@@ -123,7 +126,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('giling') ? 'active' : '') }}" href="{{ url('giling') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-lg fa-cog ps-2 pe-2 text-center text-dark {{ (Request::is('giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-building-fill-gear ps-2 pe-2 text-center text-dark {{ (Request::is('giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Giling</span>
                 </a>
@@ -144,7 +147,7 @@
             <li class="nav-item">
                 <a href="{{ url('/logout')}}" class="nav-link">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="fas fa-sign-out-alt ps-2 pe-2 text-center text-dark"></i>
+                        <i style="font-size: 1rem;" class="bi bi-box-arrow-right ps-2 pe-2 text-center text-dark"></i>
                     </div>
                     <span class="nav-link-text ms-1">Sign Out</span>
                 </a>

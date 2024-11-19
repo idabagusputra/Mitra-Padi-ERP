@@ -180,6 +180,14 @@
     }
 </style>
 
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+
+
+
+
 @section('content')
 <div class="container-fluid">
     <div class="card">
@@ -218,14 +226,14 @@
                 @csrf
 
                 <div class="row mb-4">
-                    <div class="col-md-9 "> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
+                    <div class="col-md-8 "> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
                         <div class="form-group">
                             <label for="petani_search" class="form-control-label">{{ __('Pilih Petani') }}</label>
                             <div class="search-container ">
                                 <div class="input-group">
 
                                     <span class="btn btn-outline-primary input-group-text mb-0" type="" aria-label="Cari">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                        <i class="bi bi-search" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
                                     <input type="hidden" id="petani_id" name="petani_id">
@@ -235,7 +243,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
                             <div class="input-group">

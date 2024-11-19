@@ -89,7 +89,7 @@
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
-                                                <i class="fas fa-search" aria-hidden="true"></i>
+                                                <i class="bi bi-search" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <div id="search-results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;">
@@ -98,7 +98,7 @@
                                     </div>
 
                                     <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
-                                        <i class="fas fa-plus me-2"></i>
+                                        <i class="bi bi-plus-lg me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>
                                 </div>
