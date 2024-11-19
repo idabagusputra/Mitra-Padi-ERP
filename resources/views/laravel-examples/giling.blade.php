@@ -362,6 +362,8 @@
 </div>
 
 
+
+
 <!-- Tambahkan CSS Flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <!-- Tambahkan JavaScript Flatpickr -->
@@ -554,7 +556,7 @@
         function addPengambilanItem() {
             pengambilanCount++;
             const newPengambilan = `
-        <div class="pengambilan-item row mb-2">
+            <div class="pengambilan-item row mb-2">
             <div class="col-md-4">
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
@@ -562,13 +564,13 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100  inputmode="numeric" " placeholder="Jumlah" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
 
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100 inputmode="numeric" " placeholder="Harga" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
