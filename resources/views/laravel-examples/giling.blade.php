@@ -559,6 +559,8 @@
         function addPengambilanItem() {
             pengambilanCount++;
             const newPengambilan = `
+            <div>
+
             <div class="pengambilan-item row mb-2 justify-content-between">
             <div class="col">
                 <div class="form-group mb-0">
@@ -576,10 +578,13 @@
                     <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
-            <div class="col form-group mb-0">
-                <button type="button" class="btn btn-danger delete-pengambilan bi bi-trash3-fill w-100"></button>
+            <div class="col form-group mb-0 justify-content-end">
+                <button type="button" class="btn btn-danger delete-pengambilan bi bi-trash3-fill "></button>
             </div>
-        </div>
+            </div>
+
+            </div>
+
     `;
             pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
 
