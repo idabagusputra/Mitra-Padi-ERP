@@ -162,7 +162,7 @@
     }
 
     .view-pdf-btn {
-        min-height: 30px;
+        min-height: 59.2;
         /* Sesuaikan dengan tinggi alert */
         display: flex;
         align-items: center;
@@ -325,8 +325,8 @@
                     @foreach($constants as $field => $data)
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
-                            <label for="{{ $field }}" class="form-control-label">{{ __($data['label']) }}</label>
-                            <input class="form-control number-format" type="text"
+                            <label for="{{ $field }}" class="form-control-label ">{{ __($data['label']) }}</label>
+                            <input class="form-control number-format w-80" type="text"
                                 name="{{ $field }}"
                                 id="{{ $field }}"
                                 value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
@@ -567,12 +567,12 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-60" placeholder="Jumlah" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-80" placeholder="Jumlah" inputmode="numeric" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-60" placeholder="Harga" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-80" placeholder="Harga" inputmode="numeric" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
