@@ -110,7 +110,8 @@ class KreditSeeder extends Seeder
 
             ['nama' => 'Blebed', 'tanggal' => '2024-08-28', 'jumlah' => 15000000],
             ['nama' => 'Blebed', 'tanggal' => '2024-10-30', 'jumlah' => 2000000],
-            ['nama' => 'Blebed', 'tanggal' => '2024-10-24', 'jumlah' => 2000000],
+
+            ['nama' => 'Sukrening', 'tanggal' => '2024-10-24', 'jumlah' => 2000000],
 
             ['nama' => 'Pan iluh', 'tanggal' => '2024-09-19', 'jumlah' => 7000000],
             ['nama' => 'Pan iluh', 'tanggal' => '2024-11-02', 'jumlah' => 3000000],
@@ -186,7 +187,7 @@ class KreditSeeder extends Seeder
 
             ['nama' => 'Pak rehan', 'tanggal' => '2024-07-29', 'jumlah' => 40000000],
 
-            ['nama' => 'Pan dian', 'tanggal' => '2024-09-13', 'jumlah' => 25000000],
+            ['nama' => 'Pan dian BI', 'tanggal' => '2024-09-13', 'jumlah' => 25000000],
 
             ['nama' => 'Ajik mita', 'tanggal' => '2024-10-24', 'jumlah' => 10000000],
 
@@ -246,22 +247,22 @@ class KreditSeeder extends Seeder
             ['nama' => 'Kakek dimas', 'tanggal' => '2024-11-08', 'jumlah' => 4000000],
 
 
-            ['nama' => 'Pan dika', 'tanggal' => '2024-10-03', 'jumlah' => 8000000],
+            ['nama' => 'Pan dika cb', 'tanggal' => '2024-10-03', 'jumlah' => 8000000],
 
             ['nama' => 'Pan desli', 'tanggal' => '2024-11-17', 'jumlah' => 30000000],
 
             ['nama' => 'Pan nia', 'tanggal' => '2024-11-07', 'jumlah' => 2508260],
 
-            ['nama' => 'Pan gede antara', 'tanggal' => '2024-07-14', 'jumlah' => 15000000],
-            ['nama' => 'Pan gede antara', 'tanggal' => '2024-09-26', 'jumlah' => 5000000],
-            ['nama' => 'Pan gede antara', 'tanggal' => '2024-10-11', 'jumlah' => 2000000],
+            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-07-14', 'jumlah' => 15000000],
+            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-09-26', 'jumlah' => 5000000],
+            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-10-11', 'jumlah' => 2000000],
 
             ['nama' => 'Pan Arya', 'tanggal' => '2024-10-08', 'jumlah' => 25000000],
 
             ['nama' => 'Pan Adi', 'tanggal' => '2024-10-14', 'jumlah' => 5000000],
 
-            ['nama' => 'Pan dika', 'tanggal' => '2024-10-09', 'jumlah' => 30000000],
-            ['nama' => 'Pan dika', 'tanggal' => '2024-10-27', 'jumlah' => 15000000],
+            ['nama' => 'Pan dika SB', 'tanggal' => '2024-10-09', 'jumlah' => 30000000],
+            ['nama' => 'Pan dika SB', 'tanggal' => '2024-10-27', 'jumlah' => 15000000],
 
             ['nama' => 'Pan cika', 'tanggal' => '2024-11-18', 'jumlah' => 3000000],
             ['nama' => 'Pan ayu', 'tanggal' => '2024-11-18', 'jumlah' => 9985000],

@@ -67,7 +67,7 @@ class PetaniSeeder extends Seeder
             "Pan Febri",
             "Wayan Febri",
             "Men Tasya",
-            "Pan Dian",
+            "Pan Dian PB",
             "Men Dedi",
             "Men Jimi",
             "Pan Devi",
@@ -110,14 +110,16 @@ class PetaniSeeder extends Seeder
             "Pak Carik",
             "Bu Gelgel",
             "Yandi",
-            "Pak Gelgel Baru"
+            "Pak Gelgel Baru",
+            "Sukrening"
         ];
 
         $namaPetaniSibang = [
             "Iluh Wid",
             "Men Suki",
             "Pan Sudi",
-            "Pan Satya"
+            "Pan Satya",
+            "Pan Dika SB"
         ];
 
         $namaPetaniSukasada = [
@@ -151,7 +153,8 @@ class PetaniSeeder extends Seeder
             "Pak Selvi",
             "Pak Rehan",
             "Ajik Mita",
-            "Men Parel"
+            "Men Parel",
+            "Pan Dian BI"
         ];
 
         $namaSangehSari = [
@@ -223,12 +226,13 @@ class PetaniSeeder extends Seeder
 
         $namaCandrabuana = [
             "Pan Putu Bokir",
-            "Pan Dika",
+            "Pan Dika CB",
             "Pan Desli",
             "Pan Agus Reno",
             "Pan Nia",
             "Pan Arya",
             "Pan Adi",
+            "Pan Gede Antar Dwipa"
         ];
 
         foreach ($namaKaryawan as $nama) {
