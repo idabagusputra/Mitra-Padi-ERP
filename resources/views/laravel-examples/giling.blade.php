@@ -307,7 +307,7 @@
                 <div class="col-md-12 d-flex align-items-end mb-3">
                     <button type="button" class="btn btn-primary add-pengambilan ">
                         <i class="bi bi-plus-square me-2"></i>
-                        <span>Petani Baru</span>
+                        <span>Tambah Pengambilan</span>
                     </button>
                 </div>
 
