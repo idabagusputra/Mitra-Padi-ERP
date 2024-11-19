@@ -162,7 +162,7 @@
     }
 
     .view-pdf-btn {
-        min-height: 26px;
+        /* min-height: 59.2px; */
         /* Sesuaikan dengan tinggi alert */
         display: flex;
         align-items: center;
@@ -194,7 +194,7 @@
         <div class="card-header pb-0 px-3">
             <h6 class="mb-0 text-primary">{{ __('Kalkulasi Penggilingan Beras') }}</h6>
             @if(session('success'))
-            <div class="d-flex justify-content-between align-items-center mt-0 mb-4">
+            <div class="d-flex justify-content-end align-items-center mt-0 mb-4 w-100">
 
                 <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
                     <i class="bi bi-printer me-2"></i>
