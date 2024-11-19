@@ -567,12 +567,12 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" placeholder="Jumlah" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-60" placeholder="Jumlah" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" placeholder="Harga" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-60" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
