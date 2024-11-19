@@ -559,32 +559,27 @@
         function addPengambilanItem() {
             pengambilanCount++;
             const newPengambilan = `
-            <div>
-
-            <div class="pengambilan-item row mb-2 justify-content-between">
-            <div class="col">
+            <div class="pengambilan-item row mb-2">
+            <div class="col-sm-4">
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm-4">
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
 
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm-4">
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
-            <div class="col form-group mb-0 justify-content-end">
-                <button type="button" class="btn btn-danger delete-pengambilan bi bi-trash3-fill "></button>
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-danger delete-pengambilan  bi bi-trash3-fill"></button>
             </div>
-            </div>
-
-            </div>
-
+        </div>
     `;
             pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
 
