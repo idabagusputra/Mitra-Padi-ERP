@@ -145,14 +145,14 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-link text-dark px-2 mb-0 view-pdf-btn" data-id="{{ $daftarGiling->id }}">
-                                            <i class="fas fa-eye text-dark me-2" aria-hidden="true"></i>
+                                            <i class="bi bi-eye text-dark me-2" aria-hidden="true"></i>
                                             View
                                         </a>
                                         <form action="{{ route('daftar-giling.destroy', $daftarGiling->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link text-danger text-gradient px-2 mb-0" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                                <i class="far fa-trash-alt me-2"></i>
+                                                <i class="bi bi-trash3 me-2"></i>
                                                 Delete
                                             </button>
                                         </form>
