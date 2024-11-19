@@ -576,8 +576,8 @@
                     <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-danger delete-pengambilan w-100">Hapus</button>
+            <div class="col form-group mb-0">
+                <button type="button" class="btn btn-danger delete-pengambilan bi bi-trash3-fill w-100"></button>
             </div>
         </div>
     `;
