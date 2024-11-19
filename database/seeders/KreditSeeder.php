@@ -273,25 +273,13 @@ class KreditSeeder extends Seeder
             ['nama' => 'Komang Sura giri', 'tanggal' => '2024-11-18', 'jumlah' => 8000000],
 
 
-            ['nama' => 'pan gede sandut', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
-
-
-            ['nama' => 'pan krisna', 'tanggal' => '2024-11-19', 'jumlah' => 6000000],
-
-
-            ['nama' => 'pan pian', 'tanggal' => '2024-11-19', 'jumlah' => 5000000],
-
-
-            ['nama' => 'ajin eka', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
-
-
-            ['nama' => 'pan sri', 'tanggal' => '2024-11-19', 'jumlah' => 1000000],
-
-
-            ['nama' => 'dadong murni', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
-
-
             ['nama' => 'pan parel', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+            ['nama' => 'dadong murni', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+            ['nama' => 'pan sri', 'tanggal' => '2024-11-19', 'jumlah' => 1000000],
+            ['nama' => 'ajin eka', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+            ['nama' => 'pan pian', 'tanggal' => '2024-11-19', 'jumlah' => 5000000],
+            ['nama' => 'pan krisna', 'tanggal' => '2024-11-19', 'jumlah' => 6000000],
+            ['nama' => 'pan gede sandut', 'tanggal' => '2024-11-19', 'jumlah' => 3000000]
         ];
 
 

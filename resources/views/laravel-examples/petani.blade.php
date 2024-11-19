@@ -177,7 +177,7 @@
                     </div>
                     <div class="form-group">
                         <label for="no_telepon">No Telepon</label>
-                        <input type="text" class="form-control" id="no_telepon" name="no_telepon" required>
+                        <input type="text" class="form-control" id="no_telepon" name="no_telepon" inputmode="numeric" required>
                     </div>
                 </div>
                 <div class="modal-footer">
