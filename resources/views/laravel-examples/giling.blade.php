@@ -191,13 +191,14 @@
 @section('content')
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header pb-0 px-3 d-flex justify-content-between align-items-center">
+        <div class="card-header pb-0 px-3">
             <h6 class="mb-0 text-primary">{{ __('Kalkulasi Penggilingan Beras') }}</h6>
-            <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn alert-primary alert-dismissible fade show" data-id="{{ $latestGiling->id }}" style="height: 26px;">
-                <i class="bi bi-printer me-2"></i>
-                Print Receipt
-            </button>
-
+            <div class="d-flex justify-content-between align-items-center mt-0 mb-4">
+                <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn alert-primary alert-dismissible fade show" data-id="{{ $latestGiling->id }}" style="height: 26px;">
+                    <i class="bi bi-printer me-2"></i>
+                    Print Receipt
+                </button>
+            </div>
         </div>
         <div class="card-body pt-4 p-3">
             @if ($errors->any())
@@ -219,7 +220,10 @@
                         <i class="bi bi-x-square" aria-hidden="true"></i>
                     </button>
                 </div> -->
-
+                <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
+                    <i class="bi bi-printer me-2"></i>
+                    Print Receipt
+                </button>
             </div>
             @endif
 
