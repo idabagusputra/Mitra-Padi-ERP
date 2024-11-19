@@ -560,28 +560,28 @@
             pengambilanCount++;
             const newPengambilan = `
 
-            <div class="pengambilan-item row mb-2">
-            <div class="col-md-2">
+            <div class="pengambilan-item row mb-2 col-md-3">
+
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
                 </div>
-            </div>
-            <div class="col-md-2">
+
+
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" placeholder="Jumlah" data-raw-value="">
                 </div>
-            </div>
-            <div class="col-md-2">
+
+
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" placeholder="Harga" data-raw-value="">
                 </div>
-            </div>
-            <div class="col-md-2">
+
+
                 <button type="button" class="btn btn-danger delete-pengambilan w-100 bi">
                 <i class="bi bi-trash3-fill me-2"></i>
                         <span>HAPUS</span>
                         </button>
-            </div>
+
         </div>
     `;
             pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
