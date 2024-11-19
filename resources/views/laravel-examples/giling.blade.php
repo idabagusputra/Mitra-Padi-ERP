@@ -305,7 +305,7 @@
 
                 </div>
                 <div class="col-md-12 d-flex align-items-end mb-3">
-                    <button type="button" class="btn btn-primary add-pengambilan me-2 bi bi-plus-square">Tambah Pengambilan</button>
+                    <button type="button" class="btn btn-primary add-pengambilan bi bi-plus-square me-2 ">Tambah Pengambilan</button>
                 </div>
 
                 <!-- Bagian Konstanta -->
