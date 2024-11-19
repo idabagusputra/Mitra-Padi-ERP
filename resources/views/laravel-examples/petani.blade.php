@@ -131,14 +131,14 @@
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center">
                                             <a href="#" class="btn btn-link text-dark px-2 mb-0" data-bs-toggle="modal" data-bs-target="#editPetaniModal{{ $petani->id }}">
-                                                <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>
+                                                <i class="bi bi-pencil-square text-dark me-2" aria-hidden="true"></i>
                                                 Edit
                                             </a>
                                             <!-- <form action="{{ route('petani.destroy', $petani->id) }}" method="POST" data-delete-petani="{{ $petani->id }}" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-link text-danger px-2 mb-0">
-                                                    <i class="fas fa-trash text-danger me-2" aria-hidden="true"></i>
+                                                    <i class="bi bi-trash3 text-danger me-2" aria-hidden="true"></i>
                                                     Delete
                                                 </button>
                                             </form> -->

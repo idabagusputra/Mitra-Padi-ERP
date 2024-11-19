@@ -253,9 +253,9 @@ class KreditSeeder extends Seeder
 
             ['nama' => 'Pan nia', 'tanggal' => '2024-11-07', 'jumlah' => 2508260],
 
-            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-07-14', 'jumlah' => 15000000],
-            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-09-26', 'jumlah' => 5000000],
-            ['nama' => 'Pan gede antara dwipa', 'tanggal' => '2024-10-11', 'jumlah' => 2000000],
+            ['nama' => 'Pan gede antar dwipa', 'tanggal' => '2024-07-14', 'jumlah' => 15000000],
+            ['nama' => 'Pan gede antar dwipa', 'tanggal' => '2024-09-26', 'jumlah' => 5000000],
+            ['nama' => 'Pan gede antar dwipa', 'tanggal' => '2024-10-11', 'jumlah' => 2000000],
 
             ['nama' => 'Pan Arya', 'tanggal' => '2024-10-08', 'jumlah' => 25000000],
 
@@ -271,7 +271,29 @@ class KreditSeeder extends Seeder
             ['nama' => 'Men agung', 'tanggal' => '2024-11-18', 'jumlah' => 3500000],
             ['nama' => 'Kadek dedi', 'tanggal' => '2024-11-18', 'jumlah' => 540000],
             ['nama' => 'Komang Sura giri', 'tanggal' => '2024-11-18', 'jumlah' => 8000000],
+
+
+            ['nama' => 'pan gede sandut', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+
+
+            ['nama' => 'pan krisna', 'tanggal' => '2024-11-19', 'jumlah' => 6000000],
+
+
+            ['nama' => 'pan pian', 'tanggal' => '2024-11-19', 'jumlah' => 5000000],
+
+
+            ['nama' => 'ajin eka', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+
+
+            ['nama' => 'pan sri', 'tanggal' => '2024-11-19', 'jumlah' => 1000000],
+
+
+            ['nama' => 'dadong murni', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
+
+
+            ['nama' => 'pan parel', 'tanggal' => '2024-11-19', 'jumlah' => 3000000],
         ];
+
 
         // Membuat record untuk setiap data hutang
         foreach ($data as $hutang) {

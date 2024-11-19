@@ -7,7 +7,7 @@
         <span class="text-white">
             <strong>Add, Edit, Delete features are not functional!</strong> This is a
             <strong>PRO</strong> feature! Click <strong>
-            <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
+                <a href="https://www.creative-tim.com/live/soft-ui-dashboard-pro-laravel" target="_blank" class="text-white">here</a></strong>
             to see the PRO product!
         </span>
     </div>
@@ -78,7 +78,7 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            <i class="cursor-pointer bi bi-trash3 text-secondary"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -108,7 +108,7 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            <i class="cursor-pointer bi bi-trash3 text-secondary"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -138,7 +138,7 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            <i class="cursor-pointer bi bi-trash3 text-secondary"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -168,7 +168,7 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            <i class="cursor-pointer bi bi-trash3 text-secondary"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -198,7 +198,7 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span>
-                                            <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            <i class="cursor-pointer bi bi-trash3 text-secondary"></i>
                                         </span>
                                     </td>
                                 </tr>
@@ -210,5 +210,5 @@
         </div>
     </div>
 </div>
- 
+
 @endsection

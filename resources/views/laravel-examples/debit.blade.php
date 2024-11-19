@@ -119,14 +119,14 @@
                                     </td>
                                     <td class="text-center">
                                         <!--<a href="#" class="btn btn-link text-dark px-2 mb-0" data-bs-toggle="modal" data-bs-target="#editDebitModal{{ $debit->id }}">-->
-                                        <!--    <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>-->
+                                        <!--    <i class="bi bi-pencil-square text-dark me-2" aria-hidden="true"></i>-->
                                         <!--    Edit-->
                                         <!--</a>-->
                                         <form action="{{ route('debit.destroy', $debit->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link text-danger px-2 mb-0" onclick="return confirm('Are you sure you want to delete this item?')">
-                                                <i class="fas fa-trash text-danger me-2" aria-hidden="true"></i>
+                                                <i class="bi bi-trash3 text-danger me-2" aria-hidden="true"></i>
                                                 Delete
                                             </button>
                                         </form>
@@ -173,11 +173,11 @@
                     </div>
                     <div class="form-group">
                         <label for="jumlah">Jumlah</label>
-                        <input type="text" class="form-control number-format" id="jumlah" name="jumlah" required>
+                        <input type="text" class="form-control number-format" id="jumlah" name="jumlah" inputmode="numeric" required>
                     </div>
                     <div class="form-group">
                         <label for="bunga">Bunga (%)</label>
-                        <input type="text" class="form-control number-format" id="bunga" name="bunga" required>
+                        <input type="text" class="form-control number-format" id="bunga" name="bunga" inputmode="numeric" required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>

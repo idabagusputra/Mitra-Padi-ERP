@@ -3,7 +3,7 @@
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <i class="bi bi-x-circle p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <!-- <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="{{ route('dashboard') }}"> -->
         <a class="align-items-center d-flex m-0 navbar-brand text-wrap" href="#">
             <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="...">
@@ -31,7 +31,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('petani') ? 'active' : '') }}" href="{{ url('petani') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="bi bi-people-fill text-center text-dark {{ (Request::is('petani') ? 'text-white' : 'text-dark') }} " aria-hidden="false"></i>
+                        <i style="font-size: 1rem;" class="bi bi-person-lines-fill text-center text-dark {{ (Request::is('petani') ? 'text-white' : 'text-dark') }} " aria-hidden="false"></i>
                     </div>
                     <span class="nav-link-text ms-1">Petani</span>
                 </a>
@@ -89,7 +89,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('kredit') ? 'active' : '') }}" href="{{ url('kredit') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="bi bi-cash ps-2 pe-2 text-center text-dark {{ (Request::is('kredit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-currency-dollar ps-2 pe-2 text-center text-dark {{ (Request::is('kredit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Kredit</span>
                 </a>
@@ -117,7 +117,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('debit') ? 'active' : '') }}" href="{{ url('debit') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="bi bi-currency-dollar ps-2 pe-2 text-center text-dark {{ (Request::is('debit') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi bi-cash-coin  text-center text-dark {{ (Request::is('debit') ? 'text-white' : 'text-dark') }}" aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Debit</span>
                 </a>
@@ -126,7 +126,7 @@
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('giling') ? 'active' : '') }}" href="{{ url('giling') }}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="bi bi-building-fill-gear ps-2 pe-2 text-center text-dark {{ (Request::is('giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                        <i style="font-size: 1rem;" class="bi bi-building-gear ps-2 pe-2 text-center text-dark {{ (Request::is('giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
                     <span class="nav-link-text ms-1">Giling</span>
                 </a>
@@ -144,7 +144,7 @@
 
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item pb-4">
                 <a href="{{ url('/logout')}}" class="nav-link">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;" class="bi bi-box-arrow-right ps-2 pe-2 text-center text-dark"></i>

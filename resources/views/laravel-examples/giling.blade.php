@@ -247,7 +247,7 @@
                         <div class="form-group">
                             <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span>
                                 <input type="date"
                                     class="form-control @error('created_at') is-invalid @enderror"
                                     id="created_at"
@@ -293,6 +293,7 @@
                                 id="{{ $field }}"
                                 value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
                                 data-raw-value="{{ old($field, $data['default']) }}"
+                                inputmode="numeric"
                                 required>
                         </div>
                     </div>
@@ -327,6 +328,7 @@
                                 id="{{ $field }}"
                                 value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
                                 data-raw-value="{{ old($field, $data['default']) }}"
+                                inputmode="numeric"
                                 required>
                         </div>
                     </div>
@@ -560,12 +562,13 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" placeholder="Jumlah" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100  inputmode="numeric" " placeholder="Jumlah" data-raw-value="">
+
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" placeholder="Harga" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100 inputmode="numeric" " placeholder="Harga" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
