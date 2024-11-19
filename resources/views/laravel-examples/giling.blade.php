@@ -162,7 +162,7 @@
     }
 
     .view-pdf-btn {
-        min-height: 59.2px;
+        min-height: 26px;
         /* Sesuaikan dengan tinggi alert */
         display: flex;
         align-items: center;
@@ -193,139 +193,148 @@
     <div class="card">
         <div class="card-header pb-0 px-3">
             <h6 class="mb-0 text-primary">{{ __('Kalkulasi Penggilingan Beras') }}</h6>
+            @if(session('success'))
             <div class="d-flex justify-content-between align-items-center mt-0 mb-4">
-                @if(session('success'))
-                <div class="d-flex justify-content-end align-items-center mt-0 mb-4 w-100">
-                    <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" style="height: 26px; line-height: 10px; padding: 0 15px !important;" data-id="{{ $latestGiling->id }}">
-                        <i class="bi bi-printer me-2" style="font-size: 12px;"></i>
-                        Print Receipt
-                    </button>
-                </div>
-                @endif
+
+                <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
+                    <i class="bi bi-printer me-2"></i>
+                    Print Receipt
+                </button>
             </div>
+            @endif
         </div>
+        <div class="card-body pt-4 p-3">
+            @if ($errors->any())
+            <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
+                <span class="alert-text text-white">{{ $errors->first() }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <i class="bi bi-x-circle" aria-hidden="true"></i>
+                </button>
+            </div>
+            @endif
 
 
 
-        <form action="{{ route('giling.store') }}" method="POST" role="form text-left">
-            @csrf
 
-            <div class="row mb-4">
-                <div class="col-md-8 "> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
-                    <div class="form-group">
-                        <label for="petani_search" class="form-control-label">{{ __('Pilih Petani') }}</label>
-                        <div class="search-container ">
-                            <div class="input-group">
+            <form action="{{ route('giling.store') }}" method="POST" role="form text-left">
+                @csrf
 
-                                <span class="btn btn-outline-primary input-group-text mb-0" type="" aria-label="Cari">
-                                    <i class="bi bi-search" aria-hidden="true"></i>
-                                </span>
-                                <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
-                                <input type="hidden" id="petani_id" name="petani_id">
+                <div class="row mb-4">
+                    <div class="col-md-8 "> <!-- Diubah dari col-md-6 menjadi col-md-12 -->
+                        <div class="form-group">
+                            <label for="petani_search" class="form-control-label">{{ __('Pilih Petani') }}</label>
+                            <div class="search-container ">
+                                <div class="input-group">
+
+                                    <span class="btn btn-outline-primary input-group-text mb-0" type="" aria-label="Cari">
+                                        <i class="bi bi-search" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
+                                    <input type="hidden" id="petani_id" name="petani_id">
+                                </div>
+                                <div id="search-results" style="display: none;"></div>
                             </div>
-                            <div id="search-results" style="display: none;"></div>
                         </div>
                     </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span>
+                                <input type="date"
+                                    class="form-control @error('created_at') is-invalid @enderror"
+                                    id="created_at"
+                                    name="created_at"
+                                    value="{{ date('Y-m-d') }}"
+                                    required>
+                            </div>
+                            @error('created_at')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span>
-                            <input type="date"
-                                class="form-control @error('created_at') is-invalid @enderror"
-                                id="created_at"
-                                name="created_at"
-                                value="{{ date('Y-m-d') }}"
+
+
+
+                <!-- Bagian Data Penggilingan -->
+                <h6 class="mb-3 text-primary">{{ __('Data Penggilingan') }}</h6>
+                <div class="row">
+                    @php
+                    $fields = [
+                    'giling_kotor' => ['label' => 'Giling Kotor (kg)', 'default' => 5150],
+                    'pulang' => ['label' => 'Pulang (kg)', 'default' => 0],
+                    'pinjam' => ['label' => 'Pinjam (kg)', 'default' => 0],
+                    'jemur' => ['label' => 'Jemur (kg)', 'default' => 172],
+                    'jumlah_konga' => ['label' => 'Jumlah Konga', 'default' => 12],
+                    'harga_konga' => ['label' => 'Harga Konga', 'default' => 100000],
+                    'harga_jual' => ['label' => 'Harga Jual', 'default' => 12000],
+                    'jumlah_menir' => ['label' => 'Jumlah Menir', 'default' => 0],
+                    'harga_menir' => ['label' => 'Harga Menir', 'default' => 0],
+                    ];
+                    @endphp
+                    @foreach($fields as $field => $data)
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="{{ $field }}" class="form-control-label">{{ __($data['label']) }}</label>
+                            <input class="form-control number-format" type="text"
+                                name="{{ $field }}"
+                                id="{{ $field }}"
+                                value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
+                                data-raw-value="{{ old($field, $data['default']) }}"
+                                inputmode="numeric"
                                 required>
                         </div>
-                        @error('created_at')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                    </div>
+                    @endforeach
+                </div>
+
+                <h6 class="mb-3 mt-4 text-primary">{{ __('Pengambilan') }}</h6>
+                <div id="pengambilans">
+
+                </div>
+                <div class="col-md-12 d-flex align-items-end mb-3">
+                    <button type="button" class="btn btn-primary add-pengambilan">+ Tambah Pengambilan</button>
+                </div>
+
+                <!-- Bagian Konstanta -->
+                <h6 class="mb-3 mt-4 text-primary">{{ __('Konstanta') }}</h6>
+                <div class="row">
+                    @php
+                    $constants = [
+                    'biaya_giling' => ['label' => 'Biaya Giling', 'default' => 9],
+                    'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => 70],
+                    'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => 7000],
+                    'bunga' => ['label' => 'Bunga (%)', 'default' => 2],
+                    ];
+                    @endphp
+                    @foreach($constants as $field => $data)
+                    <div class="col-md-3 mb-3">
+                        <div class="form-group">
+                            <label for="{{ $field }}" class="form-control-label">{{ __($data['label']) }}</label>
+                            <input class="form-control number-format" type="text"
+                                name="{{ $field }}"
+                                id="{{ $field }}"
+                                value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
+                                data-raw-value="{{ old($field, $data['default']) }}"
+                                inputmode="numeric"
+                                required>
                         </div>
-                        @enderror
                     </div>
+                    @endforeach
                 </div>
 
-            </div>
-
-
-
-
-            <!-- Bagian Data Penggilingan -->
-            <h6 class="mb-3 text-primary">{{ __('Data Penggilingan') }}</h6>
-            <div class="row">
-                @php
-                $fields = [
-                'giling_kotor' => ['label' => 'Giling Kotor (kg)', 'default' => 5150],
-                'pulang' => ['label' => 'Pulang (kg)', 'default' => 0],
-                'pinjam' => ['label' => 'Pinjam (kg)', 'default' => 0],
-                'jemur' => ['label' => 'Jemur (kg)', 'default' => 172],
-                'jumlah_konga' => ['label' => 'Jumlah Konga', 'default' => 12],
-                'harga_konga' => ['label' => 'Harga Konga', 'default' => 100000],
-                'harga_jual' => ['label' => 'Harga Jual', 'default' => 12000],
-                'jumlah_menir' => ['label' => 'Jumlah Menir', 'default' => 0],
-                'harga_menir' => ['label' => 'Harga Menir', 'default' => 0],
-                ];
-                @endphp
-                @foreach($fields as $field => $data)
-                <div class="col-md-4 mb-3">
-                    <div class="form-group">
-                        <label for="{{ $field }}" class="form-control-label">{{ __($data['label']) }}</label>
-                        <input class="form-control number-format" type="text"
-                            name="{{ $field }}"
-                            id="{{ $field }}"
-                            value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
-                            data-raw-value="{{ old($field, $data['default']) }}"
-                            inputmode="numeric"
-                            required>
-                    </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <button type="submit" class="btn bg-gradient-primary btn-md submit-button">{{ 'Simpan Nota Giling' }}</button>
                 </div>
-                @endforeach
-            </div>
-
-            <h6 class="mb-3 mt-4 text-primary">{{ __('Pengambilan') }}</h6>
-            <div id="pengambilans">
-
-            </div>
-            <div class="col-md-12 d-flex align-items-end mb-3">
-                <button type="button" class="btn btn-primary add-pengambilan">+ Tambah Pengambilan</button>
-            </div>
-
-            <!-- Bagian Konstanta -->
-            <h6 class="mb-3 mt-4 text-primary">{{ __('Konstanta') }}</h6>
-            <div class="row">
-                @php
-                $constants = [
-                'biaya_giling' => ['label' => 'Biaya Giling', 'default' => 9],
-                'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => 70],
-                'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => 7000],
-                'bunga' => ['label' => 'Bunga (%)', 'default' => 2],
-                ];
-                @endphp
-                @foreach($constants as $field => $data)
-                <div class="col-md-3 mb-3">
-                    <div class="form-group">
-                        <label for="{{ $field }}" class="form-control-label">{{ __($data['label']) }}</label>
-                        <input class="form-control number-format" type="text"
-                            name="{{ $field }}"
-                            id="{{ $field }}"
-                            value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
-                            data-raw-value="{{ old($field, $data['default']) }}"
-                            inputmode="numeric"
-                            required>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-
-            <div class="d-flex justify-content-end mt-2">
-                <button type="submit" class="btn bg-gradient-primary btn-md submit-button">{{ 'Simpan Nota Giling' }}</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
