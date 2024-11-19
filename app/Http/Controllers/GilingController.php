@@ -278,7 +278,8 @@ class GilingController extends Controller
 
 
             return redirect()->route('giling.index')
-                ->with('success', 'Data giling berhasil disimpan 👍🏻')
+                ->with('success', 'Data giling berhasil disimpan <i class="bi bi-hand-thumbs-up-fill"></i>')
+
                 ->with('giling_id', $daftarGiling->id); // This will store it in the session
 
 

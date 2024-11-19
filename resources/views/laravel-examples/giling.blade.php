@@ -215,7 +215,7 @@
                     </button>
                 </div>
                 <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
-                    <i class="bi bi-printer me-2"></i>
+                    <i class="bi bi-printer-fill me-2"></i>
                     Print Receipt
                 </button>
             </div>
