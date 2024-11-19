@@ -199,7 +199,7 @@
             <div class="mt-3 alert alert-primary alert-dismissible fade show" role="alert">
                 <span class="alert-text text-white">{{ $errors->first() }}</span>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                    <i class="fa fa-close" aria-hidden="true"></i>
+                    <i class="bi bi-x-square" aria-hidden="true"></i>
                 </button>
             </div>
             @endif
@@ -211,11 +211,11 @@
                         {{ session('success') }}
                     </span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <i class="fa fa-close" aria-hidden="true"></i>
+                        <i class="bi bi-x-square" aria-hidden="true"></i>
                     </button>
                 </div>
                 <button class="btn alert bg-gradient-info shadow-info px-4 m-0 view-pdf-btn" data-id="{{ $latestGiling->id }}">
-                    <i class="fas fa-print me-2"></i>
+                    <i class="bi bi-printer me-2"></i>
                     Print Receipt
                 </button>
             </div>

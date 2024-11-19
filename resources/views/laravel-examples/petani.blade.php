@@ -87,7 +87,7 @@
                             </div>
 
                             <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
-                                <i class="bi bi-plus-lg me-2"></i>
+                                <i class="bi bi-plus-square me-2"></i>
                                 <span>Petani Baru</span>
                             </button>
                         </div>
