@@ -305,9 +305,9 @@
 
                 </div>
                 <div class="col-md-12 d-flex align-items-end mb-3">
-                    <button type="button" class="btn btn-primary add-pengambilan ">
+                    <button type="button" class="btn btn-primary add-pengambilan">
                         <i class="bi bi-plus-square me-2"></i>
-                        <span>Petani Baru</span>
+                        <span>Tambah Pengambilan</span>
                     </button>
                 </div>
 
@@ -363,6 +363,30 @@
         </div>
     </div>
 </div>
+
+
+
+<!-- <div class="pengambilan-item row mb-2">
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-danger delete-pengambilan w-100 justify-content-end">Hapus</button>
+    </div>
+</div> -->
 
 
 
@@ -559,27 +583,28 @@
         function addPengambilanItem() {
             pengambilanCount++;
             const newPengambilan = `
-            <div class="pengambilan-item row mb-2">
-            <div class="col-md-4">
-                <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
-
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
-                </div>
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-danger delete-pengambilan w-100">Hapus</button>
-            </div>
+           <div class="pengambilan-item row mb-2">
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Masukkan keterangan..." list="keterangan-list">
         </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
+
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group mb-0">
+            <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" class="btn btn-danger delete-pengambilan w-100 justify-content-end">Hapus</button>
+    </div>
+</div>
+
     `;
             pengambilansContainer.insertAdjacentHTML('beforeend', newPengambilan);
 
