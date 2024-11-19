@@ -560,20 +560,19 @@
             pengambilanCount++;
             const newPengambilan = `
             <div class="pengambilan-item row mb-2">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="form-group mb-0">
                     <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Keterangan" list="keterangan-list">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" inputmode="numeric" placeholder="Jumlah" data-raw-value="">
-
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-100" placeholder="Jumlah" data-raw-value="">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" inputmode="numeric" placeholder="Harga" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-100" placeholder="Harga" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
