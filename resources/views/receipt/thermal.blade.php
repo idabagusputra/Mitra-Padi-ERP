@@ -144,12 +144,12 @@
             <tr class="calculation-row">
                 <td>Tanggal Gabah </td>
                 <td>:</td>
-                <td>{{ $giling->created_at->addHours(7)->format('d/m/Y') }}</td>
+                <td>{{ $giling->created_at->addHours(0)->format('d/m/Y') }}</td>
             </tr>
             <tr class="calculation-row">
                 <td>Tanggal Nota </td>
                 <td>:</td>
-                <td>{{ $daftarGiling->created_at->addHours(7)->format('d/m/Y') }} ({{ $daftarGiling->created_at->addHours(7)->format('H:i:s') }})</td>
+                <td>{{ $daftarGiling->created_at->addHours(0)->format('d/m/Y') }} ({{ $daftarGiling->created_at->addHours(0)->format('H:i:s') }})</td>
             </tr>
         </table>
 
