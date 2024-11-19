@@ -196,10 +196,11 @@
                                                 Bunga: Rp {{ number_format($kredit->bunga, 2, ',', '.') }}
                                             </small>
                                         </td>
+                                        <td class="text-center"><span class="badge badge-sm bg-gradient-{{ $kredit->status ? 'success' : 'warning' }}">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</span></td>
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">{{ $kredit->keterangan }}</p>
                                         </td>
-                                        <td class="text-center"><span class="badge badge-sm bg-gradient-{{ $kredit->status ? 'success' : 'warning' }}">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</span></td>
+
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a href="#" class="btn btn-link text-dark px-2 mb-0" data-bs-toggle="modal" data-bs-target="#editKreditModal{{ $kredit->id }}">
