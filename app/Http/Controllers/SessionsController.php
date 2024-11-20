@@ -22,23 +22,36 @@ class SessionsController extends Controller
     {
         // Cek jika sudah login, langsung arahkan ke halaman giling
         if (Auth::check()) {
-            return redirect()->route('giling.index');
+            return redirect()->intended(route('giling.index')); // Gunakan intended untuk lebih aman
         }
 
-        // Validasi input form login
-        $attributes = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        try {
+            // Validasi input form login
+            $attributes = request()->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
 
-        // Coba login jika tidak ada session yang aktif
-        if (Auth::attempt($attributes)) {
-            session()->regenerate();
-            // Setelah login berhasil, arahkan ke halaman giling
-            return redirect()->route('giling.index');
-        } else {
-            // Jika login gagal, kembali ke halaman login dengan pesan error
+            // Coba login
+            if (Auth::attempt($attributes)) {
+                session()->regenerate(); // Regenerate session
+
+                // Clear any expired CSRF tokens
+                session()->forget('_token');
+                session()->put('_token', csrf_token());
+
+                return redirect()->intended(route('giling.index'));
+            }
+
             return back()->withErrors(['email' => 'Email or password invalid.']);
+        } catch (\Exception $e) {
+            // Handle expired CSRF token
+            if ($e instanceof \Illuminate\Session\TokenMismatchException) {
+                // Redirect ke login page dengan pesan yang sesuai
+                return redirect()->route('login')
+                    ->with('error', 'Session has expired. Please try again.');
+            }
+            throw $e;
         }
     }
 
