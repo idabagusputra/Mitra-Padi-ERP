@@ -273,15 +273,15 @@
                 <div class="row">
                     @php
                     $fields = [
-                    'giling_kotor' => ['label' => 'Giling Kotor (kg)', 'default' => ],
-                    'pulang' => ['label' => 'Pulang (kg)', 'default' => ],
-                    'pinjam' => ['label' => 'Pinjam (kg)', 'default' => ],
-                    'jemur' => ['label' => 'Jemur (kg)', 'default' => 172],
-                    'jumlah_konga' => ['label' => 'Jumlah Konga', 'default' => ],
-                    'harga_konga' => ['label' => 'Harga Konga', 'default' => ],
-                    'harga_jual' => ['label' => 'Harga Jual', 'default' => ],
-                    'jumlah_menir' => ['label' => 'Jumlah Menir', 'default' => ],
-                    'harga_menir' => ['label' => 'Harga Menir', 'default' => ],
+                    'giling_kotor' => ['label' => 'Giling Kotor (kg)'],
+                    'pulang' => ['label' => 'Pulang (kg)'],
+                    'pinjam' => ['label' => 'Pinjam (kg)'],
+                    'jemur' => ['label' => 'Jemur (kg)'],
+                    'jumlah_konga' => ['label' => 'Jumlah Konga'],
+                    'harga_konga' => ['label' => 'Harga Konga'],
+                    'harga_jual' => ['label' => 'Harga Jual'],
+                    'jumlah_menir' => ['label' => 'Jumlah Menir'],
+                    'harga_menir' => ['label' => 'Harga Menir'],
                     ];
                     @endphp
                     @foreach($fields as $field => $data)
@@ -291,8 +291,6 @@
                             <input class="form-control number-format" type="text"
                                 name="{{ $field }}"
                                 id="{{ $field }}"
-                                value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
-                                data-raw-value="{{ old($field, $data['default']) }}"
                                 inputmode="numeric"
                                 required>
                         </div>
@@ -316,10 +314,10 @@
                 <div class="row">
                     @php
                     $constants = [
-                    'biaya_giling' => ['label' => 'Biaya Giling', 'default' => ],
-                    'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => ],
-                    'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => ],
-                    'bunga' => ['label' => 'Bunga (%)', 'default' => ],
+                    'biaya_giling' => ['label' => 'Biaya Giling', 'default' => 9],
+                    'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => 70],
+                    'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => 7000],
+                    'bunga' => ['label' => 'Bunga (%)', 'default' => 2],
                     ];
                     @endphp
                     @foreach($constants as $field => $data)
