@@ -273,15 +273,15 @@
                 <div class="row">
                     @php
                     $fields = [
-                    'giling_kotor' => ['label' => 'Giling Kotor (kg)', 'default' => 5150],
-                    'pulang' => ['label' => 'Pulang (kg)', 'default' => 0],
-                    'pinjam' => ['label' => 'Pinjam (kg)', 'default' => 0],
+                    'giling_kotor' => ['label' => 'Giling Kotor (kg)', 'default' => ],
+                    'pulang' => ['label' => 'Pulang (kg)', 'default' => ],
+                    'pinjam' => ['label' => 'Pinjam (kg)', 'default' => ],
                     'jemur' => ['label' => 'Jemur (kg)', 'default' => 172],
-                    'jumlah_konga' => ['label' => 'Jumlah Konga', 'default' => 12],
-                    'harga_konga' => ['label' => 'Harga Konga', 'default' => 100000],
-                    'harga_jual' => ['label' => 'Harga Jual', 'default' => 12000],
-                    'jumlah_menir' => ['label' => 'Jumlah Menir', 'default' => 0],
-                    'harga_menir' => ['label' => 'Harga Menir', 'default' => 0],
+                    'jumlah_konga' => ['label' => 'Jumlah Konga', 'default' => ],
+                    'harga_konga' => ['label' => 'Harga Konga', 'default' => ],
+                    'harga_jual' => ['label' => 'Harga Jual', 'default' => ],
+                    'jumlah_menir' => ['label' => 'Jumlah Menir', 'default' => ],
+                    'harga_menir' => ['label' => 'Harga Menir', 'default' => ],
                     ];
                     @endphp
                     @foreach($fields as $field => $data)
@@ -316,10 +316,10 @@
                 <div class="row">
                     @php
                     $constants = [
-                    'biaya_giling' => ['label' => 'Biaya Giling', 'default' => 9],
-                    'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => 70],
-                    'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => 7000],
-                    'bunga' => ['label' => 'Bunga (%)', 'default' => 2],
+                    'biaya_giling' => ['label' => 'Biaya Giling', 'default' => ],
+                    'biaya_buruh_giling' => ['label' => 'Biaya Buruh Giling', 'default' => ],
+                    'biaya_buruh_jemur' => ['label' => 'Biaya Buruh Jemur', 'default' => ],
+                    'bunga' => ['label' => 'Bunga (%)', 'default' => ],
                     ];
                     @endphp
                     @foreach($constants as $field => $data)
