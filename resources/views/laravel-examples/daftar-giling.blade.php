@@ -58,6 +58,8 @@
                     <form method="GET" action="{{ route('daftar-giling.index') }}">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
+                            <!-- Ida Bagus Putu Putra Manuaba -->
+
                             <!-- Bagian Label -->
                             <h5 class="mb-3 mb-md-0 mx-2">Daftar Giling</h5>
 
