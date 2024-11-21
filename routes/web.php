@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/api/kredit/autocomplete', [KreditController::class, 'autocomplete']);
     Route::get('/search-petani', [KreditController::class, 'searchPetani'])->name('search.petani');
     Route::get('/laporan-kredit', [KreditReportController::class, 'generatePdf'])->name('laporan.kredit');
+    Route::get('/kredit/cetak-laporan', [KreditController::class, 'downloadLaporanKredit'])->name('laporan.kredit.cetak');
 
 
 

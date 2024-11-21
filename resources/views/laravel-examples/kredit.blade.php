@@ -48,21 +48,26 @@
                                     <!-- Bagian Dropdown -->
                                     <div class="d-flex flex-wrap gap-2">
                                         <div style="width: 150px;">
+
                                             <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                                 <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                                 <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                             </select>
+
                                         </div>
 
                                         <div style="width: 150px;">
+
                                             <select name="status" id="status-filter" class="form-select" onchange="this.form.submit()">
                                                 <option value="">Semua Status</option>
                                                 <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Lunas</option>
                                                 <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Belum Lunas</option>
                                             </select>
+
                                         </div>
 
                                         <div style="width: 150px;">
+
                                             <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                                 <option value="all">Semua Alamat</option>
                                                 <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
@@ -70,12 +75,15 @@
                                                 <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
                                                 @endforeach
                                             </select>
+
                                         </div>
                                     </div>
+
 
                                 </div>
 
                                 <!-- Bagian Search dan Tombol -->
+
                                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                                     <div class="me-2 w-100" style="position: relative;">
                                         <div class="input-group">
@@ -89,7 +97,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Separate Form for the CETAK LAPORAN Button -->
                                     <form method="GET" action="{{ route('laporan.kredit') }}">
                                         <button type="submit" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2">
                                             <i class="bi bi-printer me-2"></i>
@@ -97,14 +104,18 @@
                                         </button>
                                     </form>
 
+
                                     <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>
 
-                                </div>
-                            </form>
 
+
+                                </div>
+
+
+                            </form>
 
 
                         </div>
