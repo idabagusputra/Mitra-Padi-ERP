@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\KreditReportController;
 
 class KreditController extends Controller
 {
@@ -116,6 +117,18 @@ class KreditController extends Controller
             'alamatList' => $alamatList
         ]);
     }
+
+
+
+    public function downloadLaporanKredit(Request $request)
+    {
+        // Membuat instance KreditReportController
+        $kreditReportController = new KreditReportController();
+
+        // Memanggil fungsi generatePdf dari KreditReportController
+        return $kreditReportController->generatePdf($request);
+    }
+
 
     public function searchPetani(Request $request)
     {
