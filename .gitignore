@@ -7,7 +7,6 @@
 /ghost-cms
 /public/hot
 /public/storage
-/public/receipts
 /storage/*.key
 /vendor
 laravel.zip
