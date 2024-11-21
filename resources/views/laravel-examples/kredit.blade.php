@@ -100,11 +100,13 @@
 
 
                                     <a href="laporan-kredit">
-                                        <button type="submit" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;">
-                                            <i class="bi bi-printer me-2"></i>
-                                            <span>Download PDF</span>
+                                        <button type="submit" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" ">
+                                            <i class=" bi bi-printer me-2"></i>
+                                            <span>CETAK</span>
                                         </button>
                                     </a>
+
+
 
 
 

@@ -77,7 +77,10 @@ class KreditReportController extends Controller
         $dompdf->render();
 
         // Stream PDF ke browser
-        // Memaksa download PDF langsung tanpa membuka halaman baru
-        return $dompdf->stream('Laporan_Kredit_' . date('Y-m-d_H-i-s') . '.pdf', array('Attachment' => 1));
+        // Ubah stream menjadi download
+        return $dompdf->stream('Laporan_Kredit_' . date('Y-m-d_H-i-s') . '.pdf', [
+            'Attachment' => true,
+            'Content-Type' => 'application/pdf'
+        ]);
     }
 }
