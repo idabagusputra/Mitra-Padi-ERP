@@ -99,10 +99,11 @@
 
 
 
-                                    <button type="button" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;" onclick="window.open('{{ route('laporan.kredit') }}?sort={{ request('sort', 'desc') }}', '_blank')">
+                                    <button type="button" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;" id="downloadPDF">
                                         <i class="bi bi-printer me-2"></i>
                                         <span>Download PDF</span>
                                     </button>
+
 
 
 
@@ -177,6 +178,7 @@
                                         <tr>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">ID</th>
                                             <th class="text-uppercase text-primary font-weight-bolder ps-2" style="font-size: 0.85rem;">Petani</th>
+                                            <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Alamat</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Tanggal</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Jumlah</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Hutang + Bunga</th>
@@ -195,6 +197,9 @@
                                         </td>
                                         <td>
                                             <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->nama }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->alamat }}</p>
                                         </td>
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">{{ $kredit->tanggal }}</p>
@@ -515,6 +520,11 @@
                         }
                     });
                 });
+
+                $('#downloadPDF').on('click', function() {
+                    window.location.href = '/laporan-kredit'; // Mengarahkan untuk mendownload tanpa membuka halaman baru
+                });
+
 
                 // Handle form submission for adding new kredit
                 // Handle form submission for adding new kredit

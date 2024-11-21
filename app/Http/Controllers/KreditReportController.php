@@ -13,8 +13,8 @@ class KreditReportController extends Controller
 {
     public function generatePdf(Request $request)
     {
-        // Ambil parameter sort dari request
-        $sortOrder = $request->input('sort', 'desc');
+        // Tetapkan langsung nilai 'desc' untuk sortOrder
+        $sortOrder = 'desc';
 
         $allKredits = Kredit::with('petani')->get();
         $now = Carbon::now();
@@ -37,19 +37,36 @@ class KreditReportController extends Controller
             return [$item->tanggal, $item->id];
         }, SORT_REGULAR, $sortOrder === 'desc');
 
+        // Kelompokkan kredit berdasarkan nama petani
+        $groupedByPetani = $sortedKredits->groupBy(function ($kredit) {
+            return $kredit->petani->nama; // Asumsi 'nama' adalah kolom di model Petani
+        });
+
         // Hitung ringkasan data
         $kreditsBelumLunas = $calculatedKredits->where('status', 0);
         $jumlahPetaniBelumLunas = $kreditsBelumLunas->pluck('petani_id')->unique()->count();
         $totalKreditBelumLunas = $kreditsBelumLunas->sum('jumlah');
         $totalKreditPlusBungaBelumLunas = $kreditsBelumLunas->sum('hutang_plus_bunga');
 
+        // Hitung ringkasan data
+        $kreditsLunas = $calculatedKredits->where('status', 1);
+        $jumlahPetaniLunas = $kreditsLunas->pluck('petani_id')->unique()->count();
+        $totalKreditLunas = $kreditsLunas->sum('jumlah');
+        $totalKreditPlusBungaLunas = $kreditsLunas->sum('hutang_plus_bunga');
+
+
         // Render HTML menggunakan Blade
         $html = View::make('kreditReport', [
-            'kredits' => $sortedKredits,
+            'groupedKredits' => $groupedByPetani, // Mengirimkan data yang sudah dikelompokkan
             'jumlahPetaniBelumLunas' => $jumlahPetaniBelumLunas,
             'totalKreditBelumLunas' => $totalKreditBelumLunas,
-            'totalKreditPlusBungaBelumLunas' => $totalKreditPlusBungaBelumLunas
+            'totalKreditPlusBungaBelumLunas' => $totalKreditPlusBungaBelumLunas,
+            // Menambahkan data untuk yang sudah lunas
+            'jumlahPetaniLunas' => $jumlahPetaniLunas,
+            'totalKreditLunas' => $totalKreditLunas,
+            'totalKreditPlusBungaLunas' => $totalKreditPlusBungaLunas
         ])->render();
+
 
         // Generate PDF dengan Dompdf
         $options = new Options();
@@ -60,6 +77,7 @@ class KreditReportController extends Controller
         $dompdf->render();
 
         // Stream PDF ke browser
-        return $dompdf->stream('Laporan_Kredit_' . date('Y-m-d') . '.pdf');
+        // Memaksa download PDF langsung tanpa membuka halaman baru
+        return $dompdf->stream('Laporan_Kredit_' . date('Y-m-d_H-i-s') . '.pdf', array('Attachment' => 1));
     }
 }

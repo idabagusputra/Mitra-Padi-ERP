@@ -13,6 +13,8 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 10px;
+            table-layout: auto;
+            /* Automatically adjust column widths based on content */
         }
 
         table,
@@ -28,8 +30,12 @@
         }
 
         td {
-            padding: 6px;
+            padding: 4px;
+            word-wrap: break-word;
+            /* Ensure long text breaks to new lines if necessary */
         }
+
+
 
         .summary {
             margin-bottom: 20px;
@@ -38,8 +44,17 @@
 </head>
 
 <body>
-    <h2 style="text-align: center;">Laporan Kredit</h2>
-    <p style="text-align: center;">Tanggal Cetak: {{ date('d F Y') }}</p>
+    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 20px;">
+        <h2 style="margin: 0; display: flex; justify-content: space-between; width: 100%;">
+            <span>Laporan Kredit / Hutang Petani </span>
+            <span style="text-align: right; padding-left: 182px;">{{ date('d F Y - H:i:s') }}</span>
+        </h2>
+    </div>
+
+
+
+
+
 
     <div class="summary">
         <table>
@@ -62,11 +77,33 @@
         </table>
     </div>
 
+    <div class="summary">
+        <table>
+            <tr>
+                <td>Jumlah Petani Sudah Lunas</td>
+                <td>{{ $jumlahPetaniLunas }} Orang</td>
+            </tr>
+            <tr>
+                <td>Total Kredit Belum Lunas</td>
+                <td>Rp {{ number_format($totalKreditLunas, 2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td>Total Bunga Kredit</td>
+                <td>Rp {{ number_format($totalKreditPlusBungaLunas-$totalKreditLunas, 2, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td>Total Kredit Dengan Bunga Belum Lunas</td>
+                <td>Rp {{ number_format($totalKreditPlusBungaLunas, 2, ',', '.') }}</td>
+            </tr>
+        </table>
+    </div>
+
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Petani</th>
+                <th>Alamat</th>
                 <th>Tanggal</th>
                 <th>Jumlah</th>
                 <th>Hutang + Bunga</th>
@@ -74,19 +111,23 @@
             </tr>
         </thead>
         <tbody>
+            <!-- Loop untuk setiap grup petani -->
+            @foreach ($groupedKredits as $petaniName => $kredits)
             @foreach($kredits as $kredit)
             <tr>
                 <td style="text-align: center;">{{ $kredit->id }}</td>
-                <td>{{ $kredit->petani->nama }}</td>
+                <td style="text-align: left; padding-left: 8px;">{{ $kredit->petani->nama }}</td>
+                <td style="text-align: center;">{{ $kredit->petani->alamat }}</td>
                 <td style="text-align: center;">{{ $kredit->tanggal }}</td>
-                <td style="text-align: right;">Rp {{ number_format($kredit->jumlah, 2, ',', '.') }}</td>
-                <td style="text-align: right;">
+                <td style="text-align: right; padding-right: 8px;">Rp {{ number_format($kredit->jumlah, 2, ',', '.') }}</td>
+                <td style="text-align: right; padding-right: 8px;">
                     Rp {{ number_format($kredit->hutang_plus_bunga, 2, ',', '.') }}
                     <br>
                     <small>({{ number_format($kredit->lama_bulan) }} Bulan, Bunga: Rp {{ number_format($kredit->bunga, 2, ',', '.') }})</small>
                 </td>
                 <td style="text-align: center;">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</td>
             </tr>
+            @endforeach
             @endforeach
         </tbody>
     </table>
