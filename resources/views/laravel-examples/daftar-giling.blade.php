@@ -125,10 +125,10 @@
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Action</th>
                                     <th class="text-uppercase text-primary font-weight-bolder ps-2" style="font-size: 0.85rem;">Petani</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Tanggal</th>
+                                    <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Sisa Dana</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Total Giling</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Beras Jual</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Harga Jual</th>
-                                    <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Sisa Dana</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Buruh Giling</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Buruh Jemur</th>
                                     <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Jual Konga</th>
@@ -164,6 +164,9 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $daftarGiling->created_at->format('Y-m-d') }}</p>
                                     </td>
                                     <td class="text-center">
+                                        <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($daftarGiling->dana_penerima, 2, ',', '.') }}</p>
+                                    </td>
+                                    <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">{{ number_format($daftarGiling->giling_kotor, 2, ',', '.') }} Kg</p>
                                     </td>
                                     <td class="text-center">
@@ -171,9 +174,6 @@
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($daftarGiling->harga_jual, 2, ',', '.') }},00</p>
-                                    </td>
-                                    <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($daftarGiling->dana_penerima, 2, ',', '.') }}</p>
                                     </td>
                                     <td class="text-center">
                                         <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($daftarGiling->total_biaya_buruh_giling, 2, ',', '.') }}</p>
