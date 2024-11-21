@@ -99,7 +99,7 @@
 
 
 
-                                    <button type="button" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;" onclick="downloadPDF()">
+                                    <button type="button" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;" onclick="window.open('{{ route('laporan.kredit') }}?sort={{ request('sort', 'desc') }}', '_blank')">
                                         <i class="bi bi-printer me-2"></i>
                                         <span>Download PDF</span>
                                     </button>
@@ -605,7 +605,6 @@
                 } else {
                     console.error('Add Kredit form not found');
                 }
-
             });
         </script>
 
