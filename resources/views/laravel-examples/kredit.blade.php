@@ -99,7 +99,7 @@
 
                                     <form method="GET" action="{{ route('laporan.kredit') }}">
 
-                                        <a href="{{ route('laporan.kredit') }}" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2">
+                                        <a href="{{ route('laporan.kredit') }}" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 233px;">
                                             <i class="bi bi-printer me-2"></i>
                                             <span>CETAK LAPORAN</span>
                                         </a>
@@ -107,7 +107,7 @@
                                     </form>
 
 
-                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
+                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>

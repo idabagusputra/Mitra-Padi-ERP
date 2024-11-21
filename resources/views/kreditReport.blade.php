@@ -54,49 +54,45 @@
 
 
 
+    <div class="summary">
+        <table>
+            <tr>
+                <td style="text-align: left;">Jumlah Petani Belum Lunas <span style="float: right;">{{ $jumlahPetaniBelumLunas }} Orang</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Total Kredit Belum Lunas <span style="float: right;">Rp {{ number_format($totalKreditBelumLunas, 2, ',', '.') }}</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Total Bunga Kredit <span style="float: right;">Rp {{ number_format($totalKreditPlusBungaBelumLunas-$totalKreditBelumLunas, 2, ',', '.') }}</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Total Kredit Dengan Bunga Belum Lunas <span style="float: right;">Rp {{ number_format($totalKreditPlusBungaBelumLunas, 2, ',', '.') }}</span></td>
+            </tr>
+
+        </table>
+    </div>
+
 
 
     <div class="summary">
         <table>
+
             <tr>
-                <td>Jumlah Petani Belum Lunas</td>
-                <td>{{ $jumlahPetaniBelumLunas }} Orang</td>
+                <td style="text-align: left;">Jumlah Petani Sudah Lunas <span style="float: right;">{{ $jumlahPetaniLunas }} Orang</span></td>
             </tr>
             <tr>
-                <td>Total Kredit Belum Lunas</td>
-                <td>Rp {{ number_format($totalKreditBelumLunas, 2, ',', '.') }}</td>
+                <td style="text-align: left;">Total Kredit Lunas <span style="float: right;">Rp {{ number_format($totalKreditLunas, 2, ',', '.') }}</span></td>
             </tr>
             <tr>
-                <td>Total Bunga Kredit</td>
-                <td>Rp {{ number_format($totalKreditPlusBungaBelumLunas-$totalKreditBelumLunas, 2, ',', '.') }}</td>
+                <td style="text-align: left;">Total Bunga Kredit <span style="float: right;">Rp {{ number_format($totalKreditPlusBungaLunas-$totalKreditLunas, 2, ',', '.') }}</span></td>
             </tr>
             <tr>
-                <td>Total Kredit Dengan Bunga Belum Lunas</td>
-                <td>Rp {{ number_format($totalKreditPlusBungaBelumLunas, 2, ',', '.') }}</td>
+                <td style="text-align: left;">Total Kredit Dengan Bunga Lunas <span style="float: right;">Rp {{ number_format($totalKreditPlusBungaLunas, 2, ',', '.') }}</span></td>
             </tr>
         </table>
     </div>
 
-    <div class="summary">
-        <table>
-            <tr>
-                <td>Jumlah Petani Sudah Lunas</td>
-                <td>{{ $jumlahPetaniLunas }} Orang</td>
-            </tr>
-            <tr>
-                <td>Total Kredit Belum Lunas</td>
-                <td>Rp {{ number_format($totalKreditLunas, 2, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <td>Total Bunga Kredit</td>
-                <td>Rp {{ number_format($totalKreditPlusBungaLunas-$totalKreditLunas, 2, ',', '.') }}</td>
-            </tr>
-            <tr>
-                <td>Total Kredit Dengan Bunga Belum Lunas</td>
-                <td>Rp {{ number_format($totalKreditPlusBungaLunas, 2, ',', '.') }}</td>
-            </tr>
-        </table>
-    </div>
+
 
     <table>
         <thead>
