@@ -98,10 +98,12 @@
                                     </div>
 
                                     <form method="GET" action="{{ route('laporan.kredit') }}">
-                                        <button type="submit" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2">
+
+                                        <a href="{{ route('laporan.kredit') }}" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2">
                                             <i class="bi bi-printer me-2"></i>
                                             <span>CETAK LAPORAN</span>
-                                        </button>
+                                        </a>
+
                                     </form>
 
 
