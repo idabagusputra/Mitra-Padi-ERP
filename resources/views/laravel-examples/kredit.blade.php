@@ -101,7 +101,7 @@
 
                                         <a href="{{ route('laporan.kredit') }}" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 233px;">
                                             <i class="bi bi-printer me-2"></i>
-                                            <span>CETAK LAPORAN</span>
+                                            <span>CETAK</span>
                                         </a>
 
                                     </form>
