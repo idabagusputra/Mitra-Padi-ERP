@@ -87,7 +87,7 @@
                                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                                     <div class="me-2 w-100" style="position: relative;">
                                         <div class="input-group">
-                                            <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
+                                            <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit/hutang..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
                                                 <i class="bi bi-search" aria-hidden="true"></i>
                                             </button>
@@ -97,10 +97,24 @@
                                         </div>
                                     </div>
 
+
+
+                                    <button type="button" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 201px;" onclick="downloadPDF()">
+                                        <i class="bi bi-printer me-2"></i>
+                                        <span>Download PDF</span>
+                                    </button>
+
+
+
+
+
                                     <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 180px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>
+
+
+
                                 </div>
 
 
@@ -591,6 +605,7 @@
                 } else {
                     console.error('Add Kredit form not found');
                 }
+
             });
         </script>
 

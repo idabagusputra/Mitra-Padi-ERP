@@ -235,7 +235,7 @@
                                     <span class="btn btn-outline-primary input-group-text mb-0" type="" aria-label="Cari">
                                         <i class="bi bi-search" aria-hidden="true"></i>
                                     </span>
-                                    <input type="text" id="petani_search" class="form-control" placeholder="Cari nama petani..." autocomplete="off">
+                                    <input type="text" id="petani_search" class="form-control" placeholder="Cari petani..." autocomplete="off">
                                     <input type="hidden" id="petani_id" name="petani_id">
                                 </div>
                                 <div id="search-results" style="display: none;"></div>
@@ -274,12 +274,12 @@
                     @php
                     $fields = [
                     'giling_kotor' => ['label' => 'Giling Kotor (kg)'],
-                    'pulang' => ['label' => 'Pulang (kg)'],
-                    'pinjam' => ['label' => 'Pinjam (kg)'],
+                    'pulang' => ['label' => 'Beras Pulang (kg)'],
+                    'pinjam' => ['label' => 'Pinjaman Beras (kg)'],
                     'jemur' => ['label' => 'Jemur (kg)'],
                     'jumlah_konga' => ['label' => 'Jumlah Konga'],
                     'harga_konga' => ['label' => 'Harga Konga'],
-                    'harga_jual' => ['label' => 'Harga Jual'],
+                    'harga_jual' => ['label' => 'Harga Beras Laku'],
                     'jumlah_menir' => ['label' => 'Jumlah Menir'],
                     'harga_menir' => ['label' => 'Harga Menir'],
                     ];

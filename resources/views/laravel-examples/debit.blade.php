@@ -62,7 +62,7 @@
                             <!-- Search Input -->
                             <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
-                                    <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
+                                    <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit/tunai..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
                                     <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
                                         <i class="bi bi-search"></i>
                                     </button>

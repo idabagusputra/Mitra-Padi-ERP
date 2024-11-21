@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KreditController extends Controller
 {
@@ -226,5 +227,81 @@ class KreditController extends Controller
         $query = $request->get('query');
         $petanis = Petani::where('nama', 'LIKE', "%{$query}%")->get();
         return response()->json($petanis);
+    }
+
+    public function generatePDF(Request $request)
+    {
+        // Gunakan logika yang sama seperti di method index untuk mendapatkan data
+        $search = $request->input('search');
+        $statusFilter = $request->input('status');
+        $alamatFilter = $request->input('alamat');
+        $sortOrder = $request->input('sort', 'desc');
+
+        $query = Kredit::with('petani');
+
+        // Apply filters (gunakan logika yang sama seperti di method index)
+        if ($search) {
+            $query->whereHas('petani', function ($q) use ($search) {
+                $q->where('nama', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->has('alamat')) {
+            if ($alamatFilter === 'campur') {
+                $query->whereHas('petani', function ($q) {
+                    $q->whereNotNull('alamat');
+                });
+            } elseif ($alamatFilter !== 'all') {
+                $query->whereHas('petani', function ($q) use ($alamatFilter) {
+                    $q->where('alamat', $alamatFilter);
+                });
+            }
+        }
+
+        if ($statusFilter !== null) {
+            $query->where('status', $statusFilter);
+        }
+
+        // Get all matching kredits without pagination
+        $allKredits = $query->get();
+
+        // Calculate additional values (gunakan logika yang sama seperti di method index)
+        $now = Carbon::now();
+        $calculatedKredits = $allKredits->map(function ($kredit) use ($now) {
+            $kreditDate = Carbon::parse($kredit->tanggal);
+            $diffInMonths = $kreditDate->diffInMonths($now);
+            $selisihBulan = floor($diffInMonths);
+            $bunga = $kredit->jumlah * 0.02 * $selisihBulan;
+            $hutangPlusBunga = $kredit->jumlah + $bunga;
+
+            $kredit->setAttribute('hutang_plus_bunga', ($hutangPlusBunga));
+            $kredit->setAttribute('lama_bulan', $selisihBulan);
+            $kredit->setAttribute('bunga', floor($bunga));
+
+            return $kredit;
+        });
+
+        // Sort the collection
+        $sortedKredits = $calculatedKredits->sortBy(function ($item) {
+            return [$item->tanggal, $item->id];
+        }, SORT_REGULAR, $sortOrder === 'desc');
+
+        $kreditsBelumLunas = $calculatedKredits->where('status', 0);
+
+        // Calculate summary data
+        $jumlahPetaniBelumLunas = $kreditsBelumLunas->pluck('petani_id')->unique()->count();
+        $totalKreditBelumLunas = $kreditsBelumLunas->sum('jumlah');
+        $totalKreditPlusBungaBelumLunas = $kreditsBelumLunas->sum('hutang_plus_bunga');
+
+        // Generate PDF
+        $pdf = PDF::loadView('pdf.kredit', [
+            'kredits' => $sortedKredits,
+            'jumlahPetaniBelumLunas' => $jumlahPetaniBelumLunas,
+            'totalKreditBelumLunas' => $totalKreditBelumLunas,
+            'totalKreditPlusBungaBelumLunas' => $totalKreditPlusBungaBelumLunas
+        ]);
+
+        // Download PDF
+        return $pdf->download('Laporan_Kredit_' . date('Y-m-d') . '.pdf');
     }
 }

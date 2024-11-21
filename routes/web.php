@@ -13,6 +13,8 @@ use App\Http\Controllers\GilingController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DaftarGilingController; // Tambahkan ini
 use App\Http\Controllers\KreditPembayaranKreditController; // Tambahkan ini
+use App\Http\Controllers\KreditReportController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
@@ -39,6 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search-kredit', [KreditController::class, 'search'])->name('search.kredit');
     Route::get('/api/kredit/autocomplete', [KreditController::class, 'autocomplete']);
     Route::get('/search-petani', [KreditController::class, 'searchPetani'])->name('search.petani');
+    Route::get('/laporan-kredit', [KreditReportController::class, 'generatePdf'])->name('laporan.kredit');
+
 
 
     // Debit routes
