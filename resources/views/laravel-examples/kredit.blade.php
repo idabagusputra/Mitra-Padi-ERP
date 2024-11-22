@@ -49,6 +49,7 @@
         width: 100%;
     }
 
+
     /* Landscape Mode (Desktop/Tablet Horizontal) */
     @media (min-width: 769px) {
         .d-flex.flex-column.flex-md-row {
@@ -80,6 +81,15 @@
         .btn-group-wrapper {
             display: flex;
             gap: 1rem;
+        }
+
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card-header {
+            margin: 2 !important;
         }
 
 
@@ -149,6 +159,23 @@
 
         }
 
+        /* Base transition untuk semua properti yang akan berubah */
+        .d-flex.flex-wrap,
+        .d-flex.flex-wrap>div,
+        .form-select,
+        #sort-order,
+        #status-filter,
+        #alamat-filter,
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card-header {
+            margin: 0 !important;
+        }
+
+
         /* .card-header {
             padding: 3 !important;
             padding-bottom: 3 !important;
@@ -163,12 +190,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-4 mx-4">
-                        <div class="card-header pb-3 p-3">
+                        <div class="card-header pb-3 p-3" id="btn-id">
                             <form method="GET" action="{{ route('kredit.index') }}">
                                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
                                     <!-- Bagian Label -->
-                                    <h5 class="mb-3 mb-md-0 mx-2">Manajemen Kredit</h5>
+                                    <h5 class="mb-3 mb-md-0">Manajemen Kredit</h5>
 
                                     <!-- Bagian Dropdown -->
                                     <div class="d-flex flex-wrap gap-2">
@@ -210,7 +237,7 @@
                                 <!-- Bagian Search dan Tombol -->
 
                                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                                    <div class="me-2 w-100" style="position: relative;">
+                                    <div class="me-2 w-100" style="position: relative;" id="btn-id">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit/hutang..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
@@ -224,7 +251,7 @@
 
                                     <form method="GET" action="{{ route('laporan.kredit') }}">
 
-                                        <a href="{{ route('laporan.kredit') }}" class="btn btn-cetak bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 233px;">
+                                        <a href="{{ route('laporan.kredit') }}" class="btn btn-cetak bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" id="btn-id" style="width: 233px;">
                                             <i class="bi bi-printer me-2"></i>
                                             <span>CETAK</span>
                                         </a>
@@ -232,7 +259,7 @@
                                     </form>
 
 
-                                    <button class="btn btn-baru bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
+                                    <button class="btn btn-baru bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" id="btn-id" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>

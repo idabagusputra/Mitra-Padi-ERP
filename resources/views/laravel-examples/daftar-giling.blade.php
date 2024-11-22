@@ -4,6 +4,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
+    /* Base styles */
     #search-results {
         position: absolute;
         background-color: white;
@@ -22,34 +23,164 @@
         background-color: #f8f9fa;
     }
 
-    /* Styling untuk modal dan area PDF */
-    .modal .modal-dialog {
-        max-width: 450px;
-    }
-
-    .modal-body {
-        position: relative;
-        padding: 15px;
-    }
-
-    .pdf-viewer {
-        width: 100%;
-        height: 600px;
-        border: none;
-    }
-
-    .form-control {
-        height: 40px;
-    }
-
+    .form-control,
     .btn {
         height: 40px;
-        line-height: 1;
-        /* Agar ikon pencarian tetap berada di tengah */
     }
 
     body {
         overflow-x: hidden;
+    }
+
+    /* Container styles */
+    .d-flex.flex-column.flex-md-row {
+        width: 100%;
+    }
+
+    /* Dropdown container styles */
+    .d-flex.flex-wrap {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Base select dropdown styles */
+    .form-select {
+        width: 100%;
+    }
+
+
+    /* Landscape Mode (Desktop/Tablet Horizontal) */
+    @media (min-width: 769px) {
+        .d-flex.flex-column.flex-md-row {
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: row !important;
+            justify-content: flex-end;
+            width: auto;
+            gap: 1rem;
+        }
+
+        h5.mb-3 {
+            margin-bottom: 0 !important;
+            margin-right: auto;
+            margin-inline-start: 0;
+        }
+
+        /* Fixed width for all dropdowns in landscape */
+        #sort-order,
+        #status-filter,
+        #alamat-filter {
+            width: 151px !important;
+        }
+
+        /* Button group styling */
+        .btn-group-wrapper {
+            display: flex;
+            gap: 1rem;
+        }
+
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card-header {
+            margin: 2 !important;
+        }
+
+
+    }
+
+    /* Portrait Mode (Tablet/Mobile Vertical) */
+    @media (max-width: 768px) and (orientation: portrait) {
+        .card-header {
+            padding-bottom: 0 !important;
+        }
+
+        .d-flex.flex-column.flex-md-row {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 0 !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: column;
+            width: 100% !important;
+            gap: 0 !important;
+        }
+
+        h5.mb-3 {
+            width: 100%;
+        }
+
+        .form-select {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            width: 100%;
+        }
+
+        .btn {
+            height: auto;
+        }
+
+        /* Adjust button styling for portrait mode */
+        .btn-cetak {
+            width: 100% !important;
+            height: auto;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+
+        }
+
+
+        .btn-baru {
+            width: 100% !important;
+            height: auto;
+            margin-right: 0 !important;
+            padding-bottom: 3 !important;
+
+        }
+
+        .form-control,
+        .btn {
+            height: auto !important;
+        }
+
+        /* Styling for dropdown containers */
+        .d-flex.flex-wrap>div {
+            width: 100% !important;
+
+        }
+
+        /* Base transition untuk semua properti yang akan berubah */
+        .d-flex.flex-wrap,
+        .d-flex.flex-wrap>div,
+        .form-select,
+        #sort-order,
+        #status-filter,
+        #alamat-filter,
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .card-header {
+            margin: 0 !important;
+        }
+
+
+        /* .card-header {
+            padding: 3 !important;
+            padding-bottom: 3 !important;
+            margin: 0 !important;
+        } */
     }
 </style>
 
@@ -113,7 +244,7 @@
                                 </div>
                             </div>
 
-                            <a href="/giling" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" style="width: 180px;">
+                            <a href="/giling" class="btn btn-cetak bg-gradient-primary d-flex align-items-center justify-content-center mt-3" style="width: 180px;" id="btn-id">
                                 <i class="bi bi-plus-square me-2"></i>
                                 <span>Giling Baru</span>
                             </a>

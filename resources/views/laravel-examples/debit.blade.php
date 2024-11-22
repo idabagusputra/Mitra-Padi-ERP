@@ -5,10 +5,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
-    body {
-        overflow-x: hidden;
-    }
-
+    /* Base styles */
     #search-results {
         position: absolute;
         background-color: white;
@@ -27,14 +24,171 @@
         background-color: #f8f9fa;
     }
 
-    .form-control {
+    .form-control,
+    .btn {
         height: 40px;
     }
 
-    .btn {
-        height: 40px;
-        line-height: 1;
-        /* Agar ikon pencarian tetap berada di tengah */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Container styles */
+    .d-flex.flex-column.flex-md-row {
+        width: 100%;
+    }
+
+    /* Dropdown container styles */
+    .d-flex.flex-wrap {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Base select dropdown styles */
+    .form-select {
+        width: 100%;
+    }
+
+    /* Landscape Mode (Desktop/Tablet Horizontal) */
+    @media (min-width: 769px) {
+        .d-flex.flex-column.flex-md-row {
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: row !important;
+            justify-content: flex-end;
+
+            width: 100% !important;
+        }
+
+        h5.mb-3 {
+            margin-bottom: 0 !important;
+            margin-right: auto;
+            margin-inline-start: 0;
+            width: 100% !important;
+        }
+
+        /* Fixed width for dropdowns in landscape */
+        #sort-order,
+        #alamat-filter {
+            width: 151px !important;
+            transition: all 0.5s ease-in-out !important;
+        }
+
+        /* Container for dropdowns */
+        #responsiveDiv {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+
+        /* Reset width for dropdown containers */
+        #responsiveDiv>div {
+            width: auto !important;
+        }
+
+
+        /* Base transition untuk semua properti yang akan berubah */
+        .d-flex.flex-wrap,
+        .d-flex.flex-wrap>div,
+        .form-select,
+        #sort-order,
+        #status-filter,
+        #alamat-filter,
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out !important;
+        }
+
+
+        .card-header {
+            margin: 2 !important;
+        }
+    }
+
+    /* Portrait Mode (Tablet/Mobile Vertical) */
+    @media (max-width: 768px) and (orientation: portrait) {
+
+
+        .d-flex.flex-column.flex-md-row {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 0 !important;
+
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: column;
+            width: 100% !important;
+            gap: 0 !important;
+
+        }
+
+        /* Fixed width for dropdowns in landscape */
+        #sort-order,
+        #alamat-filter {
+            width: 100% !important;
+        }
+
+        h5.mb-3 {
+            width: 100%;
+        }
+
+        .form-select {
+            width: 100%;
+
+        }
+
+        .input-group {
+            width: 100%;
+
+        }
+
+        .btn {
+
+            height: auto;
+        }
+
+        .btn-potrait {
+            width: 100% !important;
+            height: auto;
+            margin-top: 0;
+        }
+
+        .form-control,
+        .btn {
+            height: 40px !important;
+        }
+
+        #responsiveDiv {
+            width: 100%;
+        }
+
+        #responsiveDiv>div {
+            width: 100% !important;
+            margin-bottom: 1rem;
+        }
+
+        .card-header {
+            margin: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* Base transition untuk semua properti yang akan berubah */
+        .d-flex.flex-wrap,
+        .d-flex.flex-wrap>div,
+        .form-select,
+        #sort-order,
+        #status-filter,
+        #alamat-filter,
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out !important;
+        }
+
+
     }
 </style>
 
@@ -46,19 +200,21 @@
                     <!-- Header Title and Dropdown Filters -->
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                         <!-- Title Section -->
-                        <h5 class="mb-3 mb-md-0 mx-2">Manajemen Debit</h5>
+                        <h5 class="mb-3 mb-md-0">Manajemen Debit</h5>
 
                         <!-- Filters and Action Button -->
-                        <div class="d-flex flex-wrap gap-2">
+                        <div class="d-flex flex-wrap" id="btn-id">
                             <!-- Sort Dropdown -->
-                            <div style="width: 150px;">
-                                <form method="GET" action="{{ route('debit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
+                            <div>
+                                <form method="GET" action="{{ route('debit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center " id="btn-id">
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                     </select>
                                 </form>
                             </div>
+
+
                         </div>
                     </div>
 
@@ -69,7 +225,7 @@
                             <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
                                     <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit/tunai..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
-                                    <button class="btn btn-outline-primary" type="submit" aria-label="Cari">
+                                    <button class="btn btn-outline-primary " type="submit" aria-label="Cari">
                                         <i class="bi bi-search"></i>
                                     </button>
                                 </div>
@@ -78,8 +234,11 @@
                                 </div>
                             </div>
 
+
+
+
                             <!-- Add Debit Button -->
-                            <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" style="width: 180px;">
+                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" id="btn-id" style="width: 180px;">
                                 <i class="bi bi-pencil-square me-2"></i>
                                 <span>New Debit</span>
                             </button>

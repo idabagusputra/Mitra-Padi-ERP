@@ -87,6 +87,17 @@
         #responsiveDiv>div {
             width: auto !important;
         }
+
+
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
+
+        .card-header {
+            margin: 2 !important;
+        }
     }
 
     /* Portrait Mode (Tablet/Mobile Vertical) */
@@ -150,6 +161,19 @@
         .card-header {
             margin: 0 !important;
         }
+
+        /* Base transition untuk semua properti yang akan berubah */
+        .d-flex.flex-wrap,
+        .d-flex.flex-wrap>div,
+        .form-select,
+        #sort-order,
+        #status-filter,
+        #alamat-filter,
+        #search-input,
+        #btn-id {
+            transition: all 0.5s ease-in-out;
+        }
+
     }
 </style>
 
@@ -209,7 +233,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
+                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-3" id="btn-id" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
                                 <i class="bi bi-plus-square me-2"></i>
                                 <span>Petani Baru</span>
                             </button>
