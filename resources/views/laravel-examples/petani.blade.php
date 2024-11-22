@@ -47,19 +47,32 @@
             align-items: stretch;
         }
 
-        /* Dropdown dan input form pada portrait menjadi satu kolom */
+        /* Menempatkan dropdown 'Terbaru' dan 'Semua Alamat' dalam satu baris */
         .card-header .d-flex .d-flex-wrap {
-            flex-direction: column;
+            flex-direction: row;
+            /* Menyusun dropdown dalam satu baris */
             gap: 1rem;
-            /* Tambahkan jarak antar elemen */
+            /* Menambahkan jarak antar dropdown */
             width: 100%;
         }
 
-        /* Menyesuaikan lebar dropdown menjadi 100% */
+        /* Dropdown 'Terbaru' dan 'Semua Alamat' */
         .card-header .form-select {
-            width: 100% !important;
+            flex-grow: 1;
+            /* Memastikan dropdown mengisi ruang yang tersedia */
+            width: auto;
+            /* Lebar otomatis untuk fleksibilitas */
+            margin-bottom: 0;
+            /* Menghilangkan margin bawah untuk menjaga keselarasan */
+        }
+
+        /* Membuat input pencarian lebar penuh */
+        .card-header .input-group {
+
+            /* Memastikan input pencarian lebar otomatis */
             margin-bottom: 1rem;
-            /* Menambahkan spasi antar dropdown */
+            width: auto;
+            /* Agar input menyesuaikan lebar */
         }
 
         /* Membuat input pencarian lebar penuh */
@@ -74,7 +87,7 @@
             margin-top: 1rem;
             /* Memberi jarak antar tombol */
             height: auto;
-            margin-top: 0px;
+
         }
 
 
