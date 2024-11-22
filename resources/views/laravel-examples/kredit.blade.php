@@ -3,122 +3,32 @@
 @section('content')
 
 <style>
-    /* Reset viewport for mobile */
-    @viewport {
-        width: device-width;
-        zoom: 1.0;
-    }
-
-    /* Base styles */
-    .card {
-        margin: 0;
-        width: 100%;
-        overflow-x: hidden;
-    }
-
-    .card-header {
-        padding: 1rem;
-    }
-
-    /* Responsive container */
-    .table-responsive {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: auto;
-    }
-
-    /* Fix table layout */
-    .table {
-        min-width: 800px;
-        /* Minimum width to ensure table content is readable */
-        margin-bottom: 0;
-    }
-
-    /* Responsive search and filters */
-    .d-flex.flex-column.flex-md-row {
-        gap: 0.5rem;
-        width: 100%;
-    }
-
-    /* Fix dropdown containers */
-    .d-flex.flex-wrap.gap-2 {
-        flex-wrap: wrap;
-        gap: 0.5rem !important;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Fix form controls */
-    .form-control,
-    .form-select,
-    .btn {
-        height: 40px;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* Adjust search container */
-    .input-group {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Fix button layout */
-    .btn {
-        white-space: nowrap;
-        width: auto;
-    }
-
-    /* Mobile-specific adjustments */
-    @media (max-width: 768px) {
-        .card-header {
-            padding: 0.75rem;
-        }
-
-        .mx-4 {
-            margin-left: 0.5rem !important;
-            margin-right: 0.5rem !important;
-        }
-
-        .table td,
-        .table th {
-            padding: 0.5rem;
-            font-size: 0.8rem;
-        }
-
-        /* Stack buttons on mobile */
-        .d-flex.flex-column.flex-md-row .btn {
-            width: 100%;
-            margin: 0.25rem 0;
-        }
-
-        /* Adjust dropdown widths */
-        .d-flex.flex-wrap.gap-2>div {
-            width: 100% !important;
-        }
-
-        /* Fix modal padding */
-        .modal-body {
-            padding: 1rem;
-        }
-
-        /* Adjust summary table */
-        .table.align-items-center.mb-0 td {
-            padding: 0.5rem;
-        }
-    }
-
-    /* Fix search results dropdown */
     #search-results {
         position: absolute;
-        width: 100%;
+        background-color: white;
+        border: 1px solid #ddd;
         max-height: 200px;
         overflow-y: auto;
         z-index: 1000;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    #search-results .dropdown-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #search-results .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .form-control {
+        height: 40px;
+    }
+
+    .btn {
+        height: 40px;
+        line-height: 1;
+        /* Agar ikon pencarian tetap berada di tengah */
     }
 </style>
 
