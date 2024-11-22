@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <style>
+    /* Base styles */
     #search-results {
         position: absolute;
         background-color: white;
@@ -24,75 +25,124 @@
         background-color: #f8f9fa;
     }
 
-    .form-control {
-        height: 40px;
-    }
-
+    .form-control,
     .btn {
         height: 40px;
-        line-height: 1;
-        /* Agar ikon pencarian tetap berada di tengah */
     }
 
     body {
         overflow-x: hidden;
     }
 
-    .d-flex .d-flex-wrap {
-
-        width: 150px;
+    /* Container styles */
+    .d-flex.flex-column.flex-md-row {
+        width: 100%;
     }
 
+    /* Dropdown container styles */
+    .d-flex.flex-wrap {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Base select dropdown styles */
     .form-select {
-        flex-direction: row;
-        width: 150px;
-        /* Mengatur lebar dropdown agar dua dropdown muat dalam satu baris */
-        margin-bottom: 1rem;
-        /* Menghilangkan margin bawah */
+        width: 100%;
+    }
+
+    /* Landscape Mode (Desktop/Tablet Horizontal) */
+    @media (min-width: 769px) {
+        .d-flex.flex-column.flex-md-row {
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: row !important;
+            justify-content: flex-end;
+
+            width: auto;
+        }
+
+        h5.mb-3 {
+            margin-bottom: 0 !important;
+            margin-right: auto;
+        }
+
+        /* Fixed width for dropdowns in landscape */
+        #sort-order,
+        #alamat-filter {
+            width: 150px !important;
+        }
+
+        /* Container for dropdowns */
+        #responsiveDiv {
+            display: flex !important;
+            flex-direction: row !important;
+        }
+
+        /* Reset width for dropdown containers */
+        #responsiveDiv>div {
+            width: auto !important;
+        }
     }
 
     /* Portrait Mode (Tablet/Mobile Vertical) */
     @media (max-width: 768px) and (orientation: portrait) {
+        .card-header {
 
-        /* Membuat form-container menjadi kolom hanya di mode potret */
-        .d-flex.flex-column.flex-md-row {
-            flex-direction: column;
-            align-items: stretch;
+            padding-bottom: 0 !important;
         }
 
-        /* Menempatkan dropdown 'Terbaru' dan 'Semua Alamat' dalam satu baris */
-        .d-flex .d-flex-wrap {
-            flex-direction: row;
-            /* Menyusun dropdown dalam satu baris */
-            gap: 1rem;
+        .d-flex.flex-column.flex-md-row {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 0 !important;
+
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: column;
+            width: 100% !important;
+            gap: 0 !important;
+
+        }
+
+        h5.mb-3 {
             width: 100%;
         }
 
-        /* Dropdown 'Terbaru' dan 'Semua Alamat' */
         .form-select {
-            width: 48%;
-            /* Mengatur lebar dropdown agar dua dropdown muat dalam satu baris */
-            margin-bottom: 1rem;
-            /* Menghilangkan margin bawah */
+            width: 100%;
         }
 
-        /* Membuat input pencarian lebar penuh */
         .input-group {
             width: 100%;
-            margin-bottom: 1rem;
         }
 
-        /* Membuat tombol pencarian juga lebar penuh pada mobile portrait */
-        .btn-potrait {
-            width: 100% !important;
-            margin-top: 1rem;
+        .btn {
+
             height: auto;
         }
 
-        /* Menghilangkan pengaturan tinggi untuk form-control dan btn */
+        .btn-potrait {
+            width: 100% !important;
+            height: auto;
+        }
+
         .form-control,
         .btn {
             height: auto !important;
+        }
+
+        #responsiveDiv {
+            width: 100%;
+        }
+
+        #responsiveDiv>div {
+            width: 100% !important;
+            margin-bottom: 1rem;
         }
     }
 </style>
@@ -106,20 +156,22 @@
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
                             <!-- Bagian Label -->
-                            <h5 class="mb-3 mb-md-0 mx-2">Manajemen Petani</h5>
+                            <h5 class=" mb-3 mb-md-0 mx-2 ">Manajemen Petani</h5>
 
                             <!-- Bagian Dropdown -->
-                            <div class="d-flex flex-wrap flex-md-row gap-2">
-                                <!-- Dropdown 'Terbaru' -->
-                                <div style="width: 100%;"> <!-- Adjusted width for portrait view -->
+                            <div class="d-flex flex-wrap gap-sm-2 gap-lg-3 gap-xl-4" id="responsiveDiv">
+                                <div style="width: 100%;">
+
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                     </select>
+
                                 </div>
 
-                                <!-- Dropdown 'Semua Alamat' -->
-                                <div style="width: 100%;"> <!-- Adjusted width for portrait view -->
+
+                                <div style="width: 100%;">
+
                                     <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                         <option value="all">Semua Alamat</option>
                                         <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
@@ -127,13 +179,17 @@
                                         <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
                                         @endforeach
                                     </select>
+
                                 </div>
                             </div>
+
+
                         </div>
 
                         <!-- Bagian Search dan Tombol -->
-                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100 gap-2">
-                            <div class="w-100" style="position: relative;">
+
+                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
+                            <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
                                     <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari petani..." aria-label="Cari daftar petani" value="{{ request('search') }}" autocomplete="off">
                                     <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
@@ -150,6 +206,8 @@
                                 <span>Petani Baru</span>
                             </button>
                         </div>
+
+
                     </form>
                 </div>
 
@@ -453,6 +511,25 @@
                 searchResults.style.display = 'none';
             }
         });
+
+        // function adjustWidth() {
+        //     var div = document.getElementById('responsiveDiv');
+        //     if (window.innerWidth > window.innerHeight) {
+        //         // Landscape
+        //         div.style.width = '150px';
+        //         div.style.flexDirection = 'row'; // Mengatur flex menjadi baris
+        //     } else {
+        //         // Potrait
+        //         div.style.width = '100%';
+        //         div.style.flexDirection = 'column'; // Mengatur flex menjadi kolom
+        //     }
+        // }
+
+        // // Panggil fungsi pertama kali saat halaman dimuat
+        // window.onload = adjustWidth;
+
+        // // Panggil fungsi setiap kali ukuran jendela berubah
+        // window.onresize = adjustWidth;
     });
 </script>
 
