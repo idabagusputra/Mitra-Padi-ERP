@@ -59,11 +59,12 @@
         /* Dropdown 'Terbaru' dan 'Semua Alamat' */
         .card-header .form-select {
             flex-grow: 1;
-            /* Memastikan dropdown mengisi ruang yang tersedia */
-            width: auto;
-            /* Lebar otomatis untuk fleksibilitas */
-            margin-bottom: 0;
-            /* Menghilangkan margin bawah untuk menjaga keselarasan */
+            /* Membuat dropdown mengisi ruang yang tersedia */
+            width: 100%;
+            /* Memastikan dropdown mengisi seluruh lebar */
+
+            margin-bottom: 1rem;
+            /* Menghilangkan margin bawah */
         }
 
         /* Membuat input pencarian lebar penuh */
