@@ -303,7 +303,7 @@
                         <div class="form-group">
                             <label for="created_at" class="form-control-label">{{ __('Tanggal Gabah Masuk') }}</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-calendar-plus"></i></span>
+                                <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
                                 <input type="date"
                                     class="form-control @error('created_at') is-invalid @enderror"
                                     id="created_at"
