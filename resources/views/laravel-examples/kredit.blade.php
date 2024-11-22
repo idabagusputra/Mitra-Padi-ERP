@@ -4,6 +4,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
+    /* Base styles */
     #search-results {
         position: absolute;
         background-color: white;
@@ -22,18 +23,137 @@
         background-color: #f8f9fa;
     }
 
-    .form-control {
-        height: 40px;
-    }
-
+    .form-control,
     .btn {
         height: 40px;
-        line-height: 1;
-        /* Agar ikon pencarian tetap berada di tengah */
     }
 
     body {
         overflow-x: hidden;
+    }
+
+    /* Container styles */
+    .d-flex.flex-column.flex-md-row {
+        width: 100%;
+    }
+
+    /* Dropdown container styles */
+    .d-flex.flex-wrap {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Base select dropdown styles */
+    .form-select {
+        width: 100%;
+    }
+
+    /* Landscape Mode (Desktop/Tablet Horizontal) */
+    @media (min-width: 769px) {
+        .d-flex.flex-column.flex-md-row {
+            align-items: center !important;
+            flex-direction: row !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: row !important;
+            justify-content: flex-end;
+            width: auto;
+            gap: 1rem;
+        }
+
+        h5.mb-3 {
+            margin-bottom: 0 !important;
+            margin-right: auto;
+            margin-inline-start: 0;
+        }
+
+        /* Fixed width for all dropdowns in landscape */
+        #sort-order,
+        #status-filter,
+        #alamat-filter {
+            width: 151px !important;
+        }
+
+        /* Button group styling */
+        .btn-group-wrapper {
+            display: flex;
+            gap: 1rem;
+        }
+
+
+    }
+
+    /* Portrait Mode (Tablet/Mobile Vertical) */
+    @media (max-width: 768px) and (orientation: portrait) {
+        .card-header {
+            padding-bottom: 0 !important;
+        }
+
+        .d-flex.flex-column.flex-md-row {
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 0 !important;
+        }
+
+        .d-flex.flex-wrap {
+            flex-direction: column;
+            width: 100% !important;
+            gap: 0 !important;
+        }
+
+        h5.mb-3 {
+            width: 100%;
+        }
+
+        .form-select {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            width: 100%;
+        }
+
+        .btn {
+            height: auto;
+        }
+
+        /* Adjust button styling for portrait mode */
+        .btn-cetak {
+            width: 100% !important;
+            height: auto;
+            margin-right: 0 !important;
+            margin-bottom: 0 !important;
+
+        }
+
+
+        .btn-baru {
+            width: 100% !important;
+            height: auto;
+            margin-right: 0 !important;
+            padding-bottom: 3 !important;
+
+        }
+
+        .form-control,
+        .btn {
+            height: auto !important;
+        }
+
+        /* Styling for dropdown containers */
+        .d-flex.flex-wrap>div {
+            width: 100% !important;
+
+        }
+
+        /* .card-header {
+            padding: 3 !important;
+            padding-bottom: 3 !important;
+            margin: 0 !important;
+        } */
     }
 </style>
 
@@ -104,7 +224,7 @@
 
                                     <form method="GET" action="{{ route('laporan.kredit') }}">
 
-                                        <a href="{{ route('laporan.kredit') }}" class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 233px;">
+                                        <a href="{{ route('laporan.kredit') }}" class="btn btn-cetak bg-gradient-primary d-flex align-items-center justify-content-center mt-3 me-2" style="width: 233px;">
                                             <i class="bi bi-printer me-2"></i>
                                             <span>CETAK</span>
                                         </a>
@@ -112,7 +232,7 @@
                                     </form>
 
 
-                                    <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
+                                    <button class="btn btn-baru bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button>
@@ -134,7 +254,7 @@
 
 
                             <div class="mx-4 pb-0">
-                                <h6 class="text-uppercase text-primary font-weight-bolder">Ringkasan Kredit Belum Lunas</h6>
+                                <h6 class="margin-atas text-uppercase text-primary font-weight-bolder">Ringkasan Kredit Belum Lunas</h6>
                             </div>
                             <div class="card-body px-0 pt-0 pb-2">
                                 <div class="table-responsive p-0">
