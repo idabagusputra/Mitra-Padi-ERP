@@ -338,55 +338,105 @@
                         </table>
                     </div>
                 </div>
+                <!-- Pagination -->
+                <div class="d-flex pagination-css justify-content-between align-items-center ps-2 mt-3 mb-3 mx-3">
+                    <div>
+                        Showing
+                        <strong>{{ $daftarGilings->firstItem() }}</strong> to
+                        <strong>{{ $daftarGilings->lastItem() }}</strong> of
+                        <strong>{{ $daftarGilings->total() }}</strong> entries
+                    </div>
+                    <div>
+                        @if ($daftarGilings->lastPage() > 1)
+                        <nav>
+                            <ul class="pagination m-0">
+                                {{-- Previous Button --}}
+                                @if ($daftarGilings->currentPage() > 1)
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ $daftarGilings->previousPageUrl() }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                @endif
 
+                                @php
+                                $currentPage = $daftarGilings->currentPage();
+                                $lastPage = $daftarGilings->lastPage();
+                                @endphp
+
+                                {{-- Always show first page --}}
+                                <li class="page-item {{ $currentPage == 1 ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $daftarGilings->url(1) }}">1</a>
+                                </li>
+
+                                {{-- Middle pages logic --}}
+                                @php
+                                $start = max(2, $currentPage - 1);
+                                $end = min($lastPage - 1, $currentPage + 1);
+                                @endphp
+
+                                @for ($i = $start; $i <= $end; $i++)
+                                    <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $daftarGilings->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                    @endfor
+
+                                    {{-- Always show last page --}}
+                                    @if ($lastPage > 1)
+                                    <li class="page-item {{ $currentPage == $lastPage ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $daftarGilings->url($lastPage) }}">{{ $lastPage }}</a>
+                                    </li>
+                                    @endif
+
+                                    {{-- Next Button --}}
+                                    @if ($currentPage < $lastPage)
+                                        <li class="page-item">
+                                        <a class="page-link" href="{{ $daftarGilings->nextPageUrl() }}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                        </li>
+                                        @endif
+                            </ul>
+                        </nav>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="pdfModalLabel">Receipt #</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfViewer" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button id="printPdf" class="btn btn-primary">Print</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="pdfModalLabel">Receipt #</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <iframe id="pdfViewer" style="width: 100%; height: 500px;" frameborder="0"></iframe>
-                </div>
-                <div class="modal-footer d-flex justify-content-between">
-                    <button id="printPdf" class="btn btn-primary">Print</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const petaniIdInput = document.getElementById('petani_id');
 
+        // Fungsi untuk setup autocomplete
+        // Fungsi untuk setup autocomplete
+        function setupAutocomplete(inputId, resultsId, url, onSelectCallback) {
+            const input = document.getElementById(inputId);
+            const results = document.getElementById(resultsId);
 
-    <!-- Pagination -->
-    <div class="d-flex justify-content-between align-items-center ps-2 mt-3 mx-3">
-        <div>
-            Showing
-            <strong>{{ $daftarGilings->firstItem() }}</strong> to
-            <strong>{{ $daftarGilings->lastItem() }}</strong> of
-            <strong>{{ $daftarGilings->total() }}</strong> entries
-        </div>
-        <div>
-            {{ $daftarGilings->appends(request()->query())->links('pagination::bootstrap-4') }}
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const petaniIdInput = document.getElementById('petani_id');
-
-            // Fungsi untuk setup autocomplete
-            // Fungsi untuk setup autocomplete
-            function setupAutocomplete(inputId, resultsId, url, onSelectCallback) {
-                const input = document.getElementById(inputId);
-                const results = document.getElementById(resultsId);
-
-                // Tambahkan styling untuk dropdown
-                results.style.cssText = `
+            // Tambahkan styling untuk dropdown
+            results.style.cssText = `
         max-height: 300px;
         overflow-y: auto;
         border: 1px solid #ddd;
@@ -394,112 +444,112 @@
         box-shadow: 0 2px 4px #cc0c9c;
     `;
 
-                input.addEventListener('input', function() {
-                    const searchTerm = this.value.trim();
-                    if (searchTerm.length > 0) {
-                        fetch(`${url}?term=${searchTerm}`)
-                            .then(response => response.json())
-                            .then(data => {
-                                results.innerHTML = '';
-                                results.style.display = 'block';
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.trim();
+                if (searchTerm.length > 0) {
+                    fetch(`${url}?term=${searchTerm}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            results.innerHTML = '';
+                            results.style.display = 'block';
 
-                                data.forEach(item => {
-                                    const div = document.createElement('div');
-                                    div.classList.add('dropdown-item');
+                            data.forEach(item => {
+                                const div = document.createElement('div');
+                                div.classList.add('dropdown-item');
 
-                                    // Buat container untuk nama dan alamat
-                                    const nameSpan = document.createElement('span');
-                                    nameSpan.style.fontWeight = 'bold';
-                                    nameSpan.style.color = '#cc0c9c'; // Menambahkan warna ungu (#890f82)
-                                    nameSpan.textContent = item.nama;
+                                // Buat container untuk nama dan alamat
+                                const nameSpan = document.createElement('span');
+                                nameSpan.style.fontWeight = 'bold';
+                                nameSpan.style.color = '#cc0c9c'; // Menambahkan warna ungu (#890f82)
+                                nameSpan.textContent = item.nama;
 
-                                    const addressSpan = document.createElement('span');
-                                    addressSpan.style.color = '#666';
-                                    addressSpan.style.fontSize = '0.9em';
-                                    addressSpan.textContent = ` - ${item.alamat}`;
+                                const addressSpan = document.createElement('span');
+                                addressSpan.style.color = '#666';
+                                addressSpan.style.fontSize = '0.9em';
+                                addressSpan.textContent = ` - ${item.alamat}`;
 
-                                    // Gabungkan nama dan alamat
-                                    div.appendChild(nameSpan);
-                                    div.appendChild(addressSpan);
+                                // Gabungkan nama dan alamat
+                                div.appendChild(nameSpan);
+                                div.appendChild(addressSpan);
 
-                                    // Styling untuk item dropdown
-                                    div.style.cssText = `
+                                // Styling untuk item dropdown
+                                div.style.cssText = `
                             padding: 8px 12px;
                             cursor: pointer;
                             border-bottom: 1px solid #eee;
                         `;
 
-                                    // Hover effect
-                                    div.addEventListener('mouseover', () => {
-                                        div.style.backgroundColor = '#f5f5f5';
-                                    });
-                                    div.addEventListener('mouseout', () => {
-                                        div.style.backgroundColor = 'white';
-                                    });
-
-                                    div.addEventListener('click', function() {
-                                        // Update input dengan nama saja
-                                        input.value = item.nama;
-                                        results.style.display = 'none';
-                                        if (onSelectCallback) onSelectCallback(item);
-                                    });
-
-                                    results.appendChild(div);
+                                // Hover effect
+                                div.addEventListener('mouseover', () => {
+                                    div.style.backgroundColor = '#f5f5f5';
                                 });
+                                div.addEventListener('mouseout', () => {
+                                    div.style.backgroundColor = 'white';
+                                });
+
+                                div.addEventListener('click', function() {
+                                    // Update input dengan nama saja
+                                    input.value = item.nama;
+                                    results.style.display = 'none';
+                                    if (onSelectCallback) onSelectCallback(item);
+                                });
+
+                                results.appendChild(div);
                             });
-                    } else {
-                        results.style.display = 'none';
-                    }
-                });
-
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (e.target !== input && e.target !== results) {
-                        results.style.display = 'none';
-                    }
-                });
-            }
-
-            // Setup autocomplete for index search
-            setupAutocomplete('search-input', 'search-results', '/search-kredit', function(item) {
-                document.querySelector('form').submit();
-            });
-
-            document.addEventListener('click', function(e) {
-                if (e.target !== searchInput && e.target !== searchResults) {
-                    searchResults.style.display = 'none';
+                        });
+                } else {
+                    results.style.display = 'none';
                 }
             });
 
-            // Updated event listener for View buttons
-            document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const gilingId = this.getAttribute('data-id');
-                    const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
-
-                    // Set src viewer PDF
-                    document.getElementById('pdfViewer').src = pdfPath;
-
-                    // Update modal title with the correct ID
-                    document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
-
-                    // Display the modal
-                    const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
-                    pdfModal.show();
-                });
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target !== input && e.target !== results) {
+                    results.style.display = 'none';
+                }
             });
+        }
 
-            // Event listener for Print button
-            document.getElementById('printPdf').addEventListener('click', function() {
-                const pdfViewer = document.getElementById('pdfViewer').contentWindow;
-                pdfViewer.print();
+        // Setup autocomplete for index search
+        setupAutocomplete('search-input', 'search-results', '/search-kredit', function(item) {
+            document.querySelector('form').submit();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (e.target !== searchInput && e.target !== searchResults) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Updated event listener for View buttons
+        document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const gilingId = this.getAttribute('data-id');
+                const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
+
+                // Set src viewer PDF
+                document.getElementById('pdfViewer').src = pdfPath;
+
+                // Update modal title with the correct ID
+                document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
+
+                // Display the modal
+                const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+                pdfModal.show();
             });
         });
-    </script>
+
+        // Event listener for Print button
+        document.getElementById('printPdf').addEventListener('click', function() {
+            const pdfViewer = document.getElementById('pdfViewer').contentWindow;
+            pdfViewer.print();
+        });
+    });
+</script>
 
 
 
 
 
-    @endsection
+@endsection

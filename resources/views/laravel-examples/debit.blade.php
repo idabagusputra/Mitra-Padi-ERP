@@ -301,6 +301,69 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- Pagination -->
+                    <div class="d-flex pagination-css justify-content-between align-items-center ps-2 mt-3 mb-3 mx-3">
+                        <div>
+                            Showing
+                            <strong>{{ $debits->firstItem() }}</strong> to
+                            <strong>{{ $debits->lastItem() }}</strong> of
+                            <strong>{{ $debits->total() }}</strong> entries
+                        </div>
+                        <div>
+                            @if ($debits->lastPage() > 1)
+                            <nav>
+                                <ul class="pagination m-0">
+                                    {{-- Previous Button --}}
+                                    @if ($debits->currentPage() > 1)
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $debits->previousPageUrl() }}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    @endif
+
+                                    @php
+                                    $currentPage = $debits->currentPage();
+                                    $lastPage = $debits->lastPage();
+                                    @endphp
+
+                                    {{-- Always show first page --}}
+                                    <li class="page-item {{ $currentPage == 1 ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $debits->url(1) }}">1</a>
+                                    </li>
+
+                                    {{-- Middle pages logic --}}
+                                    @php
+                                    $start = max(2, $currentPage - 1);
+                                    $end = min($lastPage - 1, $currentPage + 1);
+                                    @endphp
+
+                                    @for ($i = $start; $i <= $end; $i++)
+                                        <li class="page-item {{ $currentPage == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $debits->url($i) }}">{{ $i }}</a>
+                                        </li>
+                                        @endfor
+
+                                        {{-- Always show last page --}}
+                                        @if ($lastPage > 1)
+                                        <li class="page-item {{ $currentPage == $lastPage ? 'active' : '' }}">
+                                            <a class="page-link" href="{{ $debits->url($lastPage) }}">{{ $lastPage }}</a>
+                                        </li>
+                                        @endif
+
+                                        {{-- Next Button --}}
+                                        @if ($currentPage < $lastPage)
+                                            <li class="page-item">
+                                            <a class="page-link" href="{{ $debits->nextPageUrl() }}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                            </li>
+                                            @endif
+                                </ul>
+                            </nav>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -358,18 +421,7 @@
     </div>
 </div>
 
-<!-- Pagination -->
-<div class="d-flex justify-content-between align-items-center ps-2 mt-3 mx-3">
-    <div>
-        Showing
-        <strong>{{ $debits->firstItem() }}</strong> to
-        <strong>{{ $debits->lastItem() }}</strong> of
-        <strong>{{ $debits->total() }}</strong> entries
-    </div>
-    <div>
-        {{ $debits->appends(request()->input())->links('pagination::bootstrap-4') }}
-    </div>
-</div>
+
 
 @endsection
 
