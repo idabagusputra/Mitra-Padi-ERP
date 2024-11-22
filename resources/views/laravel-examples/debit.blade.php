@@ -219,13 +219,13 @@
                     </div>
 
                     <!-- Search Form and Add Button -->
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
                         <form method="GET" action="{{ route('debit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                             <!-- Search Input -->
                             <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
                                     <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari debit/tunai..." aria-label="Cari daftar debit" value="{{ request('search') }}" autocomplete="off">
-                                    <button class="btn btn-outline-primary " type="submit" aria-label="Cari">
+                                    <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
                                         <i class="bi bi-search"></i>
                                     </button>
                                 </div>
@@ -237,8 +237,11 @@
 
 
 
+
+
+
                             <!-- Add Debit Button -->
-                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" id="btn-id" style="width: 180px;">
+                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-3 md-0" type="button" data-bs-toggle="modal" data-bs-target="#addDebitModal" id="btn-id" style="width: 180px;">
                                 <i class="bi bi-pencil-square me-2"></i>
                                 <span>New Debit</span>
                             </button>
