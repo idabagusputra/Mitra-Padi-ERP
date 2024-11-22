@@ -55,7 +55,10 @@
         .d-flex.flex-column.flex-md-row {
             align-items: center !important;
             flex-direction: row !important;
+            margin-top: 0 !important;
         }
+
+
 
         .d-flex.flex-wrap {
             flex-direction: row !important;
@@ -76,6 +79,7 @@
         #alamat-filter {
             width: 151px !important;
             transition: all 0.5s ease-in-out !important;
+
         }
 
         /* Container for dropdowns */
@@ -130,6 +134,7 @@
         #sort-order,
         #alamat-filter {
             width: 100% !important;
+
         }
 
         h5.mb-3 {
@@ -219,7 +224,7 @@
                     </div>
 
                     <!-- Search Form and Add Button -->
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mt-3">
                         <form method="GET" action="{{ route('debit.index') }}" class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                             <!-- Search Input -->
                             <div class="me-2 w-100" style="position: relative;">
