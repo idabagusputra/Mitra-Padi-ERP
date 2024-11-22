@@ -37,6 +37,57 @@
     body {
         overflow-x: hidden;
     }
+
+    /* Portrait Mode (Tablet/Mobile Vertical) */
+    @media (max-width: 768px) and (orientation: portrait) {
+
+        /* Membuat form-container menjadi kolom hanya di mode potret */
+        .card-header .d-flex.flex-column.flex-md-row {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        /* Dropdown dan input form pada portrait menjadi satu kolom */
+        .card-header .d-flex .d-flex-wrap {
+            flex-direction: column;
+            gap: 1rem;
+            /* Tambahkan jarak antar elemen */
+            width: 100%;
+        }
+
+        /* Menyesuaikan lebar dropdown menjadi 100% */
+        .card-header .form-select {
+            width: 100% !important;
+            margin-bottom: 1rem;
+            /* Menambahkan spasi antar dropdown */
+        }
+
+        /* Membuat input pencarian lebar penuh */
+        .card-header .input-group {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        /* Membuat tombol pencarian juga lebar penuh pada mobile portrait */
+        .btn-potrait {
+            width: 100% !important;
+            margin-top: 1rem;
+            /* Memberi jarak antar tombol */
+            height: auto;
+            margin-top: 0px;
+        }
+
+
+
+        /* Menghilangkan pengaturan tinggi untuk form-control dan btn */
+        .card-header .form-control,
+        .card-header .btn {
+            height: auto !important;
+            /* Pastikan elemen ini mengikuti kontennya */
+        }
+    }
+
+    }
 </style>
 
 <div>
@@ -93,7 +144,7 @@
                                 </div>
                             </div>
 
-                            <button class="btn bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
+                            <button class="btn btn-potrait bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" data-bs-toggle="modal" data-bs-target="#addPetaniModal" style="width: 180px;">
                                 <i class="bi bi-plus-square me-2"></i>
                                 <span>Petani Baru</span>
                             </button>
