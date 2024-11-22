@@ -74,7 +74,7 @@
         /* Fixed width for dropdowns in landscape */
         #sort-order,
         #alamat-filter {
-            width: 152px !important;
+            width: 151px !important;
         }
 
         /* Container for dropdowns */
@@ -161,6 +161,7 @@
                     <form method="GET" action="{{ route('petani.index') }}">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
+                            <!-- Bagian Label -->
                             <!-- Bagian Label -->
                             <!-- Bagian Label -->
                             <h5 class=" mb-3 mb-md-0">Manajemen Petani</h5>
