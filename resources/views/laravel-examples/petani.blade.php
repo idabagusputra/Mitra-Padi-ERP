@@ -47,13 +47,14 @@
             align-items: stretch;
         }
 
-        /* Menempatkan dropdown 'Terbaru' dan 'Semua Alamat' dalam satu baris */
+        /* Menempatkan dropdown 'Terbaru' dan 'Semua Alamat' dalam satu kolom */
         .d-flex .d-flex-wrap {
-            flex-direction: row;
-            /* Menyusun dropdown dalam satu baris */
+            flex-direction: column;
+            /* Menyusun dropdown dalam satu kolom */
             gap: 1rem;
             /* Menambahkan jarak antar dropdown */
             width: 100%;
+            /* Memastikan kontainer memenuhi lebar */
         }
 
         /* Dropdown 'Terbaru' dan 'Semua Alamat' */
@@ -62,6 +63,11 @@
             /* Membuat select dropdown memenuhi lebar kontainer */
             margin-bottom: 1rem;
             /* Menghilangkan margin bawah */
+        }
+
+        /* Menambahkan margin kiri dan kanan untuk membuat elemen mentok ke dinding */
+        .d-flex .d-flex-wrap>div {
+            width: 100%;
         }
 
         /* Membuat input pencarian lebar penuh */
@@ -101,7 +107,7 @@
 
                             <!-- Bagian Dropdown -->
                             <div class="d-flex flex-wrap gap-2">
-                                <div style="width: 150px;">
+                                <div>
 
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
@@ -110,8 +116,7 @@
 
                                 </div>
 
-
-                                <div style="width: 150px;">
+                                <div>
 
                                     <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                         <option value="all">Semua Alamat</option>
@@ -124,11 +129,9 @@
                                 </div>
                             </div>
 
-
                         </div>
 
                         <!-- Bagian Search dan Tombol -->
-
                         <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
                             <div class="me-2 w-100" style="position: relative;">
                                 <div class="input-group">
@@ -148,9 +151,9 @@
                             </button>
                         </div>
 
-
                     </form>
                 </div>
+
 
 
                 <div class="card-body px-0 pt-0 pb-2">
