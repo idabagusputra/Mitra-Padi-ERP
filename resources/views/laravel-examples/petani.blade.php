@@ -146,6 +146,10 @@
             width: 100% !important;
             margin-bottom: 1rem;
         }
+
+        .card-header {
+            margin: 0 !important;
+        }
     }
 </style>
 
