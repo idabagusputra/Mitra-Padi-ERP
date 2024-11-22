@@ -2,6 +2,7 @@
 
 @section('content')
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <style>
     #search-results {
         position: absolute;
@@ -45,6 +46,10 @@
         height: 40px;
         line-height: 1;
         /* Agar ikon pencarian tetap berada di tengah */
+    }
+
+    body {
+        overflow-x: hidden;
     }
 </style>
 
