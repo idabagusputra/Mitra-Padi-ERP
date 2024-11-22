@@ -68,12 +68,13 @@
         h5.mb-3 {
             margin-bottom: 0 !important;
             margin-right: auto;
+            margin-inline-start: 0;
         }
 
         /* Fixed width for dropdowns in landscape */
         #sort-order,
         #alamat-filter {
-            width: 150px !important;
+            width: 152px !important;
         }
 
         /* Container for dropdowns */
@@ -129,6 +130,7 @@
         .btn-potrait {
             width: 100% !important;
             height: auto;
+            margin-top: 0;
         }
 
         .form-control,
@@ -151,12 +153,12 @@
     <div>
         <div class="col-12">
             <div class="card mb-4 mx-4">
-                <div class="card-header pb-3 p-3">
+                <div class="card-header pb-3 p-3 mx-2">
                     <form method="GET" action="{{ route('petani.index') }}">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
                             <!-- Bagian Label -->
-                            <h5 class=" mb-3 mb-md-0 mx-2 ">Manajemen Petani</h5>
+                            <h5 class=" mb-3 mb-md-0">Manajemen Petani</h5>
 
                             <!-- Bagian Dropdown -->
                             <div class="d-flex flex-wrap gap-sm-2 gap-lg-3 gap-xl-4" id="responsiveDiv">
