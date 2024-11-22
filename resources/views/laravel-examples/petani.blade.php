@@ -38,6 +38,19 @@
         overflow-x: hidden;
     }
 
+    .d-flex .d-flex-wrap {
+
+        width: 150px;
+    }
+
+    .form-select {
+        flex-direction: row;
+        width: 150px;
+        /* Mengatur lebar dropdown agar dua dropdown muat dalam satu baris */
+        margin-bottom: 1rem;
+        /* Menghilangkan margin bawah */
+    }
+
     /* Portrait Mode (Tablet/Mobile Vertical) */
     @media (max-width: 768px) and (orientation: portrait) {
 
@@ -52,14 +65,13 @@
             flex-direction: row;
             /* Menyusun dropdown dalam satu baris */
             gap: 1rem;
-            /* Menambahkan jarak antar dropdown */
             width: 100%;
         }
 
         /* Dropdown 'Terbaru' dan 'Semua Alamat' */
         .form-select {
-            width: 100%;
-            /* Membuat select dropdown memenuhi lebar kontainer */
+            width: 48%;
+            /* Mengatur lebar dropdown agar dua dropdown muat dalam satu baris */
             margin-bottom: 1rem;
             /* Menghilangkan margin bawah */
         }
@@ -67,7 +79,6 @@
         /* Membuat input pencarian lebar penuh */
         .input-group {
             width: 100%;
-            /* Input group memenuhi lebar kontainer */
             margin-bottom: 1rem;
         }
 
@@ -75,7 +86,6 @@
         .btn-potrait {
             width: 100% !important;
             margin-top: 1rem;
-            /* Memberi jarak antar tombol */
             height: auto;
         }
 
@@ -83,7 +93,6 @@
         .form-control,
         .btn {
             height: auto !important;
-            /* Pastikan elemen ini mengikuti kontennya */
         }
     }
 </style>
@@ -100,19 +109,17 @@
                             <h5 class="mb-3 mb-md-0 mx-2">Manajemen Petani</h5>
 
                             <!-- Bagian Dropdown -->
-                            <div class="d-flex flex-wrap gap-2">
-                                <div style="width: 150px;">
-
+                            <div class="d-flex flex-wrap flex-md-row gap-2">
+                                <!-- Dropdown 'Terbaru' -->
+                                <div style="width: 100%;"> <!-- Adjusted width for portrait view -->
                                     <select name="sort" id="sort-order" class="form-select" onchange="this.form.submit()">
                                         <option value="desc" {{ request('sort', 'desc') == 'desc' ? 'selected' : '' }}>Terbaru</option>
                                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Terlama</option>
                                     </select>
-
                                 </div>
 
-
-                                <div style="width: 150px;">
-
+                                <!-- Dropdown 'Semua Alamat' -->
+                                <div style="width: 100%;"> <!-- Adjusted width for portrait view -->
                                     <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
                                         <option value="all">Semua Alamat</option>
                                         <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
@@ -120,17 +127,13 @@
                                         <option value="{{ $alamat }}" {{ request('alamat') == $alamat ? 'selected' : '' }}>{{ $alamat }}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
                             </div>
-
-
                         </div>
 
                         <!-- Bagian Search dan Tombol -->
-
-                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                            <div class="me-2 w-100" style="position: relative;">
+                        <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100 gap-2">
+                            <div class="w-100" style="position: relative;">
                                 <div class="input-group">
                                     <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari petani..." aria-label="Cari daftar petani" value="{{ request('search') }}" autocomplete="off">
                                     <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
@@ -147,8 +150,6 @@
                                 <span>Petani Baru</span>
                             </button>
                         </div>
-
-
                     </form>
                 </div>
 
