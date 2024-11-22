@@ -42,13 +42,13 @@
     @media (max-width: 768px) and (orientation: portrait) {
 
         /* Membuat form-container menjadi kolom hanya di mode potret */
-        .card-header .d-flex.flex-column.flex-md-row {
+        .d-flex.flex-column.flex-md-row {
             flex-direction: column;
             align-items: stretch;
         }
 
         /* Menempatkan dropdown 'Terbaru' dan 'Semua Alamat' dalam satu baris */
-        .card-header .d-flex .d-flex-wrap {
+        .d-flex .d-flex-wrap {
             flex-direction: row;
             /* Menyusun dropdown dalam satu baris */
             gap: 1rem;
@@ -57,28 +57,17 @@
         }
 
         /* Dropdown 'Terbaru' dan 'Semua Alamat' */
-        .card-header .form-select {
-            flex-grow: 1;
-            /* Membuat dropdown mengisi ruang yang tersedia */
+        .form-select {
             width: 100%;
-            /* Memastikan dropdown mengisi seluruh lebar */
-
+            /* Membuat select dropdown memenuhi lebar kontainer */
             margin-bottom: 1rem;
             /* Menghilangkan margin bawah */
         }
 
         /* Membuat input pencarian lebar penuh */
-        .card-header .input-group {
-
-            /* Memastikan input pencarian lebar otomatis */
-            margin-bottom: 1rem;
-            width: auto;
-            /* Agar input menyesuaikan lebar */
-        }
-
-        /* Membuat input pencarian lebar penuh */
-        .card-header .input-group {
+        .input-group {
             width: 100%;
+            /* Input group memenuhi lebar kontainer */
             margin-bottom: 1rem;
         }
 
@@ -88,19 +77,14 @@
             margin-top: 1rem;
             /* Memberi jarak antar tombol */
             height: auto;
-
         }
 
-
-
         /* Menghilangkan pengaturan tinggi untuk form-control dan btn */
-        .card-header .form-control,
-        .card-header .btn {
+        .form-control,
+        .btn {
             height: auto !important;
             /* Pastikan elemen ini mengikuti kontennya */
         }
-    }
-
     }
 </style>
 
