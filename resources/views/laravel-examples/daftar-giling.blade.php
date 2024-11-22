@@ -198,7 +198,7 @@
                             <!-- Ida Bagus Putu Putra Manuaba -->
 
                             <!-- Bagian Label -->
-                            <h5 class="mb-3 mb-md-0 mx-2">Daftar Giling</h5>
+                            <h5 class="mb-3 mb-md-0">Daftar Giling</h5>
 
                             <!-- Bagian Dropdown -->
                             <div class="d-flex flex-wrap gap-2">
