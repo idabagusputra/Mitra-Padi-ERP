@@ -45,12 +45,10 @@ class DebitController extends Controller
 
     public function searchPetani(Request $request)
     {
-        $search = $request->input('term');
-
-        $petanis = Petani::where('nama', 'like', '%' . $search . '%')
-            ->select('id', 'nama')
-            ->limit(10)
-            ->get();
+        $term = $request->input('term');
+        $petanis = Petani::where('nama', 'LIKE', "%{$term}%")
+            ->orWhere('alamat', 'LIKE', "%{$term}%")
+            ->get(['id', 'nama', 'alamat']);
 
         return response()->json($petanis);
     }

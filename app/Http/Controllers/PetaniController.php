@@ -137,4 +137,19 @@ class PetaniController extends Controller
         // Return the data as JSON
         return response()->json($petani);
     }
+
+    public function searchPetaniDebit(Request $request)
+    {
+        $term = $request->input('term');
+
+
+
+        $petanis = Petani::where('nama', 'LIKE', "%{$term}%")
+            ->orWhere('alamat', 'LIKE', "%{$term}%")
+            ->select('id', 'nama', 'alamat')
+            ->limit(10)
+            ->get();
+
+        return response()->json($petanis);
+    }
 }

@@ -23,7 +23,7 @@ class Debit extends Model
 
     public function petani()
     {
-        return $this->belongsTo(Petani::class);
+        return $this->belongsTo(Petani::class, 'petani_id', 'id');
     }
 
     public function calculateTotalHutangDenganBunga()
@@ -89,7 +89,7 @@ class Debit extends Model
                         $kredit->keterangan = $kredit->keterangan . ' | Terbayar Penuh | Debit: Rp ' . number_format($totalHutangDenganBunga, 2);
                         $kredit->save();
                     }
-                    $this->keterangan .= " Terbayar Penuh | Durasi: " . floor($debtDurationMonths) . " bulan";
+                    $this->keterangan .= " | Terbayar Penuh | Durasi: " . floor($debtDurationMonths) . " bulan";
                 } else {
                     // Pay off partially
                     $sisaHutang = $totalHutangDenganBunga - $this->jumlah;

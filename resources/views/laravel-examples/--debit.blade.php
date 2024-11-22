@@ -381,7 +381,7 @@
             <form id="addDebitForm" action="{{ route('debit.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="petani_id">Petani</label>
                         <div class="input-group">
                             <select class="form-control" id="petani_id" name="petani_id" required onchange="updateTotalHutang(this)">
@@ -392,15 +392,7 @@
                                 </option>
                                 @endforeach
                             </select>
-
-                        </div>
-                    </div> -->
-                    <div class="form-group">
-                        <label for="petani_search">Petani</label>
-                        <div class="position-relative">
-                            <input type="text" class="form-control" id="petani_search" placeholder="Search for a petani..." autocomplete="off" required>
-                            <input type="hidden" id="petani_id" name="petani_id" required>
-                            <div id="petani_search_results" class="dropdown-menu w-100" style="display: none; position: absolute; max-height: 200px; overflow-y: auto; z-index: 1000;"></div>
+                            <!-- <span class="input-group-text" id="total-hutang">Total Hutang: Rp 0</span> -->
                         </div>
                     </div>
                     <div class="form-group">
@@ -431,270 +423,74 @@
 
 
 
+@endsection
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const petaniIdInput = document.getElementById('petani_id');
-
-        // Fungsi untuk setup autocomplete
-        // Fungsi untuk setup autocomplete
-        function setupAutocomplete(inputId, resultsId, url, onSelectCallback) {
-            const input = document.getElementById(inputId);
-            const results = document.getElementById(resultsId);
-
-            // Tambahkan styling untuk dropdown
-            results.style.cssText = `
-        max-height: 300px;
-        overflow-y: auto;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px #cc0c9c;
-    `;
-
-            input.addEventListener('input', function() {
-                const searchTerm = this.value.trim();
-                if (searchTerm.length > 0) {
-                    fetch(`${url}?term=${searchTerm}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            results.innerHTML = '';
-                            results.style.display = 'block';
-
-                            data.forEach(item => {
-                                const div = document.createElement('div');
-                                div.classList.add('dropdown-item');
-
-                                // Buat container untuk nama dan alamat
-                                const nameSpan = document.createElement('span');
-                                nameSpan.style.fontWeight = 'bold';
-                                nameSpan.style.color = '#cc0c9c'; // Menambahkan warna ungu (#890f82)
-                                nameSpan.textContent = item.nama;
-
-                                const addressSpan = document.createElement('span');
-                                addressSpan.style.color = '#666';
-                                addressSpan.style.fontSize = '0.9em';
-                                addressSpan.textContent = ` - ${item.alamat}`;
-
-                                // Gabungkan nama dan alamat
-                                div.appendChild(nameSpan);
-                                div.appendChild(addressSpan);
-
-                                // Styling untuk item dropdown
-                                div.style.cssText = `
-                            padding: 8px 12px;
-                            cursor: pointer;
-                            border-bottom: 1px solid #eee;
-                        `;
-
-                                // Hover effect
-                                div.addEventListener('mouseover', () => {
-                                    div.style.backgroundColor = '#f5f5f5';
-                                });
-                                div.addEventListener('mouseout', () => {
-                                    div.style.backgroundColor = 'white';
-                                });
-
-                                div.addEventListener('click', function() {
-                                    // Update input dengan nama saja
-                                    input.value = item.nama;
-                                    results.style.display = 'none';
-                                    if (onSelectCallback) onSelectCallback(item);
-                                });
-
-                                results.appendChild(div);
-                            });
+    input.addEventListener('input', function() {
+        console.log('Input event triggered'); // Debug log
+        const term = this.value.trim();
+        if (term.length > 1) {
+            fetch(`{{ route('debit.search') }}?term=${term}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data received:', data); // Debugging response
+                    results.innerHTML = '';
+                    results.style.display = 'block';
+                    data.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'dropdown-item';
+                        div.textContent = `${item.nama} - ${item.alamat}`;
+                        div.addEventListener('click', () => {
+                            input.value = item.nama;
+                            results.style.display = 'none';
                         });
-                } else {
-                    results.style.display = 'none';
-                }
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (e.target !== input && e.target !== results) {
-                    results.style.display = 'none';
-                }
-            });
-        }
-
-        // Setup autocomplete for index search
-        setupAutocomplete('search-input', 'search-results', '/search-kredit', function(item) {
-            document.querySelector('form').submit();
-        });
-
-        // Setup autocomplete for modal petani search
-        setupAutocomplete('petani_search', 'petani_search_results', '/search-petani', function(petani) {
-            if (petaniIdInput) {
-                petaniIdInput.value = petani.id;
-                input.value = `${petani.nama} - ${petani.alamat}`; // Update input to show both name and address
-                console.log('Petani selected:', petani.nama, 'Alamat:', petani.alamat, 'ID:', petani.id);
-            } else {
-                console.error('petaniIdInput not found');
-            }
-        });
-
-        // Handle form submission for editing kredit
-        document.querySelectorAll('form[id^="editKreditForm"]').forEach(form => {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(form);
-
-                fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            console.log('Kredit updated successfully');
-                            location.reload();
-                        } else {
-                            console.error('Error updating kredit:', data);
-                            alert('Error updating kredit: ' + (data.message || JSON.stringify(data)));
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while updating kredit: ' + error);
+                        results.appendChild(div);
                     });
-            });
-        });
-
-        // Handle kredit deletion
-        document.querySelectorAll('form[data-delete-kredit]').forEach(form => {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const kreditId = this.getAttribute('data-delete-kredit');
-                const deleteUrl = this.action;
-
-                if (confirm('Are you sure you want to delete this kredit?')) {
-                    fetch(deleteUrl, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                _method: 'DELETE'
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Kredit deleted successfully');
-                                location.reload();
-                            } else {
-                                console.error('Error deleting kredit:', data);
-                                alert('Error deleting kredit: ' + (data.message || JSON.stringify(data)));
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            alert('An error occurred while deleting kredit: ' + error);
-                        });
-                }
-            });
-        });
-
-        // Handle form submission for adding new kredit
-        // Handle form submission for adding new kredit
-        const addKreditForm = document.querySelector('#addKreditModal form');
-        const addKreditModal = document.getElementById('addKreditModal');
-
-        if (addKreditForm && addKreditModal) {
-            let isSubmitting = false; // Flag untuk mencegah multiple submission
-
-            addKreditForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-
-                // Cek jika sedang dalam proses submit
-                if (isSubmitting) {
-                    return;
-                }
-
-                if (!petaniIdInput || !petaniIdInput.value) {
-                    alert('Silakan pilih petani sebelum menyimpan.');
-                    return;
-                }
-
-                // Ambil tombol submit
-                const submitButton = this.querySelector('button[type="submit"]');
-
-                // Set flag dan nonaktifkan tombol
-                isSubmitting = true;
-                if (submitButton) {
-                    submitButton.disabled = true;
-                }
-
-                const formData = new FormData(this);
-                // Ensure petani_id is added to formData
-                formData.set('petani_id', petaniIdInput.value);
-                console.log('Petani ID before send:', petaniIdInput.value);
-                console.log('Form data before send:', Object.fromEntries(formData));
-
-                fetch(this.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'Accept': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            console.log('New kredit added successfully');
-                            // Reset form fields
-                            addKreditForm.reset();
-                            // Clear petani search input and reset petani_id
-                            const petaniSearchInput = document.getElementById('petani_search');
-                            if (petaniSearchInput) {
-                                petaniSearchInput.value = '';
-                            }
-                            if (petaniIdInput) {
-                                petaniIdInput.value = '';
-                            }
-                            // Close the modal
-                            const modal = bootstrap.Modal.getInstance(addKreditModal);
-                            if (modal) {
-                                modal.hide();
-                            }
-                            // Reload the page
-                            location.reload();
-                        } else {
-                            console.error('Error adding new kredit:', data);
-                            alert('Error adding new kredit: ' + (data.message || JSON.stringify(data)));
-                            // Reset flag dan aktifkan tombol kembali jika error
-                            isSubmitting = false;
-                            if (submitButton) {
-                                submitButton.disabled = false;
-                            }
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while adding new kredit: ' + error);
-                        // Reset flag dan aktifkan tombol kembali jika error
-                        isSubmitting = false;
-                        if (submitButton) {
-                            submitButton.disabled = false;
-                        }
-                    });
-            });
+                })
+                .catch(error => console.error('Error:', error));
         } else {
-            console.error('Add Kredit form not found');
+            results.style.display = 'none';
+        }
+    });
+
+    // Setup number formatting
+    initializeNumberFormatting();
+
+    // Setup autocomplete
+    $('#search-input').autocomplete({
+        source: function(request, response) {
+            console.log('Autocomplete request:', request.term); // Debug log
+            $.ajax({
+                url: "{{ route('debit.search') }}",
+                dataType: 'json',
+                data: {
+                    term: request.term
+                },
+                success: function(data) {
+                    console.log('Data received:', data); // Debug log
+                    response($.map(data, function(item) {
+                        return {
+                            label: `${item.nama} - ${item.alamat}`,
+                            value: item.nama
+                        };
+                    }));
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error); // Debug log
+                }
+            });
+        },
+        minLength: 2,
+        select: function(event, ui) {
+            $('#search-input').val(ui.item.value);
+            $('form').submit();
         }
     });
 </script>
-
-
-
-
-@endsection
+@endpush
