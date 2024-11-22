@@ -184,6 +184,56 @@
         height: 1rem;
         border-width: 0.2em;
     }
+
+    /* Landscape Mode (Desktop/Tablet Horizontal) */
+    @media (min-width: 769px) {
+        .pengambilan-w {
+
+            width: 80% !important;
+
+        }
+
+        .konstanta-css {
+
+            width: 80% !important;
+
+        }
+    }
+
+    /* Portrait Mode (Tablet/Mobile Vertical) */
+    @media (max-width: 768px) and (orientation: portrait) {
+        .pengambilan-item {
+
+            gap: 1rem !important
+        }
+
+        .pengambilan {
+            align-items: center !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 1rem !important
+        }
+
+        .pengambilan-w {
+            align-items: center !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 1rem !important
+        }
+
+        .konstanta-css {
+
+            width: 100% !important;
+
+        }
+
+        .btn-css {
+
+            width: 100% !important;
+
+        }
+
+    }
 </style>
 
 <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
@@ -309,7 +359,7 @@
 
                 </div>
                 <div class="col-md-12 d-flex align-items-end mb-3">
-                    <button type="button" class="btn btn-primary add-pengambilan ">
+                    <button type="button" class="btn btn-css btn-primary add-pengambilan ">
                         <i class="bi bi-plus-square me-2"></i>
                         <span>Tambah Pengambilan</span>
                     </button>
@@ -330,7 +380,7 @@
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
                             <label for="{{ $field }}" class="form-control-label ">{{ __($data['label']) }}</label>
-                            <input class="form-control number-format w-80" type="text"
+                            <input class="form-control number-format konstanta-css" type="text"
                                 name="{{ $field }}"
                                 id="{{ $field }}"
                                 value="{{ number_format(old($field, $data['default']), 0, ',', '.') }}"
@@ -343,7 +393,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end mt-2">
-                    <button type="submit" class="btn bg-gradient-primary btn-md submit-button">{{ 'Simpan Nota Giling' }}</button>
+                    <button type="submit" class="btn btn-css bg-gradient-primary btn-md submit-button">{{ 'Simpan Nota Giling' }}</button>
                 </div>
             </form>
         </div>
@@ -566,21 +616,21 @@
             <div class="pengambilan-item row mb-2">
             <div class="col-md-4">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control keterangan-input w-100" placeholder="Keterangan" list="keterangan-list">
+                    <input type="text" name="pengambilans[${pengambilanCount}][keterangan]" class="form-control pengambilan keterangan-input w-100" placeholder="Keterangan" list="keterangan-list">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format w-80" placeholder="Jumlah" inputmode="numeric" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][jumlah]" class="form-control number-format pengambilan-w" placeholder="Jumlah" inputmode="numeric" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group mb-0">
-                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format w-80" placeholder="Harga" inputmode="numeric" data-raw-value="">
+                    <input type="text" name="pengambilans[${pengambilanCount}][harga]" class="form-control number-format pengambilan-w" placeholder="Harga" inputmode="numeric" data-raw-value="">
                 </div>
             </div>
             <div class="col-md-2">
-                <button type="button" class="btn btn-danger delete-pengambilan w-100 bi">
+                <button type="button" class="btn pengambilan btn-danger delete-pengambilan w-100 bi">
                 <i class="bi bi-trash3-fill me-2"></i>
                         <span>DEL</span>
                         </button>
