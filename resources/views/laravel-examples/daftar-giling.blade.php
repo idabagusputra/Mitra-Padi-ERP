@@ -135,7 +135,8 @@
             width: 100% !important;
             height: auto;
             margin-right: 0 !important;
-            margin-bottom: 0 !important;
+
+
 
         }
 
