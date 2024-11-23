@@ -12,6 +12,7 @@ use App\Http\Controllers\DebitController;
 use App\Http\Controllers\GilingController;
 use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DaftarGilingController; // Tambahkan ini
+use App\Http\Controllers\DaftarGilingTrashController; // Tambahkan ini
 use App\Http\Controllers\KreditPembayaranKreditController; // Tambahkan ini
 use App\Http\Controllers\KreditReportController;
 use App\Http\Controllers\KreditTrashController;
@@ -90,6 +91,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/kredit-pembayaran', [KreditPembayaranKreditController::class, 'store']);
     Route::get('/kredit-pembayaran/{pembayaranKreditId}', [KreditPembayaranKreditController::class, 'index']);
     Route::delete('/kredit-pembayaran/{pembayaranKreditId}/{kreditId}', [KreditPembayaranKreditController::class, 'destroy']);
+
+
+    // Daftar Giling Trash routes
+    Route::resource('daftar-giling-ryclebin', DaftarGilingTrashController::class);
+
+    Route::get('/generate-pdf/{gilingId}', [DaftarGilingTrashController::class, 'generatePdf'])->name('generate.pdf');
+    Route::get('/receipt/{id}', [DaftarGilingTrashController::class, 'generatePdf']);
+    Route::get('/giling/download-pdf', [DaftarGilingTrashController::class, 'downloadPdf'])->name('giling.download_pdf');
+    Route::get('/search-daftar-giling-ryclebin', [DaftarGilingTrashController::class, 'search'])->name('daftar-giling-ryclebin.search');
+    Route::delete('/daftar-giling-ryclebin/{id}', [DaftarGilingTrashController::class, 'destroy'])->name('daftar-giling-ryclebin.destroy');
+    Route::patch('/daftar-giling-ryclebin/restore/{id}', [DaftarGilingTrashController::class, 'restore'])->name('daftar-giling-ryclebin.restore');
 
 
 

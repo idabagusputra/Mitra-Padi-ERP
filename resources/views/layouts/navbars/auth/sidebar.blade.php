@@ -95,14 +95,7 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link {{ (Request::is('kredit-ryclebin') ? 'active' : '') }}" href="{{ url('kredit-ryclebin') }}">
-                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i style="font-size: 1rem;" class="bi bi-trash3 ps-2 pe-2 text-center text-dark {{ (Request::is('kredit-ryclebin') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Kredit Ryclebin</span>
-                </a>
-            </li>
+
 
             <li class="nav-item">
                 <a class="nav-link {{ (Request::is('daftar-giling') ? 'active' : '') }}" href="{{ url('daftar-giling') }}">
@@ -137,9 +130,43 @@
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;" class="bi bi-building-gear ps-2 pe-2 text-center text-dark {{ (Request::is('giling') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Giling</span>
+                    <span class="nav-link-text ms-1">Nota Giling</span>
                 </a>
             </li>
+
+
+
+
+
+            <!-- Add a divider -->
+            <div class="pt-3">
+                <hr class="horizontal dark mt-0">
+            </div>
+
+            <li class="nav-item mt-2">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6 py-2">Ryclebin</h6>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::is('kredit-ryclebin') ? 'active' : '') }}" href="{{ url('kredit-ryclebin') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i style="font-size: 1rem;" class="bi bi-trash3 ps-2 pe-2 text-center text-dark {{ (Request::is('kredit-ryclebin') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                    </div>
+                    <!-- <span class="bi bi-currency-dollar me-2"></span> -->
+                    <span class="nav-link-text ms-1">Kredit Ryclebin</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ (Request::is('daftar-giling-ryclebin') ? 'active' : '') }}" href="{{ url('daftar-giling-ryclebin') }}">
+                    <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i style="font-size: 1rem;" class="bi bi-trash3 ps-2 pe-2 text-center text-dark {{ (Request::is('daftar-giling-ryclebin') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+                    </div>
+                    <!-- <span class="bi bi-list-check me-2"></span> -->
+                    <span class="nav-link-text ms-1">Daftar Giling Ryclebin</span>
+                </a>
+            </li>
+
 
 
 

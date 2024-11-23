@@ -45,10 +45,9 @@ class DaftarGiling extends Model
         return $this->giling->petani();
     }
 
-    // Relasi ke model Giling
     public function giling()
     {
-        return $this->belongsTo(Giling::class);
+        return $this->belongsTo(Giling::class)->withTrashed();
     }
 
     // Relasi ke pengambilans melalui giling
