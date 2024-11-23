@@ -178,9 +178,6 @@
             margin: 0 !important;
         }
 
-        .table-mobile {
-            margin-top: 3 !important;
-        }
 
         /* .card-header {
             padding: 3 !important;
@@ -262,16 +259,18 @@
                                             <span>CETAK</span>
                                         </a>
 
-                                    </form>
+                                    </form> -->
 
 
-                                    <button class="btn btn-baru bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" id="btn-id" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
+                                    <!-- <button class="btn btn-baru bg-gradient-primary d-flex align-items-center justify-content-center mt-3" type="button" id="btn-id" data-bs-toggle="modal" data-bs-target="#addKreditModal" style="width: 233px;">
                                         <i class="bi bi-plus-square me-2"></i>
                                         <span>Kredit Baru</span>
                                     </button> -->
 
 
 
+                                </div>
+                                <div class="w-100 mb-3" style="position: relative;" id="btn-id">
                                 </div>
 
 
