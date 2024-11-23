@@ -107,6 +107,7 @@
             flex-direction: column !important;
             width: 100% !important;
             gap: 0 !important;
+
         }
 
         .d-flex.flex-wrap {
@@ -177,6 +178,9 @@
             margin: 0 !important;
         }
 
+        .table-mobile {
+            margin-top: 3 !important;
+        }
 
         /* .card-header {
             padding: 3 !important;
@@ -325,7 +329,7 @@
                                     </table>
                                 </div>
                             </div> -->
-                            <div class="table-responsive p-0">
+                            <div class="table-responsive p-0 table-mobile">
 
                                 <table class="table align-items-center mb-0">
                                     <thead>
