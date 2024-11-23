@@ -522,20 +522,34 @@
         });
 
         // Updated event listener for View buttons
+        // Updated event listener for View buttons
         document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const gilingId = this.getAttribute('data-id');
                 const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
-
                 // Set src viewer PDF
                 document.getElementById('pdfViewer').src = pdfPath;
-
                 // Update modal title with the correct ID
                 document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
 
-                // Display the modal
-                const pdfModal = new bootstrap.Modal(document.getElementById('pdfModal'));
+                const modalElement = document.getElementById('pdfModal');
+                const pdfModal = new bootstrap.Modal(modalElement);
+
+                // Add click event listener to close modal when clicking outside
+                modalElement.addEventListener('click', function(event) {
+                    if (event.target === modalElement) {
+                        pdfModal.hide();
+                    }
+                });
+
+                // Add click event listener for close buttons
+                document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(button => {
+                    button.addEventListener('click', () => {
+                        pdfModal.hide();
+                    });
+                });
+
                 pdfModal.show();
             });
         });
