@@ -284,11 +284,11 @@
                                         <p class="text-xs font-weight-bold mb-0">{{ $daftarGiling->id }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <!-- <a href="#" class="btn btn-link text-dark px-2 mb-0 view-pdf-btn" data-id="{{ $daftarGiling->id }}">
+                                        <a href="#" class="btn btn-link text-dark px-2 mb-0 view-pdf-btn" data-id="{{ $daftarGiling->id }}">
                                             <i class="bi bi-eye text-dark me-2" aria-hidden="true"></i>
                                             View
                                         </a>
-                                        <form action="{{ route('daftar-giling.destroy', $daftarGiling->id) }}" method="POST" style="display:inline;">
+                                        <!-- <form action="{{ route('daftar-giling.destroy', $daftarGiling->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-link text-danger text-gradient px-2 mb-0" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
@@ -296,7 +296,7 @@
                                                 Delete
                                             </button>
                                         </form> -->
-                                        <form action="{{ route('daftar-giling-ryclebin.restore', $daftarGiling->id) }}" method="POST" class="d-inline">
+                                        <!-- <form action="{{ route('daftar-giling-ryclebin.restore', $daftarGiling->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit" class="btn btn-link px-2 mb-0" onclick="return confirm('Are you sure you want to restore this item?')" style="color: #1F4529;">
@@ -305,7 +305,7 @@
                                             </button>
 
 
-                                        </form>
+                                        </form> -->
                                     </td>
                                     <td>
                                         <p class="text-xs font-weight-bold mb-0">{{ $daftarGiling->giling->petani->nama }}</p>

@@ -334,6 +334,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">ID</th>
+                                            <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Action</th>
                                             <th class="text-uppercase text-primary font-weight-bolder ps-2" style="font-size: 0.85rem;">Petani</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Alamat</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Tanggal</th>
@@ -341,7 +342,6 @@
                                             <!-- <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Hutang + Bunga</th> -->
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Status</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Keterangan</th>
-                                            <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Action</th>
                                         </tr>
                                     </thead>
 
@@ -352,30 +352,7 @@
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">{{ $kredit->id }}</p>
                                         </td>
-                                        <td>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->nama }}</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->alamat }}</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->tanggal }}</p>
-                                        </td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($kredit->jumlah, 2, ',', '.') }}</p>
-                                        </td>
-                                        <!-- <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">
-                                                Rp {{ number_format($kredit->hutang_plus_bunga, 2, ',', '.') }} | {{ number_format($kredit->lama_bulan) }} Bulan
-                                            </p>
-                                            <small style="font-size: 0.7rem; color: #999;">
-                                                Bunga: Rp {{ number_format($kredit->bunga, 2, ',', '.') }}
-                                            </small>
-                                        </td> -->
-                                        <td class="text-center"><span class="badge badge-sm bg-gradient-{{ $kredit->status ? 'success' : 'warning' }}">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</span></td>
-                                        <td class="text-center">
-                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->keterangan }}</p>
-                                        </td>
+
 
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center align-items-center">
@@ -405,6 +382,35 @@
                                                 @endif
                                             </div>
                                         </td>
+
+
+                                        <td>
+                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->nama }}</p>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->petani->alamat }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->tanggal }}</p>
+                                        </td>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($kredit->jumlah, 2, ',', '.') }}</p>
+                                        </td>
+                                        <!-- <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">
+                                                Rp {{ number_format($kredit->hutang_plus_bunga, 2, ',', '.') }} | {{ number_format($kredit->lama_bulan) }} Bulan
+                                            </p>
+                                            <small style="font-size: 0.7rem; color: #999;">
+                                                Bunga: Rp {{ number_format($kredit->bunga, 2, ',', '.') }}
+                                            </small>
+                                        </td> -->
+                                        <td class="text-center"><span class="badge badge-sm bg-gradient-{{ $kredit->status ? 'success' : 'warning' }}">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</span></td>
+                                        <td class="text-center">
+                                            <p class="text-xs font-weight-bold mb-0">{{ $kredit->keterangan }}</p>
+                                        </td>
+
+
 
                                     </tbody>
                                     @endforeach
