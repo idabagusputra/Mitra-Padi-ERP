@@ -14,6 +14,7 @@ use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\DaftarGilingController; // Tambahkan ini
 use App\Http\Controllers\KreditPembayaranKreditController; // Tambahkan ini
 use App\Http\Controllers\KreditReportController;
+use App\Http\Controllers\KreditTrashController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search-petani', [KreditController::class, 'searchPetani'])->name('search.petani');
     Route::get('/laporan-kredit', [KreditReportController::class, 'generatePdf'])->name('laporan.kredit');
     Route::get('/kredit/cetak-laporan', [KreditController::class, 'downloadLaporanKredit'])->name('laporan.kredit.cetak');
+
+    // Kredit Trash routes
+    Route::resource('kredit-trash', KreditTrashController::class);
+    // Route untuk halaman kreditTrash
+    Route::get('/kredit-trash', [KreditTrashController::class, 'index'])->name('kredit-trash.index');
+
+    Route::get('/search-kredit-trash', [KreditTrashController::class, 'search'])->name('search.kredit');
+    Route::get('/api/kredit-trash/autocomplete', [KreditTrashController::class, 'autocomplete']);
+    Route::get('/search-petani', [KreditTrashController::class, 'searchPetani'])->name('search.petani');
+    Route::get('/laporan-kredit-trash', [KreditTrashController::class, 'generatePdf'])->name('laporan.kredit');
+    Route::get('/kredit-trash/cetak-laporan', [KreditTrashController::class, 'downloadLaporanKredit'])->name('laporan.kredit.cetak');
+    Route::patch('/kredit-trash/restore/{id}', [KreditTrashController::class, 'restore'])->name('kredit-trash.restore');
+
 
 
 

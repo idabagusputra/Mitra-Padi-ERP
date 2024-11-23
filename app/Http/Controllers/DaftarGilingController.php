@@ -39,7 +39,21 @@ class DaftarGilingController extends Controller
         if ($request->has('alamat')) {
             if ($alamatFilter === 'campur') {
                 $query->whereHas('giling.petani', function ($q) {
-                    $q->whereNotNull('alamat');
+                    $q->whereNotIn('alamat', [
+                        'Penebel',
+                        'Palesari',
+                        'Sangeh Sari',
+                        'Gigit Sari',
+                        'Wanaprasta',
+                        'Sibang',
+                        'Sausu',
+                        'Bali Indah',
+                        'Candra Buana',
+                        'Taman Sari',
+                        'Sukasada',
+                        'Purwo Sari',
+                        'Karyawan',
+                    ]);
                 });
             } elseif ($alamatFilter !== 'all') {
                 $query->whereHas('giling.petani', function ($q) use ($alamatFilter) {

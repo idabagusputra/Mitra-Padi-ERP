@@ -13,16 +13,23 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\KreditReportController;
 
-class KreditController extends Controller
+class KreditTrashController extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->input('search');
         $statusFilter = $request->input('status');
         $alamatFilter = $request->input('alamat');
-        $sortOrder = $request->input('sort', 'desc');
+        $sortOrder = $request->input('sort', 'desc'); // Default ke 'desc'
+        $showDeleted = $request->input('show_deleted'); // Tambahan untuk filter deleted_at
 
-        $query = Kredit::with('petani');
+        $query = Kredit::onlyTrashed()->with('petani');
+
+
+        // Filter hanya data yang terhapus jika show_deleted=true
+        if ($showDeleted === 'true') {
+            $query->onlyTrashed();
+        }
 
         // Apply filters
         if ($search) {
@@ -49,7 +56,7 @@ class KreditController extends Controller
                         'Sukasada',
                         'Purwo Sari',
                         'Karyawan',
-                    ]);
+                    ]); // Filter petani dengan alamat berbeda dari daftar nilai
                 });
             } elseif ($alamatFilter !== 'all') {
                 $query->whereHas('petani', function ($q) use ($alamatFilter) {
@@ -61,6 +68,8 @@ class KreditController extends Controller
         if ($statusFilter !== null) {
             $query->where('status', $statusFilter);
         }
+
+
 
         // Get all matching kredits without pagination
         $allKredits = $query->get();
@@ -87,8 +96,13 @@ class KreditController extends Controller
 
         // Sort the collection
         $sortedKredits = $calculatedKredits->sortBy(function ($item) {
-            return [$item->tanggal, $item->id];
+            return [
+                $item->deleted_at, // Prioritas utama
+                $item->tanggal,    // Prioritas kedua
+                $item->id          // Prioritas ketiga
+            ];
         }, SORT_REGULAR, $sortOrder === 'desc');
+
 
         $kreditsBelumLunas = $calculatedKredits->where('status', 0);
 
@@ -119,7 +133,7 @@ class KreditController extends Controller
         // Get unique alamat list for the filter dropdown
         $alamatList = $petanis->pluck('alamat')->unique()->filter()->values();
 
-        return view('laravel-examples/kredit', [
+        return view('laravel-examples/kreditTrash', [
             'kredits' => $paginator,
             'petanis' => $petanis,
             'search' => $search,
@@ -218,6 +232,28 @@ class KreditController extends Controller
             return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat memperbarui kredit'], 500);
         }
     }
+
+    public function restore($id)
+    {
+        try {
+            // Cari data yang soft deleted
+            $kredit = Kredit::onlyTrashed()->findOrFail($id);
+
+            // Restore data
+            $kredit->restore();
+
+            // Redirect ke fungsi index untuk menampilkan halaman dengan data terbaru
+            return redirect()->route('kredit-trash.index')->with('success', 'Kredit berhasil dikembalikan');
+        } catch (\Exception $e) {
+            Log::error('Error restoring kredit: ' . $e->getMessage());
+
+            // Redirect ke fungsi index meskipun terjadi error, agar halaman tetap tampil
+            return redirect()->route('kredit-trash.index')->with('error', 'Terjadi kesalahan saat mengembalikan kredit');
+        }
+    }
+
+
+
 
 
     public function show($id)
