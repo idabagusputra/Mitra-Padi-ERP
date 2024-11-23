@@ -243,12 +243,12 @@ class KreditTrashController extends Controller
             $kredit->restore();
 
             // Redirect ke fungsi index untuk menampilkan halaman dengan data terbaru
-            return redirect()->route('kredit-trash.index')->with('success', 'Kredit berhasil dikembalikan');
+            return redirect()->route('kredit-ryclebin.index')->with('success', 'Kredit berhasil dikembalikan');
         } catch (\Exception $e) {
             Log::error('Error restoring kredit: ' . $e->getMessage());
 
             // Redirect ke fungsi index meskipun terjadi error, agar halaman tetap tampil
-            return redirect()->route('kredit-trash.index')->with('error', 'Terjadi kesalahan saat mengembalikan kredit');
+            return redirect()->route('kredit-ryclebin.index')->with('error', 'Terjadi kesalahan saat mengembalikan kredit');
         }
     }
 

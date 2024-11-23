@@ -194,7 +194,7 @@
                 <div class="col-12">
                     <div class="card mb-4 mx-4">
                         <div class="card-header pb-3 p-3 mx-2" id="btn-id">
-                            <form method="GET" action="{{ route('kredit-trash.index') }}">
+                            <form method="GET" action="{{ route('kredit-ryclebin.index') }}">
                                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
 
                                     <!-- Bagian Label -->
@@ -392,7 +392,7 @@
                                                     </button>
                                                 </form> -->
                                                 @if($kredit->trashed()) <!-- Cek jika data dalam kondisi soft deleted -->
-                                                <form action="{{ route('kredit-trash.restore', $kredit->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('kredit-ryclebin.restore', $kredit->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" class="btn btn-link px-2 mb-0" onclick="return confirm('Are you sure you want to restore this item?')" style="color: #1F4529;">
@@ -593,7 +593,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 function restoreKredit(id) {
-                    fetch(`/kredit-trash/restore/${id}`, {
+                    fetch(`/kredit-ryclebin/restore/${id}`, {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json',
