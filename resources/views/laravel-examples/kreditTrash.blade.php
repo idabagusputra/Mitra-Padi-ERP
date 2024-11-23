@@ -55,6 +55,7 @@
         .d-flex.flex-column.flex-md-row {
             align-items: center !important;
             flex-direction: row !important;
+
         }
 
         .d-flex.flex-wrap {
@@ -62,6 +63,7 @@
             justify-content: flex-end;
             width: auto;
             gap: 1rem;
+
         }
 
         h5.mb-3 {
@@ -220,7 +222,7 @@
 
                                         <div style="width: 150px;">
 
-                                            <select name="alamat" id="alamat-filter" class="form-select" onchange="this.form.submit()">
+                                            <select name="alamat" id="alamat-filter" class="form-select  mb-3" onchange="this.form.submit()">
                                                 <option value="all">Semua Alamat</option>
                                                 <option value="campur" {{ request('alamat') == 'campur' ? 'selected' : '' }}>Campur</option>
                                                 @foreach($alamatList as $alamat)
@@ -237,7 +239,7 @@
                                 <!-- Bagian Search dan Tombol -->
 
                                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                                    <div class="w-100 mt-3" style="position: relative;" id="btn-id">
+                                    <div class="w-100" style="position: relative;" id="btn-id">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit/hutang terhapus..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
