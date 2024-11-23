@@ -522,19 +522,36 @@
         });
 
         // Updated event listener for View buttons
-        // Updated event listener for View buttons
+
+        let scrollPosition = 0;
+
         document.querySelectorAll('.view-pdf-btn').forEach(function(button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
+                scrollPosition = window.pageYOffset;
                 const gilingId = this.getAttribute('data-id');
                 const pdfPath = `/receipts/receipt-${gilingId}.pdf`;
+
                 // Set src viewer PDF
                 document.getElementById('pdfViewer').src = pdfPath;
-                // Update modal title with the correct ID
+
+                // Update modal title
                 document.getElementById('pdfModalLabel').textContent = `Receipt #${gilingId}`;
 
                 const modalElement = document.getElementById('pdfModal');
                 const pdfModal = new bootstrap.Modal(modalElement);
+
+                // Handle modal events to fix mobile scrolling
+                modalElement.addEventListener('shown.bs.modal', function() {
+                    document.body.style.overflow = 'hidden';
+                });
+
+                modalElement.addEventListener('hidden.bs.modal', function() {
+                    document.body.style.overflow = 'auto';
+                    document.body.style.position = 'relative';
+                    // Reset any inline styles that might affect scrolling
+                    window.scrollTo(0, window.scrollY);
+                });
 
                 // Add click event listener to close modal when clicking outside
                 modalElement.addEventListener('click', function(event) {
@@ -552,6 +569,15 @@
 
                 pdfModal.show();
             });
+        });
+
+
+        // Dalam event hidden.bs.modal
+        modalElement.addEventListener('hidden.bs.modal', function() {
+            document.body.style.overflow = 'auto';
+            document.body.style.position = 'relative';
+            document.body.style.top = '';
+            window.scrollTo(0, scrollPosition);
         });
 
         // Event listener for Print button

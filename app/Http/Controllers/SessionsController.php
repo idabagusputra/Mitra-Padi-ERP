@@ -10,6 +10,7 @@ class SessionsController extends Controller
 {
     public function create()
     {
+        // return redirect()->route('giling.index');
         // Jika sudah login, langsung redirect ke halaman giling
         if (Auth::check()) {
             return redirect()->route('giling.index');
@@ -20,9 +21,10 @@ class SessionsController extends Controller
 
     public function store()
     {
+        // return redirect()->route('giling.index');
         // Cek jika sudah login, langsung arahkan ke halaman giling
-        if (Auth::check()) {
-            return redirect()->intended(route('giling.index')); // Gunakan intended untuk lebih aman
+        if (auth() && Auth::check()) {
+            return redirect()->route('giling.index');
         }
 
         try {
