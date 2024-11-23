@@ -237,7 +237,7 @@
                                 <!-- Bagian Search dan Tombol -->
 
                                 <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center w-100">
-                                    <div class="me-2 w-100" style="position: relative;" id="btn-id">
+                                    <div class="w-100 mt-3" style="position: relative;" id="btn-id">
                                         <div class="input-group">
                                             <input type="text" id="search-input" name="search" class="form-control" placeholder="Cari kredit/hutang terhapus..." aria-label="Cari daftar kredit" value="{{ request('search') }}" autocomplete="off">
                                             <button class="btn btn-outline-primary mb-0" type="submit" aria-label="Cari">
