@@ -333,7 +333,7 @@
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Alamat</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Tanggal</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Jumlah</th>
-                                            <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Hutang + Bunga</th>
+                                            <!-- <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Hutang + Bunga</th> -->
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Status</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Keterangan</th>
                                             <th class="text-uppercase text-primary font-weight-bolder text-center" style="font-size: 0.85rem;">Action</th>
@@ -359,14 +359,14 @@
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">Rp {{ number_format($kredit->jumlah, 2, ',', '.') }}</p>
                                         </td>
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">
                                                 Rp {{ number_format($kredit->hutang_plus_bunga, 2, ',', '.') }} | {{ number_format($kredit->lama_bulan) }} Bulan
                                             </p>
                                             <small style="font-size: 0.7rem; color: #999;">
                                                 Bunga: Rp {{ number_format($kredit->bunga, 2, ',', '.') }}
                                             </small>
-                                        </td>
+                                        </td> -->
                                         <td class="text-center"><span class="badge badge-sm bg-gradient-{{ $kredit->status ? 'success' : 'warning' }}">{{ $kredit->status ? 'Lunas' : 'Belum Lunas' }}</span></td>
                                         <td class="text-center">
                                             <p class="text-xs font-weight-bold mb-0">{{ $kredit->keterangan }}</p>
