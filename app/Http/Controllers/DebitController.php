@@ -7,6 +7,9 @@ use App\Models\Kredit;
 use App\Models\Petani;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+
 
 class DebitController extends Controller
 {
@@ -89,15 +92,90 @@ class DebitController extends Controller
         }
     }
 
-    public function destroy(Debit $debit)
+    public function destroy($id)
     {
-        try {
-            $debit->delete();
-            return redirect()->route('debit.index')->with('success', 'Debit entry deleted successfully.');
-        } catch (\Exception $e) {
-            return redirect()->route('debit.index')->with('error', 'Error deleting debit entry: ' . $e->getMessage());
-        }
+        return DB::transaction(function () use ($id) {
+            try {
+                // Dapatkan data Debit yang ingin dihapus
+                $debit = Debit::with('petani.kredits')->findOrFail($id);
+
+                // Reverse perubahan pada kredit
+                $this->reversePaymentChanges($debit);
+
+                // Soft delete pada Debit
+                $debit->delete();
+
+                return redirect()->route('debit.index')
+                    ->with('success', 'Debit berhasil dihapus (soft delete) dan status kredit dikembalikan.');
+            } catch (\Exception $e) {
+
+                throw $e;
+            }
+        });
     }
+
+    private function reversePaymentChanges(Debit $debit)
+    {
+        Log::info('Memulai proses reverse pembayaran untuk Debit ID: ' . $debit->id);
+
+        // Hapus kredit baru yang dibuat setelah pembayaran debit
+        $newKredits = Kredit::where('petani_id', $debit->petani_id)
+            ->where('created_at', '>=', $debit->created_at)
+            ->get();
+
+        foreach ($newKredits as $kredit) {
+            Log::info('Menghapus Kredit baru:', ['kredit_id' => $kredit->id]);
+            $kredit->forceDelete();
+        }
+
+        // Ambil semua kredit yang diupdate saat pembayaran
+        $updatedKredits = Kredit::where('petani_id', $debit->petani_id)
+            ->where('updated_at', '>=', $debit->created_at)
+            ->where('status', true)
+            ->get();
+
+        Log::info('Jumlah kredit yang akan direset: ' . $updatedKredits->count());
+
+        foreach ($updatedKredits as $kredit) {
+            Log::info('Mereset Kredit ID: ' . $kredit->id);
+
+            // Hapus informasi pembayaran dari keterangan
+            $originalKeterangan = $this->removePaymentInfo($kredit->keterangan);
+
+            $success = $kredit->update([
+                'status' => false,
+                'keterangan' => $originalKeterangan
+            ]);
+
+            if ($success) {
+                Log::info('Kredit berhasil direset:', $kredit->toArray());
+            } else {
+                Log::error('Gagal mereset Kredit ID: ' . $kredit->id);
+            }
+        }
+
+        Log::info('Proses reverse pembayaran selesai untuk Debit ID: ' . $debit->id);
+    }
+
+    private function removePaymentInfo($keterangan)
+    {
+        // Hapus semua informasi pembayaran yang ditambahkan saat proses pembayaran
+        $patterns = [
+            '/\s*\|\s*Terbayar Penuh.*/',
+            '/\s*\|\s*Terbayar Sebagian.*/',
+            '/\s*\|\s*Debit:.*/',
+            '/\s*\|\s*Sisa Hutang:.*/',
+            '/\s*\|\s*Durasi:.*/'
+        ];
+
+        $cleanKeterangan = $keterangan;
+        foreach ($patterns as $pattern) {
+            $cleanKeterangan = preg_replace($pattern, '', $cleanKeterangan);
+        }
+
+        return trim($cleanKeterangan);
+    }
+
 
     public function getTotalHutang($petaniId)
     {
