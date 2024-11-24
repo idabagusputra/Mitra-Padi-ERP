@@ -247,7 +247,7 @@ class GilingController extends Controller
                             'petani_id' => $petani->id,
                             'pKredit_id' => $pembayaranKredit->id,
                             'tanggal' => now(),
-                            'keterangan' => 'Sisa hutang dari pembayaran sebagian | Dana awal: ' . number_format($dana, 2) .
+                            'keterangan' => 'Sisa hutang dari pembayaran sebagian | Sisa Dana : ' . number_format($dana, 2) .
                                 ', Total Hutang: ' . number_format($hutangDenganPlusTotalBunga, 2) .
                                 ', Total Pengambilan: ' . number_format($totalPengambilan, 2),
                             'jumlah' => $sisaHutang,
