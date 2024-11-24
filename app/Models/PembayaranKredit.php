@@ -61,28 +61,15 @@ class PembayaranKredit extends Model
     }
 
 
-    // public function hitungLamaHutangBulan($tanggalKredit)
-    // {
-    //     $tanggalPembayaran = $this->created_at ?? Carbon::now();
-
-    //     if (!$tanggalKredit instanceof Carbon) {
-    //         $tanggalKredit = Carbon::parse($tanggalKredit);
-    //     }
-
-    //     // Hitung selisih bulan dan lakukan pembulatan kebawah
-    //     return floor($tanggalKredit->diffInMonths($tanggalPembayaran)); // Pembulatan kebawah
-    // }
-
     public function hitungLamaHutangBulan($tanggalKredit)
     {
         $tanggalPembayaran = $this->created_at ?? Carbon::now();
+
         if (!$tanggalKredit instanceof Carbon) {
             $tanggalKredit = Carbon::parse($tanggalKredit);
         }
-        // Hitung selisih bulan dan lakukan pembulatan kebawah
-        $selisihBulan = floor($tanggalKredit->diffInMonths($tanggalPembayaran));
 
-        // Jika hasil perhitungan minus, kembalikan 0
-        return $selisihBulan < 0 ? 0 : $selisihBulan;
+        // Hitung selisih bulan dan lakukan pembulatan kebawah
+        return floor($tanggalKredit->diffInMonths($tanggalPembayaran)); // Pembulatan kebawah
     }
 }
