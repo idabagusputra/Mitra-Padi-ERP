@@ -81,7 +81,8 @@ class PembayaranKredit extends Model
         }
         // Hitung selisih bulan dan lakukan pembulatan kebawah
         $selisihBulan = floor($tanggalKredit->diffInMonths($tanggalPembayaran));
-        // Pastikan hasil tidak kurang dari 0
-        return max(0, $selisihBulan);
+
+        // Jika hasil perhitungan minus, kembalikan 0
+        return $selisihBulan < 0 ? 0 : $selisihBulan;
     }
 }
